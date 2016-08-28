@@ -1,7 +1,7 @@
 package aserdyuchenko;
 
 /**
- * Первая программа, выводит на консоль "Hello world".
+ * Первая программа. Выводит на консоль "Hello world".
  * Отличие от первой версии: добавление документации и теста.
  *
  * @author Anton Serdyuchenko
