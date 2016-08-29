@@ -11,43 +11,30 @@ import static org.junit.Assert.*;
 public class CalculatorTest {
     @org.testng.annotations.Test
     public void whenAddTwoNumbers() {
-        //assign
         Calculator calculate = new Calculator();
-        //act
         calculate.add(1,1);
         double result = calculate.result;
-        //action
         assertThat(result, is(2d));
     }
     @org.testng.annotations.Test
     public void whenSubstructTwoNumbers() {
-        //assign
         Calculator calculate = new Calculator();
-        //act
         calculate.substruct(3,1);
         double result = calculate.result;
-        //action
         assertThat(result, is(2d));
     }
     @org.testng.annotations.Test
     public void whenDivTwoNumbers() {
-        //assign
         Calculator calculate = new Calculator();
-        //act
         calculate.div(4,2);
         double result = calculate.result;
-        //action
         assertThat(result, is(2d));
     }
     @org.testng.annotations.Test
     public void whenMultipleTwoNumbers() {
-        //assign
         Calculator calculate = new Calculator();
-        //act
         calculate.multiple(2,1);
         double result = calculate.result;
-        //action
         assertThat(result, is(2d));
     }
-
 }
