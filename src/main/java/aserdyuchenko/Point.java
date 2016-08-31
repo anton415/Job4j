@@ -8,6 +8,10 @@ package aserdyuchenko;
  * 2. Координата у первой точки минус координата у второй точки.
  * 3. Сумма квадратов, первых двух вычислений.
  * 4. Корень получивщегося значения в пункте 3.
+ *
+ * @author Anton Serdyuchenko
+ * @since 31.08.2016
+ * @version 2.0
  */
 public class Point {
     public double x;
@@ -19,9 +23,6 @@ public class Point {
     }
 
     public double distanceTo(Point point) {
-        Point first = new Point(0,0);
-        Point second = new Point(2,0);
-        double distance = Math.sqrt(Math.pow((first.x - second.x),2) + Math.pow((first.y - second.y),2));
-        return -1;
+        return Math.sqrt(Math.pow((point.x - this.x),2) + Math.pow((point.y - this.y),2));
     }
 }

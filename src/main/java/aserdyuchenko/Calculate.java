@@ -7,11 +7,14 @@ package aserdyuchenko;
  *
  * @author Anton Serdyuchenko
  * @since 31.08.2016
- * @version 1.0
+ * @version 2.0
  *
  */
 public class Calculate {
     public static void main(String[] args) {
+        Point first = new Point(0,0);
+        Point second = new Point(2,0);
+        double result = first.distanceTo(second);
      }
     public static String Hello(String text){
         return "Hello world";

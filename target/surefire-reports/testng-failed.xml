@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite verbose="0" name="Failed suite [aserdyuchenko.CalculatorTest]">
+<suite verbose="0" name="Failed suite [Command line suite]">
   <test name="Command line test" preserve-order="false">
     <classes>
+      <class name="aserdyuchenko.CalculateTest"/>
+      <class name="aserdyuchenko.PointTest"/>
+      <class name="aserdyuchenko.TriangleTest"/>
       <class name="aserdyuchenko.CalculatorTest"/>
     </classes>
   </test> <!-- Command line test -->
-</suite> <!-- Failed suite [aserdyuchenko.CalculatorTest] -->
+</suite> <!-- Failed suite [Command line suite] -->

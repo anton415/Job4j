@@ -16,7 +16,7 @@ public class PointTest {
     public void whenCalculateDistanceBetweenTwoPoints(){
         Point first = new Point(0,0);
         Point second = new Point(2,0);
-        double distance = Math.sqrt(Math.pow((first.x - second.x),2) + Math.pow((first.y - second.y),2));
-        assertThat(distance, is(2d));
+        double result = first.distanceTo(second);
+        assertThat(result, is(2d));
     }
 }
