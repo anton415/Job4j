@@ -11,10 +11,28 @@ import static org.junit.Assert.*;
  */
 public class TriangleTest {
     @Test
-    public void whenFinaleTest() {
+    public void whenThePointsOfTheTriangleDoesNotLieOnTheSameLine() {
+        Point a = new Point(0,0);
+        Point b = new Point(-2,0);
+        Point c = new Point(0,20);
+        Triangle triangle = new Triangle(a, b, c);
+        double square = triangle.area();
+        assertThat(square, is(20d));
+    }
+    @Test
+    public void whenPointsLieOnLineThenAreaZero() {
         Point a = new Point(0,0);
         Point b = new Point(2,0);
         Point c = new Point(4,0);
+        Triangle triangle = new Triangle(a, b, c);
+        double square = triangle.area();
+        assertThat(square, is(0.0));
+    }
+    @Test
+    public void whenAllPointsInOnePointThenAreaZero() {
+        Point a = new Point(0,0);
+        Point b = new Point(0,0);
+        Point c = new Point(0,0);
         Triangle triangle = new Triangle(a, b, c);
         double square = triangle.area();
         assertThat(square, is(0.0));

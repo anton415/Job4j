@@ -9,6 +9,9 @@ package aserdyuchenko;
  *
  * Возвращает "Невозможно построить треугольник!", если площадь треугольника равно 0.
  *
+ * @author Anton Serdyuchenko
+ * @since 01.09.2016
+ * @version 3.0
  */
 public class Triangle {
     public Point a;
@@ -22,9 +25,6 @@ public class Triangle {
     }
 
     public double area() {
-        Point a = new Point(0,0);
-        Point b = new Point(2,0);
-        Point c = new Point(4,0);
         double distanceAB = Math.sqrt(Math.pow((a.x - b.x),2) + Math.pow((a.y - b.y),2));
         double distanceAC = Math.sqrt(Math.pow((a.x - c.x),2) + Math.pow((a.y - c.y),2));
         double distanceBC = Math.sqrt(Math.pow((b.x - c.x),2) + Math.pow((b.y - c.y),2));
