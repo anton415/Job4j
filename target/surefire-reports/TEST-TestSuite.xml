@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="6" failures="0" name="TestSuite" time="1.221" errors="0" skipped="0">
+<testsuite tests="6" failures="0" name="TestSuite" time="1.715" errors="0" skipped="0">
   <properties>
     <property name="idea.version" value="2016.2.3"/>
     <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
@@ -11,7 +11,7 @@
     <property name="guice.disable.misplaced.annotation.check" value="true"/>
     <property name="java.vm.name" value="OpenJDK 64-Bit Server VM"/>
     <property name="file.encoding.pkg" value="sun.io"/>
-    <property name="idea.launcher.port" value="7540"/>
+    <property name="idea.launcher.port" value="7534"/>
     <property name="user.country" value="RU"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.os.patch.level" value="unknown"/>
@@ -62,10 +62,10 @@
     <property name="sun.desktop" value="gnome"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase classname="aserdyuchenko.CalculateTest" name="whenYouWantSeeHelloWorld" time="0.043"/>
-  <testcase classname="aserdyuchenko.CalculatorTest" name="whenAddTwoNumbers" time="0.001"/>
-  <testcase classname="aserdyuchenko.CalculatorTest" name="whenDivTwoNumbers" time="0.001"/>
+  <testcase classname="aserdyuchenko.CalculateTest" name="whenYouWantSeeHelloWorld" time="0.075"/>
+  <testcase classname="aserdyuchenko.CalculatorTest" name="whenAddTwoNumbers" time="0.033"/>
+  <testcase classname="aserdyuchenko.CalculatorTest" name="whenDivTwoNumbers" time="0"/>
   <testcase classname="aserdyuchenko.CalculatorTest" name="whenMultipleTwoNumbers" time="0"/>
   <testcase classname="aserdyuchenko.CalculatorTest" name="whenSubstructTwoNumbers" time="0"/>
-  <testcase classname="aserdyuchenko.PointTest" name="whenCalculateDistanceBetweenTwoPoints" time="0.002"/>
+  <testcase classname="aserdyuchenko.PointTest" name="whenCalculateDistanceBetweenTwoPoints" time="0.001"/>
 </testsuite>

@@ -4,6 +4,7 @@
   <test name="Command line test" preserve-order="false">
     <classes>
       <class name="aserdyuchenko.CalculateTest"/>
+      <class name="aserdyuchenko.MaxLenghtTest"/>
       <class name="aserdyuchenko.PointTest"/>
       <class name="aserdyuchenko.TriangleTest"/>
       <class name="aserdyuchenko.CalculatorTest"/>
