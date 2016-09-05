@@ -16,6 +16,7 @@ public class Calculate {
         Point second = new Point(2,0);
         double result = first.distanceTo(second);
      }
+
     public static String Hello(String text){
         return "Hello world";
     }
