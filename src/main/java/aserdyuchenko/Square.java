@@ -1,5 +1,7 @@
 package aserdyuchenko;
 
+import java.io.*;
+
 /**
  * 4.1. Создать программу вычисляющую формулу квадратного уравнения
  * Создать класс Square в нем один методы float calculate(int x) и void show(start, finish, step).
@@ -16,7 +18,7 @@ public class Square {
     public float a;
     public float b;
     public float c;
-    public float result;
+    public float outContent;
 
     public Square(float a,float b,float c) {
         this.a = a;
@@ -26,14 +28,12 @@ public class Square {
 
     float calculate(int x){
         float y = this.a*((float)Math.pow(x,2)) + this.b*x + this.c;
-        System.out.println(String.format("Значение квадратного уровнения: %s", y));
         return y;
     }
 
-    void show(float start, float finish, float step){
+    void show(float start, float finish, float step) throws java.io.IOException {
         for (float index=start; index<=finish; index=index+step){
-            this.result=index;
-            System.out.println(String.format("Значение функции, при выполнении цикла: %s", index));
+            System.setOut(new PrintStream(String.valueOf(outContent=index)));
         }
     }
 }
