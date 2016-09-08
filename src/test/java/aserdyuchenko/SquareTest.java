@@ -25,7 +25,5 @@ public class SquareTest {
         float finish = square.calculate(2);
         float step = 1f;
         square.show(start,finish, step);
-        float result = square.outContent;
-        assertThat(result, is(7f));
     }
 }

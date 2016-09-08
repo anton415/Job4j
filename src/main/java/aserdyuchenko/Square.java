@@ -11,14 +11,13 @@ import java.io.*;
  *
  * @author Anton Serdyuchenko
  * @since 05.09.2016
- * @version 1.0
+ * @version 3.0
  */
 
 public class Square {
     public float a;
     public float b;
     public float c;
-    public float outContent;
 
     public Square(float a,float b,float c) {
         this.a = a;
@@ -28,12 +27,13 @@ public class Square {
 
     float calculate(int x){
         float y = this.a*((float)Math.pow(x,2)) + this.b*x + this.c;
+        System.out.println(String.format("Значение квадратного уровнения: %s", y));
         return y;
     }
 
     void show(float start, float finish, float step) throws java.io.IOException {
         for (float index=start; index<=finish; index=index+step){
-            System.setOut(new PrintStream(String.valueOf(outContent=index)));
+            System.out.println(String.format("Значение функции, при выполнении цикла: %s", index));
         }
     }
 }
