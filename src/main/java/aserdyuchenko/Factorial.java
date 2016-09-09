@@ -6,7 +6,7 @@ package aserdyuchenko;
  * Факториал числа n - это произведение чисел от 1 до n.
  * @author Anton Serdyuchenko
  * @since 08.09.2016
- * @version 1.0
+ * @version 2.0
  */
 public class Factorial {
     public float result=1;
@@ -14,7 +14,6 @@ public class Factorial {
         for (float index=1; index<=fac; index++){
             result *= index;
         }
-        System.out.println(String.format("Значение факториала: %s", result));
         return result;
     }
 }
