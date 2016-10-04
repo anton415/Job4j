@@ -48,6 +48,21 @@ public class Tracker {
 		return result;
 	}
 /**
+ * Поиск position
+ */
+	protected int findPositionByName(String name) {
+		int result = 0;		
+		for (Item item : items)	{
+			for (int index=0; index!=this.position; index++) {
+				if (item != null && item.getName().equals(name)) {
+					result = index;
+				break;
+				}		
+			}
+		}
+		return result;
+	}
+/**
  * Создание id
  */
 	String generateId() {
@@ -66,16 +81,39 @@ public class Tracker {
 /**
  * Редактирование описания
  */
-	public Item editingDesc(Item item, String newDescription){
-		item.setDescription(newDescription);	
-		return item;		
+	public Item updateItem(int position, Item item){
+		this.items[position] = item;
+		return this.items[position];		
 	}
 /**
  * Удаление заявки
  */
-	public Item removal(Item item) {
-		item.setId(this.generateId());
-		this.items[position--] = item;
-		return item;	
+
+	public Item[] removalItem(int position) {
+		//Removing Item[position]
+		this.items[position] = null;
+ 		//Если элемент равен нулю, убераем его в конец массива
+		for (int externalIndex = items.length - 1; externalIndex >= 0; externalIndex--) {
+            for (int internalIndex = 0; internalIndex < externalIndex; internalIndex++) {
+                
+				if (items[internalIndex] == null) {
+                    Item t = items[internalIndex];
+                    items[internalIndex] = items[internalIndex + 1];
+                    items[internalIndex + 1] = t;
+                }
+            }
+        }
+		//Create cleanArray
+		Item[] cleanArray = new Item[10];
+        for (int firstIndex = 0; firstIndex <= cleanArray.length-1; firstIndex++){
+            for (int secondIndex = firstIndex; secondIndex <= items.length-1; secondIndex++){
+                if (items[secondIndex]!=null ){
+                    cleanArray[firstIndex]=items[secondIndex];
+                    firstIndex++;
+                }
+            }
+        } 
+		return cleanArray; 
 	}
+
 }

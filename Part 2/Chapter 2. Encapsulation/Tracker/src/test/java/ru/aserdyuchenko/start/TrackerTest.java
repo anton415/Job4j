@@ -7,60 +7,48 @@ import ru.aserdyuchenko.models.Task;
 import ru.aserdyuchenko.models.Item;
 
 public class TrackerTest {
-    @Test
-    public void whenAddNewFirstItem() {
-		Tracker tracker = new Tracker();
-		String result = null;
-		tracker.add(new Task("first task", "first desc"));
-		for (Item index : tracker.getAll()) {
-			result = index.getName();		
-		}
-		assertThat(result, is("first task"));
-    }
 	@Test
-    public void whenAddNewSecondItem() {
+    public void whenAddTwoNewItemAndСheckSecondItem() {
 		Tracker tracker = new Tracker();
-		String result = null;
 		tracker.add(new Task("first task", "first desc"));
 		tracker.add(new Task("second task", "second desc"));
-		for (Item index : tracker.getAll()) {
-			result = index.getName();		
-		}
+		Item item = tracker.findByName("second task");
+		String result = item.getName();
 		assertThat(result, is("second task"));
     }
 	@Test
-    public void whenRemovalSecondItem() {
+    public void whenRemovalFirstItem() {
 		Tracker tracker = new Tracker();
-		String result = null;
 		tracker.add(new Task("first task", "first desc"));
 		tracker.add(new Task("second task", "second desc"));
-		tracker.removal(new Task("second task", "second desc"));
+		int position = tracker.findPositionByName("first task");
+		tracker.removalItem(position);
+		Item item = tracker.findByName("second task");
+		String result = item.getName();
+		//Я понимаю что так тест не проверяется, но я не могу придумать лучшего способа посмотреть, какой в результате получился массив.
 		for (Item index : tracker.getAll()) {
-			result = index.getName();		
+			System.out.println(index.getDescription());//я не могу понять, почему в этой строчке тест возвращает Failures: NullPointer		
 		}
-		assertThat(result, is("first task"));
+		assertThat(result, is("second task"));
     }	
 	@Test
-    public void whenEditingDescription() {
+    public void whenEditingFirstDescription() {
 		Tracker tracker = new Tracker();
-		String result = null;
 		tracker.add(new Task("first task", "first desc"));
 		tracker.add(new Task("second task", "second desc"));
+		int position = tracker.findPositionByName("first task");
+		tracker.updateItem(position, new Task("first task", "first description"));
 		Item item = tracker.findByName("first task");
-		tracker.editingDesc(item, "first description");
-		item = tracker.findByName("first task");
-		result = item.getDescription();
+		String result = item.getDescription();
 		assertThat(result, is("first description"));
     }
 	@Test
-    public void whenFindItem() {
+    public void whenFindItemByName() {
 		Tracker tracker = new Tracker();
-		String result = null;
-		String needId = null;
 		tracker.add(new Task("first task", "first desc"));
 		tracker.add(new Task("second task", "second desc"));
 		Item item = tracker.findByName("first task");
-		result = item.getName();
+		String result = item.getName();
 		assertThat(result, is("first task"));
     }	
 }
