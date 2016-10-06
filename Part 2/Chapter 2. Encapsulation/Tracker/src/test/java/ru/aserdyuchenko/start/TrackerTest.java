@@ -21,13 +21,11 @@ public class TrackerTest {
 		Tracker tracker = new Tracker();
 		tracker.add(new Task("first task", "first desc"));
 		tracker.add(new Task("second task", "second desc"));
-		int position = tracker.findPositionByName("first task");
-		tracker.removalItem(position);
+		tracker.delete("first task");
 		Item item = tracker.findByName("second task");
 		String result = item.getName();
-		//Я понимаю что так тест не проверяется, но я не могу придумать лучшего способа посмотреть, какой в результате получился массив.
 		for (Item index : tracker.getAll()) {
-			System.out.println(index.getDescription());//я не могу понять, почему в этой строчке тест возвращает Failures: NullPointer		
+			System.out.println(index.getName());	
 		}
 		assertThat(result, is("second task"));
     }	

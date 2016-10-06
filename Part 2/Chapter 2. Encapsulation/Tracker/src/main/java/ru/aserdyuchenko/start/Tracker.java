@@ -35,7 +35,7 @@ public class Tracker {
 		return result;
 	}
 /**
- * Поиск по name
+ * Find item by name
  */
 	protected Item findByName(String name) {
 		Item result = null;
@@ -88,10 +88,20 @@ public class Tracker {
 /**
  * Удаление заявки
  */
+	public Item[] delete(String name) {
+		//Find position by name
+		int position = 0;		
+		for (Item item : items)	{
+			for (int index=0; index!=this.position; index++) {
+				if (item != null && item.getName().equals(name)) {
+					position = index;
+				break;
+				}		
+			}
+		}
+		//Removing Item
+		this.items[position]=null;
 
-	public Item[] removalItem(int position) {
-		//Removing Item[position]
-		this.items[position] = null;
  		//Если элемент равен нулю, убераем его в конец массива
 		for (int externalIndex = items.length - 1; externalIndex >= 0; externalIndex--) {
             for (int internalIndex = 0; internalIndex < externalIndex; internalIndex++) {
@@ -115,5 +125,4 @@ public class Tracker {
         } 
 		return cleanArray; 
 	}
-
 }
