@@ -21,21 +21,24 @@ public class TrackerTest {
 		Tracker tracker = new Tracker();
 		tracker.add(new Task("first task", "first desc"));
 		tracker.add(new Task("second task", "second desc"));
-		tracker.delete("first task");
+		String itemId = tracker.findIdByName("first task");
+		tracker.delete(itemId);
 		Item item = tracker.findByName("second task");
 		String result = item.getName();
 		for (Item index : tracker.getAll()) {
-			System.out.println(index.getName());	
+			//NullPoint возвращает после попытки вывести на экран имя
+//несуществующего элемента. Как мне тогда проверить правильность работы метода?
+			System.out.println(index.getName());
 		}
 		assertThat(result, is("second task"));
-    }	
+    }
 	@Test
     public void whenEditingFirstDescription() {
 		Tracker tracker = new Tracker();
 		tracker.add(new Task("first task", "first desc"));
 		tracker.add(new Task("second task", "second desc"));
-		int position = tracker.findPositionByName("first task");
-		tracker.updateItem(position, new Task("first task", "first description"));
+		String itemId = tracker.findIdByName("first task");
+		tracker.updateItem(itemId, new Task("first task", "first description"));
 		Item item = tracker.findByName("first task");
 		String result = item.getDescription();
 		assertThat(result, is("first description"));
@@ -48,5 +51,5 @@ public class TrackerTest {
 		Item item = tracker.findByName("first task");
 		String result = item.getName();
 		assertThat(result, is("first task"));
-    }	
+    }
 }
