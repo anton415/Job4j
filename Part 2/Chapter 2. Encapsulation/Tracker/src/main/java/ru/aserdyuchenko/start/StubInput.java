@@ -33,52 +33,75 @@ public class StubInput implements Input {
 		return answers[position++];
 	}
 
+	public void addNewItem(){
+		System.out.println("Your choice is: Adding a new application.");
+		String name = new StubInput(new String[] {"first name"}).askNameForNewItem("Enter name for new item: ");
+		System.out.format("Your enter name: %s", name);
+		String desc = new StubInput(new String[] {"first desc"}).askDescForNewItem("Enter desc for new item: ");
+		System.out.format("\nYour enter desc: %s", desc);
+		tracker.add(new Task(name, desc));
+		System.out.println("\nAdd new item.");
+	}
+
+	public void editItem(){
+		System.out.println("Your choice is: Edit applications.");
+		System.out.println("Item is edit.");
+	}
+
+	public void removeItem(){
+		System.out.println("Your choice is: Removing the application.");
+		System.out.println("Item is removing.");
+	}
+
+	public void displaysAListOfAllItem(){
+		System.out.println("Your choice is: Displays a list of all applications.");
+		for (Item item : tracker.getAll()){
+            if (item != null){
+               	System.out.println("Item Id: " + item.getId());
+				System.out.println("Name: " + item.getName());
+				System.out.println("Desc: " + item.getDescription());
+				/**
+		 		 * if this item already remove
+		 		 */
+            } else {
+                System.out.println("Now, this item is null");
+            }
+		}
+		System.out.println("Displays a list of all applications.");
+	}
+
 	public int menuChoice(int choice) {
 		/**
 		 * Add new item
 		 */
 		if (choice == 1) {
-			System.out.println("Your choice is: Adding a new application.");
-			String name = new StubInput(new String[] {"first name"}).askNameForNewItem("Enter name for new item: ");
-			System.out.format("Your enter name: %s", name);
-			String desc = new StubInput(new String[] {"first desc"}).askDescForNewItem("Enter desc for new item: ");
-			System.out.format("\nYour enter desc: %s", desc);
-			tracker.add(new Task(name, desc));
-			System.out.println("\nAdd new item.");
+		/**
+		 * Add new item
+		 */
+			addNewItem();
+
+		} else if (choice == 2) {
 		/**
 		 * Edit item
 		 */
-		} else if (choice == 2) {
-			System.out.println("Your choice is: Edit applications.");
-			System.out.println("Item is edit.");
+			editItem();
+
+		} else if (choice == 3) {
 		/**
 		 * Remove item
 		 */
-		} else if (choice == 3) {
-			System.out.println("Your choice is: Removing the application.");
-			System.out.println("Item is removing.");
+			removeItem();
+
+		} else if (choice == 4) {
 		/**
 		 * Displays a list of all item
 		 */
-		} else if (choice == 4) {
-			System.out.println("Your choice is: Displays a list of all applications.");
-			for (Item item : tracker.getAll()){
-            	if (item != null){
-               		System.out.println("Item Id: " + item.getId());
-					System.out.println("Name: " + item.getName());
-					System.out.println("Desc: " + item.getDescription());
-				/**
-		 		 * if this item already remove
-		 		 */
-            	} else {
-                	System.out.println("Now, this item is null");
-            	}
-			}
-			System.out.println("Displays a list of all applications.");
+			displaysAListOfAllItem();
+
+		} else if (choice == 5) {
 		/**
 		 * Exite
 		 */
-		} else if (choice == 5) {
 			System.out.println("Your choice is: Exite.");
 		/**
 		 * if you console number dont 1-5

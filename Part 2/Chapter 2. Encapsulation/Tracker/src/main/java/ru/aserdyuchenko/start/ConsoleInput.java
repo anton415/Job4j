@@ -28,39 +28,32 @@ public class ConsoleInput implements Input{
 		return scanner.nextLine();
 	}
 
-	public int menuChoice(int choice) {
-		/**
-		 * Add new item
-		 */
-		if (choice == 1) {
-			System.out.println("Your choice is: Adding a new application.");
-			String name = new ConsoleInput().askNameForNewItem("Enter name for new item: ");
-			String desc = new ConsoleInput().askDescForNewItem("Enter desc for new item: ");
-			tracker.add(new Task(name, desc));
-			System.out.println("Add new item.");
-		/**
-		 * Edit item
-		 */
-		} else if (choice == 2) {
-			System.out.println("Your choice is: Edit applications.");
-			String itemId = new ConsoleInput().askItemId("Enter itemId for editing item: ");
-			String name = new ConsoleInput().askNameForNewItem("Enter new name for item: ");
-			String desc = new ConsoleInput().askDescForNewItem("Enter new desc for item: ");
-			tracker.updateItem(itemId, new Task(name, desc));
-			System.out.println("Item is edit.");
-		/**
-		 * Remove item
-		 */
-		} else if (choice == 3) {
-			System.out.println("Your choice is: Removing the application.");
-			String itemId = new ConsoleInput().askItemId("Enter itemId for removing item: ");
-			tracker.delete(itemId);
-			System.out.println("Item is removing.");
-		/**
-		 * Displays a list of all item
-		 */
-		} else if (choice == 4) {
-			System.out.println("Your choice is: Displays a list of all applications.");
+	public void addNewItem(){
+		System.out.println("Your choice is: Adding a new application.");
+		String name = new ConsoleInput().askNameForNewItem("Enter name for new item: ");
+		String desc = new ConsoleInput().askDescForNewItem("Enter desc for new item: ");
+		tracker.add(new Task(name, desc));
+		System.out.println("Add new item.");
+	}
+
+	public void editItem(){
+		System.out.println("Your choice is: Edit applications.");
+		String itemId = new ConsoleInput().askItemId("Enter itemId for editing item: ");
+		String name = new ConsoleInput().askNameForNewItem("Enter new name for item: ");
+		String desc = new ConsoleInput().askDescForNewItem("Enter new desc for item: ");
+		tracker.updateItem(itemId, new Task(name, desc));
+		System.out.println("Item is edit.");
+	}
+
+	public void removeItem(){
+		System.out.println("Your choice is: Removing the application.");
+		String itemId = new ConsoleInput().askItemId("Enter itemId for removing item: ");
+		tracker.delete(itemId);
+		System.out.println("Item is removing.");
+	}
+
+	public void displaysAListOfAllItem(){
+		System.out.println("Your choice is: Displays a list of all applications.");
 			for (Item item : tracker.getAll()){
             	if (item != null){
                		System.out.println("Item Id: " + item.getId());
@@ -73,16 +66,39 @@ public class ConsoleInput implements Input{
                 	System.out.println("Now, this item is null");
             	}
 			}
-			System.out.println("Displays a list of all applications.");
+		System.out.println("Displays a list of all applications.");
+	}
+
+	public int menuChoice(int choice) {
+		if (choice == 1) {
+		/**
+		 * Add new item
+		 */
+			addNewItem();
+		} else if (choice == 2) {
+		/**
+		 * Edit item
+		 */
+			editItem();
+		} else if (choice == 3) {
+		/**
+		 * Remove item
+		 */
+			removeItem();
+		} else if (choice == 4) {
+		/**
+		 * Displays a list of all item
+		 */
+			displaysAListOfAllItem();
+		} else if (choice == 5) {
 		/**
 		 * Exite
 		 */
-		} else if (choice == 5) {
 			System.out.println("Your choice is: Exite.");
+		} else {
 		/**
 		 * if you console number dont 1-5
 		 */
-		} else {
 			System.out.println("Your choice is incorrect, please enter number from 1 to 5!");
 		}
 	return choice;
