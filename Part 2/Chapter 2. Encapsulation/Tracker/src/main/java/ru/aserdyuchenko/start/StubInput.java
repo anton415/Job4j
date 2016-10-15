@@ -9,8 +9,6 @@ import ru.aserdyuchenko.models.Item;
  */
 
 public class StubInput implements Input {
-	private String[] answers;
-	private int position = 0;
 	private Scanner scanner = new Scanner (System.in);
 	Tracker tracker = new Tracker();
 
