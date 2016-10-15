@@ -20,7 +20,7 @@ public class StartUITest {
 	}
 
 	public static void main(String[] args){
-		Input input = new StubInput(new String[] {"1","4","5"});
+		Input input = new StubInput();
 		new StartUITest(input).init();
 	}
 }

@@ -11,45 +11,46 @@ import ru.aserdyuchenko.models.Item;
 public class StubInput implements Input {
 	private String[] answers;
 	private int position = 0;
+	private Scanner scanner = new Scanner (System.in);
 	Tracker tracker = new Tracker();
 
-	public StubInput(String[] answers) {
-		this.answers = answers;
-	}
-
-	public String askMenuChoice(String menuQuestion) {
-		return answers[position++];
+	public String askMenuChoice(String menuQuestion){
+		System.out.print(menuQuestion);
+		return scanner.nextLine();
 	}
 
 	public String askNameForNewItem(String nameForNewItem){
-		return answers[position++];
+		System.out.print(nameForNewItem);
+		return scanner.nextLine();
 	}
 
 	public String askDescForNewItem(String descForNewItem){
-		return answers[position++];
+		System.out.print(descForNewItem);
+		return scanner.nextLine();
 	}
 
 	public String askItemId(String itemId){
-		return answers[position++];
+		System.out.print(itemId);
+		return scanner.nextLine();
 	}
 
 	public void addNewItem(){
 		System.out.println("Your choice is: Adding a new application.");
-		String name = new StubInput(new String[] {"first name"}).askNameForNewItem("Enter name for new item: ");
-		System.out.format("Your enter name: %s", name);
-		String desc = new StubInput(new String[] {"first desc"}).askDescForNewItem("Enter desc for new item: ");
-		System.out.format("\nYour enter desc: %s", desc);
-		tracker.add(new Task(name, desc));
-		System.out.println("\nAdd new item.");
+		tracker.add(new Task("first name", "first desc"));
+		System.out.println("Add new item.");
 	}
 
 	public void editItem(){
 		System.out.println("Your choice is: Edit applications.");
+		String itemId = tracker.findIdByName("first name");
+		tracker.updateItem(itemId, new Task("new edit first name", "new edit first description"));
 		System.out.println("Item is edit.");
 	}
 
 	public void removeItem(){
 		System.out.println("Your choice is: Removing the application.");
+		String itemId = tracker.findIdByName("first name");
+		tracker.delete(itemId);
 		System.out.println("Item is removing.");
 	}
 
