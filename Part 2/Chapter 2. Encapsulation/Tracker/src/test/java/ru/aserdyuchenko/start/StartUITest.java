@@ -1,5 +1,7 @@
 package ru.aserdyuchenko.start;
 
+import org.apache.commons.io.output.ByteArrayOutputStream;
+import java.io.PrintStream;
 import org.junit.Test;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
@@ -11,9 +13,11 @@ import ru.aserdyuchenko.start.StubInput;
 
 public class StartUITest {
 	@Test
-    public void whenAddNewItemAndWatchAllItem() {
-		Tracker tracker = new Tracker();
-		Input input = new StubInput(new String[] {"1","4","5"});
- 		new StartUI(input).init();
+    public void whenAddNewItem() {
+	StubInput stubInput = new StubInput();
+	ByteArrayOutputStream out = new ByteArrayOutputStream();
+	System.setOut(new PrintStream(out));
+	stubInput.addNewItem();
+	assertThat(out.toString(), is("Add new item."));
     }
 }

@@ -13,7 +13,7 @@ public class StubInput implements Input {
  	private int position = 0;
  	Tracker tracker = new Tracker();
 
- 	public StubInput(String[] answers) {
+ 	public StubInput() {
  		this.answers = answers;
  	}
 
@@ -35,9 +35,8 @@ public class StubInput implements Input {
  	}
 
 	public void addNewItem(){
-		System.out.println("\nYour choice is: Adding a new application.");
 		tracker.add(new Task("first name", "first desc"));
-		System.out.println("Add new item.");
+		System.out.print("Add new item.");
 	}
 
 	public void editItem(){
