@@ -5,7 +5,7 @@ public interface Input {
 	String askNameForNewItem(String nameForNewItem);
 	String askDescForNewItem(String descForNewItem);
 	String askItemId(String itemId);
-	int menuChoice(int choice);
+	String menuChoice(String choice);
 	void addNewItem();
 	void editItem();
 	void removeItem();

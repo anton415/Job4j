@@ -7,6 +7,8 @@ import ru.aserdyuchenko.models.Item;
 public class ConsoleInput implements Input{
 	Tracker tracker = new Tracker();
 	private Scanner scanner = new Scanner (System.in);
+	String name;
+	String description;
 
 	public String askMenuChoice(String menuQuestion){
 		System.out.print(menuQuestion);
@@ -31,8 +33,8 @@ public class ConsoleInput implements Input{
 	public void addNewItem(){
 		System.out.println("Your choice is: Adding a new application.");
 		String name = new ConsoleInput().askNameForNewItem("Enter name for new item: ");
-		String desc = new ConsoleInput().askDescForNewItem("Enter desc for new item: ");
-		tracker.add(new Task(name, desc));
+		String description = new ConsoleInput().askDescForNewItem("Enter desc for new item: ");
+		tracker.add(new Task(name, description));
 		System.out.println("Add new item.");
 	}
 
@@ -69,28 +71,28 @@ public class ConsoleInput implements Input{
 		System.out.println("Displays a list of all applications.");
 	}
 
-	public int menuChoice(int choice) {
-		if (choice == 1) {
+	public String menuChoice(String choice) {
+		if (choice == "1") {
 		/**
 		 * Add new item
 		 */
 			addNewItem();
-		} else if (choice == 2) {
+		} else if (choice == "2") {
 		/**
 		 * Edit item
 		 */
 			editItem();
-		} else if (choice == 3) {
+		} else if (choice == "3") {
 		/**
 		 * Remove item
 		 */
 			removeItem();
-		} else if (choice == 4) {
+		} else if (choice == "4") {
 		/**
 		 * Displays a list of all item
 		 */
 			displaysAListOfAllItem();
-		} else if (choice == 5) {
+		} else if (choice == "5") {
 		/**
 		 * Exite
 		 */

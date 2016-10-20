@@ -13,8 +13,8 @@ public class StubInput implements Input {
  	private int position = 0;
  	Tracker tracker = new Tracker();
 
- 	public StubInput() {
- 		this.answers = answers;
+ 	public StubInput(String[] answers) {
+		this.answers = answers;
  	}
 
  	public String askMenuChoice(String menuQuestion) {
@@ -35,7 +35,9 @@ public class StubInput implements Input {
  	}
 
 	public void addNewItem(){
-		tracker.add(new Task("first name", "first desc"));
+		String name = answers[position++];
+		String description = answers[position++];
+		tracker.add(new Task(name, description));
 		System.out.print("Add new item.");
 	}
 
@@ -70,35 +72,35 @@ public class StubInput implements Input {
 		System.out.println("Displays a list of all applications.");
 	}
 
-	public int menuChoice(int choice) {
+	public String menuChoice(String choice) {
 		/**
 		 * Add new item
 		 */
-		if (choice == 1) {
+		if (choice == "1") {
 		/**
 		 * Add new item
 		 */
 			addNewItem();
 
-		} else if (choice == 2) {
+		} else if (choice == "2") {
 		/**
 		 * Edit item
 		 */
 			editItem();
 
-		} else if (choice == 3) {
+		} else if (choice == "3") {
 		/**
 		 * Remove item
 		 */
 			removeItem();
 
-		} else if (choice == 4) {
+		} else if (choice == "4") {
 		/**
 		 * Displays a list of all item
 		 */
 			displaysAListOfAllItem();
 
-		} else if (choice == 5) {
+		} else if (choice == "5") {
 		/**
 		 * Exite
 		 */

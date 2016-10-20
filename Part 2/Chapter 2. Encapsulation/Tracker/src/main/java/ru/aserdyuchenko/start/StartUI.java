@@ -41,9 +41,9 @@ public class StartUI {
 	public void init(){
 		String choice;
 		do {
-			choice = input.askMenuChoice("\n\nTracker Program. Used for accounting applications.\nThe application performs the following actions:\n1. Adding a new application\n2. Edit applications\n3. Removing the application\n4. Displays a list of all applications\n5. Exit\nPlease, enter your choice: ");
-			input.menuChoice(Integer.parseInt(choice));
-		} while (Integer.parseInt(choice) != 5);
+			choice = input.askMenuChoice("\n\nTracker Program. Used for accounting items.\nThe item performs the following actions:\n1. Adding a new item\n2. Edit item\n3. Removing the item\n4. Displays a list of all items\n5. Exit\nPlease, enter your choice: \n\n");
+			input.menuChoice(choice);
+		} while (choice != "5");
 	}
 
 	public static void main(String[] args){
