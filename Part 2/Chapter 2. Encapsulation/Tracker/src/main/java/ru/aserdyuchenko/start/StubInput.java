@@ -42,17 +42,18 @@ public class StubInput implements Input {
 	}
 
 	public void editItem(){
-		System.out.println("\nYour choice is: Edit applications.");
-		String itemId = tracker.findIdByName("first name");
-		tracker.updateItem(itemId, new Task("new edit first name", "new edit first description"));
+		String name = answers[position++];
+		String description = answers[position++];
+		String itemId = tracker.findIdByName(name);
+		tracker.updateItem(itemId, new Task(name, description));
 		System.out.println("Item is edit.");
 	}
 
 	public void removeItem(){
-		System.out.println("\nYour choice is: Removing the application.");
-		String itemId = tracker.findIdByName("first name");
+		String name = answers[position++];
+		String itemId = tracker.findIdByName(name);
 		tracker.delete(itemId);
-		System.out.println("Item is removing.");
+		System.out.println("Item is remove.");
 	}
 
 	public void displaysAListOfAllItem(){

@@ -12,28 +12,29 @@ import org.hamcrest.core.IsNull;
 
 public class StartUITest {
 	@Test
-    public void whenAddNewItem() {
+    public void whenAddNewItemAndDisplayAllItem() {
 	Tracker tracker = new Tracker();
-	Input input = new StubInput(new String[] {"1", "name", "desc", "4" ,"5"});
+	Input input = new StubInput(new String[] {"1", "name", "desc","4", "5"});
 	StartUI startUI = new StartUI(input);
 	startUI.init();
 	assertThat(tracker.findByName("name"), is(IsNull.notNullValue()));
+    }
 
-/*
-	Почему, то что написано ниже работает, а то что выше падает?
-	Я постарался сделать как ты говорил.
-	Есть входные данные. И получается массив имитирует, всё что я бы вводил с консоли.
-	Но я не понимаю почему заявка не сохраняется?
-	Она сохраняется, но пробадает с завершением метода init().
-	То что она сохраняется подтверждает пункт меню "вывод всех заявок", когда мы передаем в меню значение 4.
-
-*/
-
-
-/*
+	@Test
+    public void whenEditItemAndDisplayAllItem() {
 	Tracker tracker = new Tracker();
-	tracker.add(new Task("name", "desc"));
+	Input input = new StubInput(new String[] {"1", "name", "desc", "2", "name", "new desc","4", "5"});
+	StartUI startUI = new StartUI(input);
+	startUI.init();
 	assertThat(tracker.findByName("name"), is(IsNull.notNullValue()));
-*/
+    }
+
+	@Test
+    public void whenRemoveItemAndDisplayAllItem() {
+	Tracker tracker = new Tracker();
+	Input input = new StubInput(new String[] {"1", "name", "desc", "3", "name", "4", "5"});
+	StartUI startUI = new StartUI(input);
+	startUI.init();
+	assertThat(tracker.findByName("name"), is(IsNull.nullValue()));
     }
 }
