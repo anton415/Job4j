@@ -16,13 +16,17 @@ import ru.aserdyuchenko.models.*;
  */
 
 /**
- * Обеспечить бесперебойную работу приложения Tracker. [#3709]
+ * [#790]
+ * Нужно сделать абстрактный класс BaseAction с конструктором. Который будет
+ * принимать name . Сделать имплементацию данного класса от интерфейса UserAction и
+ * реализовать метод info(). Отстальные методы отсавить abstract. Наследовать
+ * остальные событие от класса BaseAction.
  */
 
 /**
  * @author Anton Serdyuchenko
  * @since 27.09.2016
- * @version 4.0
+ * @version 5.0
  */
 
 public class StartUI {
@@ -37,6 +41,20 @@ public class StartUI {
 		Tracker tracker = new Tracker();
 		MenuTracker menu = new MenuTracker(this.input, tracker);
 		menu.fillActions();
+		UserAction exitAction = new UserAction() {
+			public int key(){
+				return 4;
+			}
+
+			public void execute(Input input, Tracker tracker){
+				//todo
+			}
+
+			public String info(){
+				return "4. Exit";
+			}
+		};
+		menu.addAction(exitAction);
 		do {
 			menu.show();
 			menu.select(input.askMenuChoice("select: ", ranges));
