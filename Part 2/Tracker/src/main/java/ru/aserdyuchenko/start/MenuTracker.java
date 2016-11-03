@@ -4,7 +4,13 @@ import ru.aserdyuchenko.models.*;
 import ru.aserdyuchenko.start.Input;
 import ru.aserdyuchenko.start.Tracker;
 
-class EditItem implements UserAction {
+class EditItem extends BaseAction {
+	String nameAction;
+	public EditItem(String nameAction) {
+		super(nameAction);
+		this.nameAction = nameAction;
+	}
+
 	public int key() {
 		return 2;
 	}
@@ -20,11 +26,17 @@ class EditItem implements UserAction {
 	}
 
 	public String info() {
-		return String.format("%s. %s", this.key(), "Edit item.");
+		return String.format("%s. %s", this.key(), this.nameAction);
 	}
 }
 
-class RemoveItem implements UserAction {
+class RemoveItem extends BaseAction {
+	String nameAction;
+	public RemoveItem(String nameAction) {
+		super(nameAction);
+		this.nameAction = nameAction;
+	}
+
 	public int key() {
 		return 3;
 	}
@@ -36,7 +48,7 @@ class RemoveItem implements UserAction {
 	}
 
 	public String info() {
-		return String.format("%s. %s", this.key(), "Remove item.");
+		return String.format("%s. %s", this.key(), this.nameAction);
 	}
 }
 
@@ -52,10 +64,10 @@ public class MenuTracker {
 	}
 
 	public void fillActions() {
-		this.actions[position++] = new AddItem();
-		this.actions[position++] = new MenuTracker.ShowItems();
-		this.actions[position++] = new EditItem();
-		this.actions[position++] = new RemoveItem();
+		this.actions[position++] = new AddItem("Add");
+		this.actions[position++] = new MenuTracker.ShowItems("Show");
+		this.actions[position++] = new EditItem("Edit");
+		this.actions[position++] = new RemoveItem("Remove");
 	}
 
 	public void addAction(UserAction action) {
@@ -74,7 +86,13 @@ public class MenuTracker {
 		}
 	}
 
-	private class AddItem implements UserAction {
+	private class AddItem extends BaseAction {
+		String nameAction;
+		public AddItem(String nameAction) {
+			super(nameAction);
+			this.nameAction = nameAction;
+		}
+
 		public int key() {
 			return 0;
 		}
@@ -87,11 +105,17 @@ public class MenuTracker {
 		}
 
 		public String info() {
-			return String.format("%s. %s", this.key(), "Add the new item.");
+			return String.format("%s. %s", this.key(), this.nameAction);
 		}
 	}
 
-	private static class ShowItems implements UserAction {
+	private static class ShowItems extends BaseAction {
+		String nameAction;
+		public ShowItems(String nameAction) {
+			super(nameAction);
+			this.nameAction = nameAction;
+		}
+
 		public int key() {
 			return 1;
 		}
@@ -108,7 +132,7 @@ public class MenuTracker {
 		}
 
 		public String info() {
-			return String.format("%s. %s", this.key(), "Show all items.");
+			return String.format("%s. %s", this.key(), this.nameAction);
 		}
 	}
 }

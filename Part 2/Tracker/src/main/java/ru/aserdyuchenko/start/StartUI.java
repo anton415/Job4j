@@ -41,20 +41,6 @@ public class StartUI {
 		Tracker tracker = new Tracker();
 		MenuTracker menu = new MenuTracker(this.input, tracker);
 		menu.fillActions();
-		UserAction exitAction = new UserAction() {
-			public int key(){
-				return 4;
-			}
-
-			public void execute(Input input, Tracker tracker){
-				//todo
-			}
-
-			public String info(){
-				return "4. Exit";
-			}
-		};
-		menu.addAction(exitAction);
 		do {
 			menu.show();
 			menu.select(input.askMenuChoice("select: ", ranges));

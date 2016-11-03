@@ -4,9 +4,10 @@ import ru.aserdyuchenko.start.Input;
 import ru.aserdyuchenko.start.Tracker;
 
 public interface UserAction {
-	int key();
 
-	void execute(Input input, Tracker tracker);
+	abstract int key();
 
-	String info();
+	abstract void execute(Input input, Tracker tracker);
+
+	abstract String info();
 }
