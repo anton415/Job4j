@@ -2,7 +2,7 @@ package ru.aserdyuchenko.models;
 
 /**
 * Каждая заявка имеет: номер, имя, описание, дата создания.
-* 
+*
 */
 
 public class Item {
@@ -30,7 +30,7 @@ public class Item {
 	public String getDescription(){
 		return this.description;
 	}
-	
+
 	public void setDescription(String description){
 		this.description = description;
 	}
