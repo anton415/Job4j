@@ -9,13 +9,5 @@ import ru.aserdyuchenko.models.*;
  */
 public class StartUI {
 	public static void main(String[] args) {
-		//start program
-Chess chess = new Chess();
-		chess.showBoard();
-		chess.addFigure(new Figure("Queen", 0, 2));
-		chess.addFigure(new Figure("Pawn", 0, 3));
-		chess.showBoard();
-		chess.moveFigure((new Figure("Queen", 0, 1)), 0, 4);
-		chess.showBoard();
 	}
 }
