@@ -14,7 +14,7 @@ public class ChessTest {
 		System.setOut(new PrintStream(out));
 		Chess chess = new Chess();
 		chess.addFigure(new Figure("King", 0, 5));
-		chess.moveFigure((new Figure("King", 0, 5)), 1, 6);
+		chess.moveFigure(0, (new Figure("King", 0, 5)), 1, 6, chess);
 		assertThat(out.toString(), is("Move correct."));
 	}
 
@@ -24,7 +24,7 @@ public class ChessTest {
 		System.setOut(new PrintStream(out));
 		Chess chess = new Chess();
 		chess.addFigure(new Figure("King", 0, 5));
-		chess.moveFigure((new Figure("King", 0, 5)), 7, 7);
+		chess.moveFigure(0, (new Figure("King", 0, 5)), 7, 7, chess);
 		assertThat(out.toString(), is("Move ancorrect!"));
 	}
 
@@ -34,7 +34,7 @@ public class ChessTest {
 		System.setOut(new PrintStream(out));
 		Chess chess = new Chess();
 		chess.addFigure(new Figure("Queen", 0, 0));
-		chess.moveFigure((new Figure("Queen", 0, 0)), 0, 5);
+		chess.moveFigure(1, (new Figure("Queen", 0, 0)), 0, 5, chess);
 		assertThat(out.toString(), is("Move correct."));
 	}
 
@@ -44,7 +44,7 @@ public class ChessTest {
 		System.setOut(new PrintStream(out));
 		Chess chess = new Chess();
 		chess.addFigure(new Figure("Queen", 0, 5));
-		chess.moveFigure((new Figure("Queen", 0, 5)), 2, 6);
+		chess.moveFigure(1, (new Figure("Queen", 0, 5)), 2, 6, chess);
 		assertThat(out.toString(), is("Move ancorrect! Queen can not do this."));
 	}
 
@@ -55,7 +55,7 @@ public class ChessTest {
 		Chess chess = new Chess();
 		chess.addFigure(new Figure("Queen", 0, 0));
 		chess.addFigure(new Figure("Pawn", 5, 5));
-		chess.moveFigure((new Figure("Queen", 0, 0)), 7, 7);
+		chess.moveFigure(1, (new Figure("Queen", 0, 0)), 7, 7, chess);
 		assertThat(out.toString(), is("Move ancorrect! Figure on the road."));
 	}
 
@@ -65,7 +65,7 @@ public class ChessTest {
 		System.setOut(new PrintStream(out));
 		Chess chess = new Chess();
 		chess.addFigure(new Figure("Rook", 0, 5));
-		chess.moveFigure((new Figure("Rook", 0, 5)), 7, 5);
+		chess.moveFigure(2, (new Figure("Rook", 0, 5)), 7, 5, chess);
 		assertThat(out.toString(), is("Move correct."));
 	}
 
@@ -75,7 +75,7 @@ public class ChessTest {
 		System.setOut(new PrintStream(out));
 		Chess chess = new Chess();
 		chess.addFigure(new Figure("Rook", 0, 5));
-		chess.moveFigure((new Figure("Rook", 0, 5)), 1, 6);
+		chess.moveFigure(2, (new Figure("Rook", 0, 5)), 1, 6, chess);
 		assertThat(out.toString(), is("Move ancorrect!"));
 	}
 
@@ -86,7 +86,7 @@ public class ChessTest {
 		Chess chess = new Chess();
 		chess.addFigure(new Figure("Rook", 0, 5));
 		chess.addFigure(new Figure("Pawn", 5, 5));
-		chess.moveFigure((new Figure("Rook", 0, 5)), 7, 5);
+		chess.moveFigure(2, (new Figure("Rook", 0, 5)), 7, 5, chess);
 		assertThat(out.toString(), is("Move ancorrect! Figure on the road."));
 	}
 
@@ -96,7 +96,7 @@ public class ChessTest {
 		System.setOut(new PrintStream(out));
 		Chess chess = new Chess();
 		chess.addFigure(new Figure("Elephant", 0, 5));
-		chess.moveFigure((new Figure("Elephant", 0, 5)), 2, 7);
+		chess.moveFigure(3, (new Figure("Elephant", 0, 5)), 2, 7, chess);
 		assertThat(out.toString(), is("Move correct."));
 	}
 
@@ -106,7 +106,7 @@ public class ChessTest {
 		System.setOut(new PrintStream(out));
 		Chess chess = new Chess();
 		chess.addFigure(new Figure("Elephant", 0, 5));
-		chess.moveFigure((new Figure("Elephant", 0, 5)), 7, 5);
+		chess.moveFigure(3, (new Figure("Elephant", 0, 5)), 7, 5, chess);
 		assertThat(out.toString(), is("Move ancorrect!"));
 	}
 
@@ -117,7 +117,7 @@ public class ChessTest {
 		Chess chess = new Chess();
 		chess.addFigure(new Figure("Elephant", 0, 0));
 		chess.addFigure(new Figure("Pawn", 5, 5));
-		chess.moveFigure((new Figure("Elephant", 0, 0)), 7, 7);
+		chess.moveFigure(3, (new Figure("Elephant", 0, 0)), 7, 7, chess);
 		assertThat(out.toString(), is("Move ancorrect! Figure on the road."));
 	}
 
@@ -127,7 +127,7 @@ public class ChessTest {
 		System.setOut(new PrintStream(out));
 		Chess chess = new Chess();
 		chess.addFigure(new Figure("Horse", 0, 5));
-		chess.moveFigure((new Figure("Horse", 0, 5)), 1, 7);
+		chess.moveFigure(4, (new Figure("Horse", 0, 5)), 1, 7, chess);
 		assertThat(out.toString(), is("Move correct."));
 	}
 
@@ -137,7 +137,7 @@ public class ChessTest {
 		System.setOut(new PrintStream(out));
 		Chess chess = new Chess();
 		chess.addFigure(new Figure("Horse", 0, 5));
-		chess.moveFigure((new Figure("Horse", 0, 5)), 1, 5);
+		chess.moveFigure(4, (new Figure("Horse", 0, 5)), 1, 5, chess);
 		assertThat(out.toString(), is("Move ancorrect!"));
 	}
 
@@ -147,7 +147,7 @@ public class ChessTest {
 		System.setOut(new PrintStream(out));
 		Chess chess = new Chess();
 		chess.addFigure(new Figure("Pawn", 5, 5));
-		chess.moveFigure((new Figure("Pawn", 5, 5)), 4, 5);
+		chess.moveFigure(5, (new Figure("Pawn", 5, 5)), 4, 5, chess);
 		assertThat(out.toString(), is("Move correct."));
 	}
 
@@ -157,7 +157,7 @@ public class ChessTest {
 		System.setOut(new PrintStream(out));
 		Chess chess = new Chess();
 		chess.addFigure(new Figure("Pawn", 0, 5));
-		chess.moveFigure((new Figure("Pawn", 0, 5)), 1, 5);
+		chess.moveFigure(5, (new Figure("Pawn", 0, 5)), 1, 5, chess);
 		assertThat(out.toString(), is("Move ancorrect!"));
 	}
 
@@ -168,12 +168,7 @@ public class ChessTest {
 		Chess chess = new Chess();
 		chess.addFigure(new Figure("Pawn", 5, 5));
 		chess.addFigure(new Figure("Queen", 0, 5));
-		chess.moveFigure((new Figure("Queen", 0, 5)), 5, 5);
+		chess.moveFigure(1, (new Figure("Queen", 0, 5)), 5, 5, chess);
 		assertThat(out.toString(), is("Location is not empty!"));
 	}
 }
-
-/*
- Для проверки неправильных ходов, используй исключения!
- Также как ты делал в трекере.
-*/

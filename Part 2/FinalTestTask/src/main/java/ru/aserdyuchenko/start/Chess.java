@@ -5,6 +5,7 @@ import java.util.*;
 
 public class Chess {
 	Figure figure = new Figure();
+
 	public Figure[][] locationBoard = new Figure[8][8];
 	String name;
 	int locationBoardX;
@@ -13,7 +14,9 @@ public class Chess {
 	int newLocationBoardY;
 	boolean check = false;
 
-	//Show board
+/**
+ * This metod show board. This nead, if you want to see all figures on board on display.
+ */
 	public void showBoard() {
 		System.out.println();
 		for (int locationBoardX = 0; locationBoardX < 8; locationBoardX++) {
@@ -29,7 +32,9 @@ public class Chess {
 		System.out.println();
 	}
 
-	//New figure in the board
+/**
+ * This metod creat new figure.
+ */
 	public Figure addFigure(Figure figure) {
 		this.locationBoard[figure.getLocationBoardX()][figure.getLocationBoardY()] = figure;
 		return figure;
@@ -46,8 +51,11 @@ public class Chess {
 		}
 	}
 
+/**
+ * This metod check: "is new location empty?".
+ */
 	public boolean checkNewLocationIsEmpty(int newLocationBoardX, int newLocationBoardY) {
-		Chess chess = new Chess();
+
 		boolean check = false;
 		if (locationBoard[newLocationBoardX][newLocationBoardY] == null) {
 			check = true;
@@ -57,90 +65,36 @@ public class Chess {
 
 
 
-	//Move figure
-	public void moveFigure(Figure figure, int newLocationBoardX, int newLocationBoardY) {
+/**
+ * This metod move figure.
+ */
+	public void moveFigure(int key, Figure figure, int newLocationBoardX, int newLocationBoardY, Chess chess) {
 		this.name = figure.getName();
 		findOldLocationByNameAndRemove(this.name);
 		if (checkNewLocationIsEmpty(newLocationBoardX, newLocationBoardY) == true) {
-			if (checkHowMoveFigure(figure, newLocationBoardX, newLocationBoardY) == true ) {
-				addFigure(new Figure(this.name, newLocationBoardX, newLocationBoardY));
-				System.out.print("Move correct.");
-			}
+			MenuFigure menu = new MenuFigure(figure, newLocationBoardX, newLocationBoardY, chess);
+			menu.fillFigures();
+			menu.select(key);
 		} else System.out.print("Location is not empty!");
 	}
 
-	public boolean checkHowMoveFigure(Figure figure, int newLocationBoardX, int newLocationBoardY){
-		this.name = figure.getName();
-		this.locationBoardX = figure.getLocationBoardX();
-		this.locationBoardY = figure.getLocationBoardY();;
+/**
+ * This metod check: "Is on the road another figure by horisontal?".
+ */
+	public boolean checkIsOnTheRoadAnotherFigureByHorizontal(Figure figure, int newLocationBoardX, int newLocationBoardY){
+		boolean check = true;
+		int locationBoardX = figure.getLocationBoardX();
+		int locationBoardY = figure.getLocationBoardY();
 		this.newLocationBoardX = newLocationBoardX;
 		this.newLocationBoardY = newLocationBoardY;
-
-		if (name == "King") {
-			if (checkHowMoveKing() == true) {
-				check = true;
-			}
-		} else if (name == "Queen") {
-			if (checkHowMoveQueen() == true) {
-				if (checkIsOnTheRoadAnotherFigure() == true) {
-					check = true;
-				}
-			}
-		} else if (name == "Rook") {
-			if (checkHowMoveRook() == true) {
-				if (checkIsOnTheRoadAnotherFigure() == true) {
-					check = true;
-				}
-			}
-		} else if (name == "Elephant") {
-			if (checkHowMoveElephant() == true) {
-				if (checkIsOnTheRoadAnotherFigure() == true) {
-					check = true;
-				}
-			}
-		} else if (name == "Horse") {
-			if (checkHowMoveHorse() == true) {
-				check = true;
-			}
-		} else if (name == "Pawn") {
-			if (checkHowMovePawn() == true) {
-				check = true;
-			}
-		}
-	return check;
-	}
-
-	public boolean checkHowMoveKing(){
-		if (Math.abs(newLocationBoardX - locationBoardX) > 1) {
-			System.out.print("Move ancorrect!");
-		} else if (Math.abs(newLocationBoardY - locationBoardY) > 1) {
-			System.out.print("Move ancorrect!");
-		} else {
-			check = true;
-		}
-	return check;
-	}
-
-	public boolean checkHowMoveQueen(){
-		if (newLocationBoardX==locationBoardX) {
-			check = true;
-		} else if (newLocationBoardY==locationBoardY) {
-			check = true;
-		} else if (Math.abs(newLocationBoardX - locationBoardX)==Math.abs(newLocationBoardY - locationBoardY)) {
-			check = true;
-		} else {
-			System.out.print("Move ancorrect! Queen can not do this.");
-		}
-	return check;
-	}
-
-	public boolean checkIsOnTheRoadAnotherFigureByHorizontal(){
+		Chess chess = new Chess();
 		if (newLocationBoardX == locationBoardX) {
 			if (newLocationBoardY > locationBoardY) {
-				for (int index = locationBoardY; index < newLocationBoardY; index++) {
+				for (int index = (locationBoardY+1); index < newLocationBoardY; index++) {
 					if (checkNewLocationIsEmpty(locationBoardX, index)==false) {
 						System.out.print("Move ancorrect! Figure on the road.");
 						check = false;
+						break;
 					}
 				}
 			} else if (newLocationBoardY < locationBoardY) {
@@ -148,6 +102,7 @@ public class Chess {
 					if (checkNewLocationIsEmpty(locationBoardX, index)==false) {
 						System.out.print("Move ancorrect! Figure on the road.");
 						check = false;
+						break;
 					}
 				}
 			}
@@ -155,13 +110,23 @@ public class Chess {
 	return check;
 	}
 
-	public boolean checkIsOnTheRoadAnotherFigureByVertical(){
+/**
+ * This metod check: "Is on the road another figure by vertical?".
+ */
+	public boolean checkIsOnTheRoadAnotherFigureByVertical(Figure figure, int newLocationBoardX, int newLocationBoardY){
+		boolean check = true;
+		int locationBoardX = figure.getLocationBoardX();
+		int locationBoardY = figure.getLocationBoardY();
+		this.newLocationBoardX = newLocationBoardX;
+		this.newLocationBoardY = newLocationBoardY;
+		Chess chess = new Chess();
 		if (newLocationBoardY == locationBoardY) {
 			if (newLocationBoardX > locationBoardX) {
 				for (int index = locationBoardX; index < newLocationBoardX; index++) {
 					if (checkNewLocationIsEmpty(index, locationBoardY)==false) {
 						System.out.print("Move ancorrect! Figure on the road.");
 						check = false;
+						break;
 					}
 				}
 			} else if (newLocationBoardX < locationBoardX) {
@@ -169,6 +134,7 @@ public class Chess {
 					if (checkNewLocationIsEmpty(index, locationBoardY)==false) {
 						System.out.print("Move ancorrect! Figure on the road.");
 						check = false;
+						break;
 					}
 				}
 			}
@@ -176,12 +142,22 @@ public class Chess {
 		return check;
 	}
 
-	public boolean checkIsOnTheRoadAnotherFigureByDiagonal(){
+/**
+ * This metod check: "Is on the road another figure by diagonal?".
+ */
+	public boolean checkIsOnTheRoadAnotherFigureByDiagonal(Figure figure, int newLocationBoardX, int newLocationBoardY){
+		boolean check = true;
+		int locationBoardX = figure.getLocationBoardX();
+		int locationBoardY = figure.getLocationBoardY();
+		this.newLocationBoardX = newLocationBoardX;
+		this.newLocationBoardY = newLocationBoardY;
+		Chess chess = new Chess();
 		if ((newLocationBoardX > locationBoardX) && (newLocationBoardY > locationBoardY)) {
 			for (int index = locationBoardX; index < newLocationBoardX; index++ ) {
 				if (checkNewLocationIsEmpty(index, locationBoardY)==false) {
 					System.out.print("Move ancorrect! Figure on the road.");
 					check = false;
+					break;
 				}
 			locationBoardY++;
 			}
@@ -190,6 +166,7 @@ public class Chess {
 				if (checkNewLocationIsEmpty(index, locationBoardY)==false) {
 					System.out.print("Move ancorrect! Figure on the road.");
 					check = false;
+					break;
 				}
 			locationBoardY++;
 			}
@@ -198,6 +175,7 @@ public class Chess {
 				if (checkNewLocationIsEmpty(index, locationBoardY)==false) {
 					System.out.print("Move ancorrect! Figure on the road.");
 					check = false;
+					break;
 				}
 				locationBoardY++;
 			}
@@ -206,6 +184,7 @@ public class Chess {
 				if (checkNewLocationIsEmpty(index, locationBoardY)==false) {
 					System.out.print("Move ancorrect! Figure on the road.");
 					check = false;
+					break;
 				}
 				locationBoardY++;
 			}
@@ -213,54 +192,27 @@ public class Chess {
 		return check;
 	}
 
-	public boolean checkIsOnTheRoadAnotherFigure(){
+/**
+ * This metod directs, what road we must check(horisontal, vertical or diagonal). This nead to check: "Is on the road anoter figure?".
+ */
+	public boolean checkIsOnTheRoadAnotherFigure(Figure figure, int newLocationBoardX, int newLocationBoardY){
+		int locationBoardX = figure.getLocationBoardX();
+		int locationBoardY = figure.getLocationBoardY();
+		this.newLocationBoardX = newLocationBoardX;
+		this.newLocationBoardY = newLocationBoardY;
 		Chess chess = new Chess();
 		if (newLocationBoardX == locationBoardX) {
-			checkIsOnTheRoadAnotherFigureByHorizontal();
+			if (checkIsOnTheRoadAnotherFigureByHorizontal(figure, newLocationBoardX, newLocationBoardY) == true){
+					check = true;
+			}
 		} else if (newLocationBoardY == locationBoardY) {
-			checkIsOnTheRoadAnotherFigureByVertical();
+			if (checkIsOnTheRoadAnotherFigureByVertical(figure, newLocationBoardX, newLocationBoardY)){
+					check = true;
+			}
 		} else if (Math.abs(newLocationBoardX - locationBoardX)==Math.abs(newLocationBoardY - locationBoardY)) {
-			checkIsOnTheRoadAnotherFigureByDiagonal();
-		}
-		return check;
-	}
-
-	public boolean checkHowMoveRook(){
-		if (newLocationBoardX==locationBoardX) {
-			check = true;
-		} else if (newLocationBoardY==locationBoardY) {
-			check = true;
-		} else {
-			System.out.print("Move ancorrect!");
-		}
-		return check;
-	}
-
-	public boolean checkHowMoveElephant(){
-		if (Math.abs(newLocationBoardX - locationBoardX)==Math.abs(newLocationBoardY - locationBoardY)) {
-			check = true;
-		} else {
-			System.out.print("Move ancorrect!");
-		}
-		return check;
-	}
-
-	public boolean checkHowMoveHorse(){
-		if (Math.abs(newLocationBoardX - locationBoardX)==2 && Math.abs(newLocationBoardY - locationBoardY)==1) {
-			check = true;
-		} else if (Math.abs(newLocationBoardY - locationBoardY)==2 && Math.abs(newLocationBoardX - locationBoardX)==1) {
-			check = true;
-		} else {
-			System.out.print("Move ancorrect!");
-		}
-		return check;
-	}
-
-	public boolean checkHowMovePawn(){
-		if (((locationBoardX - newLocationBoardX)==1) && (locationBoardY == newLocationBoardY)) {
-			check = true;
-		} else {
-			System.out.print("Move ancorrect!");
+			if (checkIsOnTheRoadAnotherFigureByDiagonal(figure, newLocationBoardX, newLocationBoardY)){
+					check = true;
+			}
 		}
 		return check;
 	}
