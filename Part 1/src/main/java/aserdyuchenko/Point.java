@@ -9,20 +9,32 @@ package aserdyuchenko;
  * 3. Сумма квадратов, первых двух вычислений.
  * 4. Корень получивщегося значения в пункте 3.
  *
- * @author Anton Serdyuchenko
+ * @author Anton Serdyuchenko (anton415@gmail.com)
+ * @version $Id$
  * @since 31.08.2016
- * @version 2.0
  */
 public class Point {
-    public double x;
-    public double y;
-
-    public Point(double x, double y) {
-        this.x = x;
-        this.y = y;
+/**
+ * @param x - x.
+ */
+    private double x;
+/**
+ * @param y - y.
+ */
+    private double y;
+/**
+ * @param xPoint - xPoint.
+ * @param yPoint - yPoint.
+ */
+    public Point(double xPoint, double yPoint) {
+        this.x = xPoint;
+        this.y = yPoint;
     }
-
+/**
+ * @param point - point.
+ * @return Math.sqrt(Math.pow((point.x - this.x), 2) + Math.pow((point.y - this.y), 2)) - distanceTo.
+ */
     public double distanceTo(Point point) {
-        return Math.sqrt(Math.pow((point.x - this.x),2) + Math.pow((point.y - this.y),2));
+        return Math.sqrt(Math.pow((point.x - this.x), 2) + Math.pow((point.y - this.y), 2));
     }
 }

@@ -7,12 +7,17 @@ package aserdyuchenko;
  * Bubble sort — простой алгоритм сортировки. Для понимания и реализации этот алгоритм — простейший,
  * но эффективен он лишь для небольших массивов.
  *
- * @author Anton Serdyuchenko
+ * @author Anton Serdyuchenko (anton415@gmail.com)
+ * @version $Id$
  * @since 11.09.2016
- * @version 1.0
  */
 public class BubbleSort {
-    int[] bubbleSort(int values[]) {
+/**
+ * Преобразование оригинальной строки в массив.
+ * @param values - values.
+ * @return values - values.
+ */
+    int[] bubbleSort(int[] values) {
         for (int externalIndex = values.length - 1; externalIndex >= 0; externalIndex--) {
             for (int internalIndex = 0; internalIndex < externalIndex; internalIndex++) {
                 if (values[internalIndex] > values[internalIndex + 1]) {

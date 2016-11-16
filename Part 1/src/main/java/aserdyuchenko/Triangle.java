@@ -9,28 +9,61 @@ package aserdyuchenko;
  *
  * Возвращает "Невозможно построить треугольник!", если площадь треугольника равно 0.
  *
- * @author Anton Serdyuchenko
+ * @author Anton Serdyuchenko (anton415@gmail.com)
+ * @version $Id$
  * @since 01.09.2016
- * @version 3.0
  */
 public class Triangle {
-    public Point a;
-    public Point b;
-    public Point c;
-
-    public Triangle(Point a, Point b, Point c) {
-        this.a = a;
-        this.b = b;
-        this.c = c;
+/**
+ * @param a - a.
+ */
+    private Point a;
+/**
+ * @param b - b.
+ */
+    private Point b;
+/**
+ * @param c - c.
+ */
+    private Point c;
+/**
+ * @param aPoint - aPoint.
+ * @param bPoint - bPoint.
+ * @param cPoint - cPoint.
+ */
+    public Triangle(Point aPoint, Point bPoint, Point cPoint) {
+        this.a = aPoint;
+        this.b = bPoint;
+        this.c = cPoint;
     }
-
+/**
+ * area() .
+ * @return square - square.
+ */
     public double area() {
-        double distanceAB = Math.sqrt(Math.pow((a.x - b.x),2) + Math.pow((a.y - b.y),2));
-        double distanceAC = Math.sqrt(Math.pow((a.x - c.x),2) + Math.pow((a.y - c.y),2));
-        double distanceBC = Math.sqrt(Math.pow((b.x - c.x),2) + Math.pow((b.y - c.y),2));
-        double semiperimeter = (distanceAB+distanceAC+distanceBC)/2;
-        double square = Math.sqrt((semiperimeter-distanceAB)*(semiperimeter-distanceAC)*(semiperimeter-distanceBC)*semiperimeter);
-        if (square==0){System.out.println("Невозможно построить треугольник!");}
+/**
+ * @param distanceAB - distanceAB.
+ */
+        double distanceAB = Math.sqrt(Math.pow((a.x - b.x), 2) + Math.pow((a.y - b.y), 2));
+/**
+ * @param distanceAC - distanceAC.
+ */
+        double distanceAC = Math.sqrt(Math.pow((a.x - c.x), 2) + Math.pow((a.y - c.y), 2));
+/**
+ * @param distanceBC - distanceBC.
+ */
+        double distanceBC = Math.sqrt(Math.pow((b.x - c.x), 2) + Math.pow((b.y - c.y), 2));
+/**
+ * @param semiperimeter - semiperimeter.
+ */
+        double semiperimeter = (distanceAB + distanceAC + distanceBC) / 2;
+/**
+ * @param square - square.
+ */
+        double square = Math.sqrt((semiperimeter - distanceAB) * (semiperimeter - distanceAC) * (semiperimeter - distanceBC) * semiperimeter);
+        if (square == 0) {
+		System.out.println("Невозможно построить треугольник!");
+	}
         return square;
     }
 }

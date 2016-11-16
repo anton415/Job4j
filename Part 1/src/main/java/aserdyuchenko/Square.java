@@ -1,6 +1,5 @@
 package aserdyuchenko;
 
-import java.io.*;
 
 /**
  * 4.1. Создать программу вычисляющую формулу квадратного уравнения
@@ -9,31 +8,54 @@ import java.io.*;
  * параметры a b c задаются через конструктор.
  * void show(start, finish, step) - вывести на экран значение функции в диапазоне от x1 до x2 c шагом step.
  *
- * @author Anton Serdyuchenko
+ * @author Anton Serdyuchenko (anton415@gmail.com)
+ * @version $Id$
  * @since 05.09.2016
- * @version 3.0
  */
 
 public class Square {
-    public float a;
-    public float b;
-    public float c;
-
-    public Square(float a,float b,float c) {
-        this.a = a;
-        this.b = b;
-        this.c = c;
-    }
-
-    float calculate(int x){
-        float y = this.a*((float)Math.pow(x,2)) + this.b*x + this.c;
-        System.out.println(String.format("Значение квадратного уровнения: %s", y));
-        return y;
-    }
-
-    void show(float start, float finish, float step) throws java.io.IOException {
-        for (float index=start; index<=finish; index=index+step){
-            System.out.println(String.format("Значение функции, при выполнении цикла: %s", index));
-        }
-    }
+/**
+ * @param a - a.
+ */
+    private float a;
+/**
+ * @param b - b.
+ */
+    private float b;
+/**
+ * @param c - c.
+ */
+    private float c;
+/**
+ * @param aPoint - aPoint.
+ * @param bPoint - bPoint.
+ * @param cPoint - cPoint.
+ */
+	public Square(float aPoint, float bPoint, float cPoint) {
+        	this.a = aPoint;
+        	this.b = bPoint;
+        	this.c = cPoint;
+	}
+/**
+ * calculate(int x).
+ * @param x - x.
+ * @return y - y.
+ */
+	float calculate(int x) {
+       		float y = this.a * ((float) Math.pow(x, 2)) + this.b * x + this.c;
+        	System.out.println(String.format("Значение квадратного уровнения: %s", y));
+        	return y;
+	}
+/**
+ * calculate(int x).
+ * @param start - start.
+ * @param finish - finish.
+ * @param step - step.
+ * @throws java.io.IOException java.io.IOException
+ */
+	void show(float start, float finish, float step) throws java.io.IOException {
+		for (float index = start; index <= finish; index = index + step) {
+			System.out.println(String.format("Значение функции, при выполнении цикла: %s", index));
+		}
+	}
 }
