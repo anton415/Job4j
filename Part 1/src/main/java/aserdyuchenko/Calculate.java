@@ -17,12 +17,6 @@ public class Calculate {
  * @param args - args.
  */
     public static void main(String[] args) {
-        Point first = new Point(0, 0);
-        Point second = new Point(2, 0);
-/**
- * @param result - result.
- */
-        double result = first.distanceTo(second);
      }
 /**
  * hello(String text).

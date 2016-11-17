@@ -37,22 +37,22 @@ public class Triangle {
         this.c = cPoint;
     }
 /**
- * area() .
+ * area().
  * @return square - square.
  */
     public double area() {
 /**
  * @param distanceAB - distanceAB.
  */
-        double distanceAB = Math.sqrt(Math.pow((a.x - b.x), 2) + Math.pow((a.y - b.y), 2));
+        double distanceAB = Math.sqrt(Math.pow((a.getX() - b.getX()), 2) + Math.pow((a.getY() - b.getY()), 2));
 /**
  * @param distanceAC - distanceAC.
  */
-        double distanceAC = Math.sqrt(Math.pow((a.x - c.x), 2) + Math.pow((a.y - c.y), 2));
+        double distanceAC = Math.sqrt(Math.pow((a.getX() - c.getX()), 2) + Math.pow((a.getY() - c.getY()), 2));
 /**
  * @param distanceBC - distanceBC.
  */
-        double distanceBC = Math.sqrt(Math.pow((b.x - c.x), 2) + Math.pow((b.y - c.y), 2));
+        double distanceBC = Math.sqrt(Math.pow((b.getX() - c.getX()), 2) + Math.pow((b.getY() - c.getY()), 2));
 /**
  * @param semiperimeter - semiperimeter.
  */

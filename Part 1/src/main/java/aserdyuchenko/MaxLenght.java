@@ -43,7 +43,7 @@ public class MaxLenght {
         this.c = cPoint;
     }
     /**
-     * rotationMatrix(int[][] values) .
+     * rotationMatrix(int[][] values).
      * @return maximum - maximum.
      */
     public String max() {
@@ -52,9 +52,9 @@ public class MaxLenght {
      */
         String maximum;
         Triangle triangle = new Triangle(a, b, c);
-        double distanceAB = Math.sqrt(Math.pow((a.x - b.x), 2) + Math.pow((a.y - b.y), 2));
-        double distanceAC = Math.sqrt(Math.pow((a.x - c.x), 2) + Math.pow((a.y - c.y), 2));
-        double distanceBC = Math.sqrt(Math.pow((b.x - c.x), 2) + Math.pow((b.y - c.y), 2));
+        double distanceAB = Math.sqrt(Math.pow((a.getX() - b.getX()), 2) + Math.pow((a.getY() - b.getY()), 2));
+        double distanceAC = Math.sqrt(Math.pow((a.getX() - c.getX()), 2) + Math.pow((a.getY() - c.getY()), 2));
+        double distanceBC = Math.sqrt(Math.pow((b.getX() - c.getX()), 2) + Math.pow((b.getY() - c.getY()), 2));
         if (distanceAB == 0) {
 		maximum = "Невозможно построить треугольник!";
         } else if (triangle.area() == 0) {

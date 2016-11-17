@@ -3,6 +3,8 @@ package aserdyuchenko;
 import org.junit.Test;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
+import org.apache.commons.io.output.ByteArrayOutputStream;
+import java.io.PrintStream;
 
 /**
  * Тест для класса Calculate.
@@ -16,9 +18,10 @@ public class CalculateTest {
  */
     @Test
     public void whenYouWantSeeHelloWorld() {
-        Calculate hello = new Calculate();
-        String result = hello.Hello("");
-        assertThat(result, is("Hello world"));
+		ByteArrayOutputStream out = new ByteArrayOutputStream();
+		System.setOut(new PrintStream(out));
+        Calculate hellow = new Calculate();
+        hellow.hello("");
+        assertThat(out.toString(), is(""));
      }
-
 }

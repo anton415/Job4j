@@ -11,6 +11,13 @@ public class Calculator {
  */
 	private double result;
 /**
+ * getX().
+ * @return this.x - this.x.
+ */
+	public double getResult() {
+		return this.result;
+	}
+/**
  * Метод add выполняет сложение чисел first и second. Затем записывает значение в поле result.
  * @param first - first.
  * @param second - second.

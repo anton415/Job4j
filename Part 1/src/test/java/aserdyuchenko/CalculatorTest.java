@@ -27,7 +27,7 @@ public static final int NUMBERDIV = 4;
     public void whenAddTwoNumbers() {
         Calculator calculate = new Calculator();
         calculate.add(1, 1);
-        double result = calculate.result;
+        double result = calculate.getResult();
         assertThat(result, is(2d));
     }
 /**
@@ -37,7 +37,7 @@ public static final int NUMBERDIV = 4;
     public void whenSubstructTwoNumbers() {
         Calculator calculate = new Calculator();
         calculate.substruct(NUMBER, 1);
-        double result = calculate.result;
+        double result = calculate.getResult();
         assertThat(result, is(2d));
     }
 /**
@@ -47,7 +47,7 @@ public static final int NUMBERDIV = 4;
     public void whenDivTwoNumbers() {
         Calculator calculate = new Calculator();
         calculate.div(NUMBERDIV, 2);
-        double result = calculate.result;
+        double result = calculate.getResult();
         assertThat(result, is(2d));
     }
 /**
@@ -57,7 +57,7 @@ public static final int NUMBERDIV = 4;
     public void whenMultipleTwoNumbers() {
         Calculator calculate = new Calculator();
         calculate.multiple(2, 1);
-        double result = calculate.result;
+        double result = calculate.getResult();
         assertThat(result, is(2d));
     }
 }

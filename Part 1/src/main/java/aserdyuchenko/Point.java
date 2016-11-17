@@ -31,6 +31,20 @@ public class Point {
         this.y = yPoint;
     }
 /**
+ * getX().
+ * @return this.x - this.x.
+ */
+	public double getX() {
+		return this.x;
+	}
+/**
+ * getY().
+ * @return this.y - this.y.
+ */
+	public double getY() {
+		return this.y;
+	}
+/**
  * @param point - point.
  * @return Math.sqrt(Math.pow((point.x - this.x), 2) + Math.pow((point.y - this.y), 2)) - distanceTo.
  */

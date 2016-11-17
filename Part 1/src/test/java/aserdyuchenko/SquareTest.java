@@ -15,7 +15,7 @@ public class SquareTest {
 /**
  * @param NUMBER - NUMBER.
  */
-public static final int NUMBER = 14f;
+public static final float NUMBER = 14f;
 /**
  * whenLookingValueQuadraticEquation().
  */
@@ -34,6 +34,11 @@ public static final int NUMBER = 14f;
         float start = square.calculate(1);
         float finish = square.calculate(2);
         float step = 1f;
-        square.show(start, finish, step);
+		try {
+        	square.show(start, finish, step);
+    	} catch (java.io.IOException e) {
+       		// Do something here
+    	}
+		assertThat(step, is(1f));
     }
 }
