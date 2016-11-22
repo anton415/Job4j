@@ -13,9 +13,9 @@
     </properties>
 
     <modules>
-        <module>Part 1</module>
-        <module>Part 2/Tracker</module>
-        <module>Part 2/FinalTestTask</module>
+        <module>PartOne</module>
+        <module>PartTwoTracker</module>
+		<module>PartTwoFinalTest</module>
     </modules>
 
     <dependencies>
