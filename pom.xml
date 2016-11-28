@@ -16,6 +16,7 @@
         <module>PartOne</module>
         <module>PartTwoTracker</module>
 		<module>PartTwoFinalTest</module>
+		<module>PartTwoControlQuestions</module>
     </modules>
 
     <dependencies>
