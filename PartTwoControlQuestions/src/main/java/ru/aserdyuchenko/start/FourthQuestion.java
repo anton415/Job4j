@@ -28,7 +28,6 @@ private int countC;
  */
 	public boolean checkArray(String[] array) {
 		for (String index : array) {
-System.out.print(index);
 			if (index.equals("(")) {
 				countO++;
 			} else {
