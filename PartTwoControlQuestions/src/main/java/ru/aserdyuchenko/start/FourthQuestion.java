@@ -14,19 +14,19 @@ public class FourthQuestion {
  */
 private boolean check = false;
 /**
- * @param countO - count Open Bracket.
- */
-private int countO;
-/**
- * @param countC - count Close Bracket.
- */
-private int countC;
-/**
  * Method for check array.
  * @param array - array for check.
  * @return check - result of check.
  */
 	public boolean checkArray(String[] array) {
+/**
+ * @param countO - count Open Bracket.
+ */
+		int countO = 0;
+/**
+ * @param countC - count Close Bracket.
+ */
+		int countC = 0;
 		for (String index : array) {
 			if (index.equals("(")) {
 				countO++;
