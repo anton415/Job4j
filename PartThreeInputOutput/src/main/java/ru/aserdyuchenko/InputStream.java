@@ -1,39 +1,39 @@
 package ru.aserdyuchenko;
 
 /**
+ * Class InputOutput.
  * @author Anton Serdyuchenko (anton415@gmail.com)
  * @version $Id$
  * @since 0.1
  */
-import java.util.Scanner;
-/**
- * Class InputOutput.
- */
 public class InputStream {
 /**
- * Main method.
- * @param args - main args.
+ * @param userNumber - user number.
  */
-	public static void main(String[] args) {
-		try (Scanner scanner = new Scanner(System.in)) {
-			System.out.print("Enter number: ");
+	private int userNumber;
 /**
- * @param number - user number.
+ * @param userNumber - user number.
  */
-			int number = scanner.nextInt();
-			isNumber(number);
-		}
+	private InputStream input;
+/**
+ * Constructor InputStream.
+ * @param userNumberForCheck - user number.
+ */
+	public InputStream(int userNumberForCheck) {
+		this.userNumber = userNumberForCheck;
 	}
 /**
  * isNumber method.
- * @param userNumber - user number.
+ * @param in - user number.
  * @return result - result check.
+ * @throws Exception - Exception.
  */
-	public static boolean isNumber(int userNumber) {
+	public boolean isNumber(InputStream in) throws Exception {
 /**
- * @param result - result check..
+ * @param result - result check.
  */
 		boolean result = false;
+		userNumber = Integer.valueOf(in.userNumber);
 		if (userNumber % 2 == 0) {
 			result = true;
 		}
