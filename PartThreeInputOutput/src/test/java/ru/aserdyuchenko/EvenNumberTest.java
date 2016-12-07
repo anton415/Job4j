@@ -1,8 +1,9 @@
 package ru.aserdyuchenko;
-
+import java.io.InputStream;
 import org.junit.Test;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
+import org.apache.commons.io.IOUtils;
 
 /**
  * @author Anton Serdyuchenko (anton415@gmail.com)
@@ -10,7 +11,7 @@ import static org.junit.Assert.assertThat;
  * @since 0.1
  */
 
-public class InputStreamTest {
+public class EvenNumberTest {
 /**
  * Test for check, this number is even?
  * 2 is even.
@@ -18,8 +19,10 @@ public class InputStreamTest {
  */
 	@Test
 	public void whenTwoIsEvenNumber() throws Exception {
-		InputStream input = new InputStream(2);
-		boolean result = input.isNumber(input);
+		InputStream input = IOUtils.toInputStream("2");
+		EvenNumber number = new EvenNumber();
+		int userNumber = number.readInputStreamAsInt(input);
+		boolean result = number.checkNumber(userNumber);
 		assertThat(result, is(true));
 	}
 /**
@@ -29,8 +32,10 @@ public class InputStreamTest {
  */
 	@Test
 	public void whenOneIsOddOrNotEvenNumber() throws Exception {
-		InputStream input = new InputStream(1);
-		boolean result = input.isNumber(input);
+		InputStream input = IOUtils.toInputStream("1");
+		EvenNumber number = new EvenNumber();
+		int userNumber = number.readInputStreamAsInt(input);
+		boolean result = number.checkNumber(userNumber);
 		assertThat(result, is(false));
 	}
 }
