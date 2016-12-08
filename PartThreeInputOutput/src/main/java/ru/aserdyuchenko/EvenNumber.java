@@ -1,6 +1,7 @@
 package ru.aserdyuchenko;
 
-import java.io.BufferedInputStream;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.io.InputStream;
 import java.io.IOException;
 /**
@@ -17,8 +18,8 @@ public class EvenNumber {
  * @throws IOException - IOException.
  */
 	public static int readInputStreamAsInt(InputStream in) throws IOException {
-		try (BufferedInputStream bis = new BufferedInputStream(in)) {
-    		int result = bis.read();
+		try (BufferedReader reader = new BufferedReader(new InputStreamReader(in, "UTF8"))) {
+    		int result = Integer.parseInt(reader.readLine());
     		return result;
 		}
 	}

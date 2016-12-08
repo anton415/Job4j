@@ -1,9 +1,10 @@
 package ru.aserdyuchenko;
+
 import java.io.InputStream;
+import java.io.ByteArrayInputStream;
 import org.junit.Test;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
-import org.apache.commons.io.IOUtils;
 
 /**
  * @author Anton Serdyuchenko (anton415@gmail.com)
@@ -14,12 +15,13 @@ import org.apache.commons.io.IOUtils;
 public class EvenNumberTest {
 /**
  * Test for check, this number is even?
- * 2 is even.
+ * 12 is even.
  * @throws Exception - Exception.
  */
 	@Test
 	public void whenTwoIsEvenNumber() throws Exception {
-		InputStream input = IOUtils.toInputStream("2");
+		String numberForCheck = "12";
+		InputStream input = new ByteArrayInputStream(numberForCheck.getBytes());
 		EvenNumber number = new EvenNumber();
 		int userNumber = number.readInputStreamAsInt(input);
 		boolean result = number.checkNumber(userNumber);
@@ -27,12 +29,13 @@ public class EvenNumberTest {
 	}
 /**
  * Test for check, this number is even?
- * 1 is odd or not even.
+ * 111 is odd or not even.
  * @throws Exception - Exception.
  */
 	@Test
-	public void whenOneIsOddOrNotEvenNumber() throws Exception {
-		InputStream input = IOUtils.toInputStream("1");
+	public void whenOneHundredElevenIsOddOrNotEvenNumber() throws Exception {
+		String numberForCheck = "111";
+		InputStream input = new ByteArrayInputStream(numberForCheck.getBytes());
 		EvenNumber number = new EvenNumber();
 		int userNumber = number.readInputStreamAsInt(input);
 		boolean result = number.checkNumber(userNumber);
