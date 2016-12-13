@@ -13,33 +13,28 @@ import java.util.Scanner;
  */
 public class EvenNumber {
 /**
+ * @result - result.
+ */
+	private boolean result = false;
+/**
  * convertStreamToInt method.
  * @param in - Scanner.
  * @throws IOException - IOException.
+ * @return result - result checking.
  */
-	public void readInputStreamAsInt(InputStream in) throws IOException {
-		try (BufferedReader reader = new BufferedReader(new InputStreamReader(in, "UTF8"))) {
-			Scanner s = new Scanner(reader).useDelimiter("\\s*\n\\s*");
-			while (s.hasNext()) {
-				String nextNumber = s.next();
-				int result = Integer.parseInt(nextNumber);
-				checkNumber(result);
+	public boolean readInputStreamAsInt(InputStream in) throws IOException {
+		try (Scanner reader = new Scanner(new BufferedReader(new InputStreamReader(in, "UTF8"))).useDelimiter("\\s*\n\\s*")) {
+			while (reader.hasNext()) {
+				String nextNumber = reader.next();
+				int userNumber = Integer.valueOf(nextNumber);
+				if (userNumber % 2 == 0) {
+					result = true;
+				} else {
+					result = false;
+				}
 			}
-			s.close();
+			reader.close();
 		}
-	}
-/**
- * checkNumber method.
- * @param number - user number.
- */
-	public void checkNumber(int number) {
-/**
- * @param result - result check.
- */
-		boolean result = false;
-		if (number % 2 == 0) {
-			result = true;
-		}
-		System.out.print("Is number: " + number + " even? -" + result);
+		return result;
 	}
 }

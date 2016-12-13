@@ -5,8 +5,6 @@ import java.io.ByteArrayInputStream;
 import org.junit.Test;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
-import org.apache.commons.io.output.ByteArrayOutputStream;
-import java.io.PrintStream;
 
 /**
  * @author Anton Serdyuchenko (anton415@gmail.com)
@@ -22,13 +20,11 @@ public class EvenNumberTest {
  */
 	@Test
 	public void whenTwoIsEvenNumber() throws Exception {
-		ByteArrayOutputStream out = new ByteArrayOutputStream();
-		System.setOut(new PrintStream(out));
 		String numberForCheck = "12";
 		InputStream input = new ByteArrayInputStream(numberForCheck.getBytes());
 		EvenNumber number = new EvenNumber();
-		number.readInputStreamAsInt(input);
-		assertThat(out.toString(), is("Is number: 12 even? -true"));
+		boolean result = number.readInputStreamAsInt(input);
+		assertThat(result, is(true));
 	}
 /**
  * Test for check, this number is even?
@@ -37,13 +33,11 @@ public class EvenNumberTest {
  */
 	@Test
 	public void whenOneHundredElevenIsOddOrNotEvenNumber() throws Exception {
-		ByteArrayOutputStream out = new ByteArrayOutputStream();
-		System.setOut(new PrintStream(out));
 		String numberForCheck = "111";
 		InputStream input = new ByteArrayInputStream(numberForCheck.getBytes());
 		EvenNumber number = new EvenNumber();
-		number.readInputStreamAsInt(input);
-		assertThat(out.toString(), is("Is number: 111 even? -false"));
+		boolean result = number.readInputStreamAsInt(input);
+		assertThat(result, is(false));
 	}
 /**
  * Test for check, this number is even?
@@ -52,12 +46,10 @@ public class EvenNumberTest {
  */
 	@Test
 	public void whenCheckFirstTwoAndSecondThree() throws Exception {
-		ByteArrayOutputStream out = new ByteArrayOutputStream();
-		System.setOut(new PrintStream(out));
 		String numberForCheck = "2\r\n3";
 		InputStream input = new ByteArrayInputStream(numberForCheck.getBytes());
 		EvenNumber number = new EvenNumber();
-		number.readInputStreamAsInt(input);
-		assertThat(out.toString(), is("Is number: 2 even? -trueIs number: 3 even? -false"));
+		boolean result = number.readInputStreamAsInt(input);
+		assertThat(result, is(false));
 	}
 }
