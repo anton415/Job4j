@@ -63,6 +63,6 @@ public class EvenNumberTest {
 		InputStream input = new ByteArrayInputStream(numberForCheck.getBytes());
 		EvenNumber number = new EvenNumber();
 		boolean result = number.readInputStreamAsInt(input);
-		assertThat(result, is(true));
+		assertThat(result, is(false));
 	}
 }

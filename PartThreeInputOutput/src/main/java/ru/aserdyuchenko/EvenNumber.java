@@ -4,7 +4,8 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.InputStream;
 import java.io.IOException;
-import java.util.Scanner;
+import org.apache.commons.io.IOUtils;
+
 /**
  * Class InputOutput.
  * @author Anton Serdyuchenko (anton415@gmail.com)
@@ -13,7 +14,7 @@ import java.util.Scanner;
  */
 public class EvenNumber {
 /**
- * @result - result.
+ * @param result - result.
  */
 	private boolean result = false;
 /**
@@ -23,16 +24,16 @@ public class EvenNumber {
  * @return result - result checking.
  */
 	public boolean readInputStreamAsInt(InputStream in) throws IOException {
-		try (Scanner reader = new Scanner(new BufferedReader(new InputStreamReader(in, "UTF8"))).useDelimiter("\\s*\n\\s*")) {
-			while (reader.hasNext()) {
-				String nextNumber = reader.next();
-				int userNumber = Integer.valueOf(nextNumber);
-				if (userNumber % 2 == 0) {
+		try (BufferedReader reader = new BufferedReader(new InputStreamReader(in))) {
+			try {
+				if (Integer.valueOf(IOUtils.toString(reader)) % 2 == 0) {
 					result = true;
 				} else {
 					result = false;
 				}
-			}
+			} catch (NumberFormatException e) {
+        		result = false;
+    		}
 		}
 		return result;
 	}
