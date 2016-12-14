@@ -33,7 +33,6 @@ public class EvenNumber {
 					result = false;
 				}
 			}
-			reader.close();
 		}
 		return result;
 	}

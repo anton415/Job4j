@@ -52,4 +52,17 @@ public class EvenNumberTest {
 		boolean result = number.readInputStreamAsInt(input);
 		assertThat(result, is(false));
 	}
+/**
+ * Test for check, this number is even?
+ * "2\r\n2" is first even and second even?
+ * @throws Exception - Exception.
+ */
+	@Test
+	public void whenCheckFirstTwoAndSecondTwo() throws Exception {
+		String numberForCheck = "2\r\n2";
+		InputStream input = new ByteArrayInputStream(numberForCheck.getBytes());
+		EvenNumber number = new EvenNumber();
+		boolean result = number.readInputStreamAsInt(input);
+		assertThat(result, is(true));
+	}
 }
