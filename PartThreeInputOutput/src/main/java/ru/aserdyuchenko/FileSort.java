@@ -1,5 +1,7 @@
 package ru.aserdyuchenko;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.io.File;
 import java.io.RandomAccessFile;
 import java.io.IOException;
@@ -16,39 +18,22 @@ public class FileSort implements SortLines {
  */
 	public void sort(File source, File dist) {
 		try {
+			RandomAccessFile file = new RandomAccessFile(source, "r");
 			RandomAccessFile distFile = new RandomAccessFile(dist, "rw");
-			int countLine = countLineInFile(source);
-			int lineLength = 1;
-			String firstLine;
-			while (lineLength < countLine) {
-			RandomAccessFile file = new RandomAccessFile(source, "r");
-				while ((firstLine = file.readLine()) != null) {
-					if (lineLength == firstLine.length()) {
-						distFile.writeBytes(firstLine + "\n");
-					}
-				}
-				lineLength++;
+			ArrayList<String> array = new ArrayList<String>();
+			String lines;
+			while ((lines = file.readLine()) != null) {
+				array.add(lines);
 			}
+			String[] stringArray = array.toArray(new String[0]);
+			Arrays.sort(stringArray);
+			for (String line : stringArray) {
+				distFile.writeBytes(line + "\n");
+			}
+			System.out.print("sort files.");
 		} catch (IOException e) {
-            System.out.print("IOException: do not give up! try again");
+            System.out.print("IOException, file is not sorted.");
             e.printStackTrace();
         }
-	}
-/**
- * @param source			Unsorted file.
- * @return result			Count line in file.
- */
-	public int countLineInFile(File source) {
-		int result = 0;
-		try {
-			RandomAccessFile file = new RandomAccessFile(source, "r");
-			while (file.readLine() != null) {
-				result++;
-			}
-		} catch (IOException e) {
-            System.out.print("IOException: do not give up! try again");
-            e.printStackTrace();
-        }
-		return result + 1;
 	}
 }

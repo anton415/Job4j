@@ -14,10 +14,4 @@ public interface SortLines {
  * @param dist				Sorted file.
  */
 	void sort(File source, File dist);
-/**
- * Count lines in file. This need to know, how much loops we need to do.
- * @param source			Unsorted file.
- * @return result			Count line in file.
- */
-	int countLineInFile(File source);
 }

@@ -26,6 +26,6 @@ public class FileSortTest {
 		File distFile = new File("dist.txt");
 		File sourceFile = new File("source.txt");
 		file.sort(sourceFile, distFile);
-		assertThat(out.toString(), is(""));
+		assertThat(out.toString(), is("sort files."));
 	}
 }
