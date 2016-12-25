@@ -1,7 +1,6 @@
 package ru.aserdyuchenko;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.io.File;
 import java.io.RandomAccessFile;
 import java.io.IOException;
@@ -26,7 +25,7 @@ public class FileSort implements SortLines {
 				array.add(lines);
 			}
 			String[] stringArray = array.toArray(new String[0]);
-			Arrays.sort(stringArray);
+			bubbleSort(stringArray);
 			for (String line : stringArray) {
 				distFile.writeBytes(line + "\n");
 			}
@@ -34,6 +33,20 @@ public class FileSort implements SortLines {
 		} catch (IOException e) {
             System.out.print("IOException, file is not sorted.");
             e.printStackTrace();
+        }
+	}
+/**
+ * @param stringArray			Array.
+ */
+	public void bubbleSort(String[] stringArray) {
+        for (int externalIndex = stringArray.length - 1; externalIndex >= 0; externalIndex--) {
+            for (int internalIndex = 0; internalIndex < externalIndex; internalIndex++) {
+                if (stringArray[internalIndex].length() > stringArray[internalIndex + 1].length()) {
+                    String t = stringArray[internalIndex];
+                    stringArray[internalIndex] = stringArray[internalIndex + 1];
+                    stringArray[internalIndex + 1] = t;
+                }
+            }
         }
 	}
 }
