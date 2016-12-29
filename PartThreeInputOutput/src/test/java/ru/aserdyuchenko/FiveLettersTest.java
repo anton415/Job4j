@@ -6,7 +6,6 @@ import org.junit.Test;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
-
 /**
  * @author Anton Serdyuchenko (anton415@gmail.com)
  * @version $Id$
@@ -15,12 +14,12 @@ import static org.junit.Assert.assertThat;
 
 public class FiveLettersTest {
 /**
- * Test for check, this number is palindrome?
+ * Test for check, this word is palindrome?
  * Anton is palindrome.
  * @throws Exception - Exception.
  */
 	@Test
-	public void whenAntonIsPalindrome() throws Exception {
+	public void whenBobIsPalindrome() throws Exception {
 
 		String wordForCheck = "Bob";
 		InputStream input = new ByteArrayInputStream(wordForCheck.getBytes());
@@ -29,7 +28,7 @@ public class FiveLettersTest {
 		assertThat(result, is(true));
 	}
 /**
- * Test for check, this number is palindrome?
+ * Test for check, this word is palindrome?
  * Hello is not palindrome.
  * @throws Exception - Exception.
  */
@@ -39,6 +38,26 @@ public class FiveLettersTest {
 		InputStream input = new ByteArrayInputStream(wordForCheck.getBytes());
 		FiveLetters word = new FiveLetters();
 		boolean result = word.checkWord(input);
+		assertThat(result, is(false));
+	}
+/**
+ * Test for check, this word is palindrome?
+ * bob is palidrom.
+ */
+	@Test
+	public void whenBobPalidromForIsPalidromMethod() {
+		FiveLetters word = new FiveLetters();
+		boolean result = word.isPalidrom("Bob");
+		assertThat(result, is(true));
+	}
+/**
+ * Test for check, this word is palindrome?
+ * Hello is palidrom.
+ */
+	@Test
+	public void whenHelloNotPalidromForIsPalidromMethod() {
+		FiveLetters word = new FiveLetters();
+		boolean result = word.isPalidrom("Hello");
 		assertThat(result, is(false));
 	}
 }

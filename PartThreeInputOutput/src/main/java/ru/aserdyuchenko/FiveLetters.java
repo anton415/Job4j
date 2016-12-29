@@ -43,4 +43,24 @@ public class FiveLetters {
 		}
 		return result;
 	}
+
+/**
+ * @param value - word for checking.
+ * @return result - result checking.
+ */
+	public boolean isPalidrom(String value) {
+		boolean result = false;
+		char[] array = value.toCharArray();
+		char[] palidrom = new char[value.length()];
+		int indexForPalidrom = 0;
+		for (int index = array.length - 1; index >= 0; index--) {
+			palidrom[indexForPalidrom] = array[index];
+			indexForPalidrom++;
+		}
+		String word = String.valueOf(palidrom);
+		if ((word.toUpperCase()).equals(value.toUpperCase())) {
+			result = true;
+		}
+		return result;
+	}
 }
