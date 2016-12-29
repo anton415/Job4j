@@ -14,10 +14,6 @@ import org.apache.commons.io.IOUtils;
  */
 public class FiveLetters {
 /**
- * @param NUMBERFIVE- NUMBERFIVE.
- */
-public static final int NUMBERFIVE = 5;
-/**
  * @param result - result.
  */
 	private boolean result = false;
@@ -27,13 +23,19 @@ public static final int NUMBERFIVE = 5;
  * @throws IOException - IOException.
  * @return result - result checking.
  */
-	public boolean readWord(InputStream in) throws IOException {
+	public boolean checkWord(InputStream in) throws IOException {
 		try (BufferedReader reader = new BufferedReader(new InputStreamReader(in))) {
 			try {
-				if (IOUtils.toString(reader).length()  == NUMBERFIVE) {
-					result = true;
-				} else {
-					result = false;
+				char[] array = (IOUtils.toString(reader)).toCharArray();
+				for (int x = array.length - 1; x >= 0; x--) {
+					for (int y = 0; y <= array.length - 1; y++) {
+						if (Character.toUpperCase(array[x]) == Character.toUpperCase(array[y])) {
+							result = true;
+						} else {
+							result = false;
+						}
+						x--;
+					}
 				}
 			} catch (NumberFormatException e) {
         		result = false;
