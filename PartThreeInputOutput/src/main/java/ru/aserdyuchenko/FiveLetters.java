@@ -51,15 +51,13 @@ public class FiveLetters {
 	public boolean isPalidrom(String value) {
 		boolean result = false;
 		char[] array = value.toCharArray();
-		char[] palidrom = new char[value.length()];
-		int indexForPalidrom = 0;
-		for (int index = array.length - 1; index >= 0; index--) {
-			palidrom[indexForPalidrom] = array[index];
-			indexForPalidrom++;
-		}
-		String word = String.valueOf(palidrom);
-		if ((word.toUpperCase()).equals(value.toUpperCase())) {
-			result = true;
+		for (int index = 0; index < (array.length - 1); index++) {
+			if (Character.toUpperCase(array[index]) == Character.toUpperCase(array[array.length - index - 1])) {
+				result = true;
+			} else {
+				result = false;
+				break;
+			}
 		}
 		return result;
 	}
