@@ -10,8 +10,8 @@ import java.io.PrintStream;
 
 /**
  * @author Anton Serdyuchenko (anton415@gmail.com)
- * @version $Id$
- * @since 0.1
+ * @version 2
+ * @since 06.01.2017
  */
 
 public class ChatTest {
@@ -20,11 +20,12 @@ public class ChatTest {
  */
 	@Test
 	public void whenYouTalkWithBot() throws Exception {
+		Chat chat = new Chat();
 		String myPhrase = "a b stop c continue d end";
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
 		System.setOut(new PrintStream(out));
 		InputStream input = new ByteArrayInputStream(myPhrase.getBytes());
-		Chat.start(input);
+		chat.start(input);
 		assertThat(out.toString(), is("end"));
 	}
 }
