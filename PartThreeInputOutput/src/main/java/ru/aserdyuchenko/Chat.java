@@ -10,18 +10,10 @@ import java.io.RandomAccessFile;
 /**
  * Class Chat.
  * @author Anton Serdyuchenko (anton415@gmail.com)
- * @version 2
+ * @version 3
  * @since 06.01.2017
  */
 public class Chat {
-/**
- * @param isSwitchOn		Switch on, then bot answer to you.
- */
-	private boolean isSwitchOn = true;
-/**
- * @param userInput			This string for work with user input.
- */
-	private String userInput;
 /**
  * @param in					InputStream.
  * @throws IOException	 		IOException.
@@ -30,8 +22,9 @@ public class Chat {
 		try (Scanner reader = new Scanner(new BufferedReader(new InputStreamReader(in)))) {
 			RandomAccessFile historyFile = new RandomAccessFile("history.txt", "rw");
 			RandomAccessFile answerFile = new RandomAccessFile("answer.txt", "r");
+			boolean isSwitchOn = true;
 			while (reader.hasNext()) {
-				userInput = reader.next();
+			String userInput = reader.next();
 				if (userInput.equals("stop")) {
 					historyFile.writeBytes(userInput);
 					historyFile.writeBytes("\n");
