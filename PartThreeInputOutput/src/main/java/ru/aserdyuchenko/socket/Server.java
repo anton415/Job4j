@@ -1,51 +1,47 @@
-package ru.aserdyuchenko.socket;
+package main.java.ru.aserdyuchenko.socket;
 
-import java.util.Arrays;
-import java.io.InputStream;
-import java.io.OutputStream;
+import java.io.DataInputStream;
 import java.io.File;
 import java.io.IOException;
-import java.util.Scanner;
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
+import java.io.InputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
+import java.util.Arrays;
 
 /**
  * @author Anton Serdyuchenko (anton415@gmail.com)
- * @version 1
- * @since 20.01.2017
  */
 public class Server {
 /**
  * @param NUMBERONE - NUMBERONE.
  */
 public static final int NUMBERONE = 5000;
+
 /**
- * @param inputStream			InputStream.
- * @param outputStream			OutputStream.
  * @throws IOException	 		IOException.
  */
-	public void showDirectory(InputStream inputStream, OutputStream outputStream) throws IOException {
-        int port = NUMBERONE;
-		try (Scanner reader = new Scanner(new BufferedReader(new InputStreamReader(inputStream)))) {
-			while (reader.hasNext()) {
-            	ServerSocket serverSocket = new ServerSocket(port);
-            	Socket socket = serverSocket.accept();
+	public void startServer() throws IOException {
+		Client client = new Client();
 
-	            InputStream socketInStr = socket.getInputStream();
-	            OutputStream socketOutStr = socket.getOutputStream();
+		ServerSocket serverSocket = new ServerSocket(NUMBERONE);
+		client.startClient();
 
-            	DataInputStream in = new DataInputStream(socketInStr);
-				DataOutputStream out = new DataOutputStream(socketOutStr);
+		Socket socket = serverSocket.accept();
 
-				String clientInput = reader.next();
-				String[] list = new File(clientInput).list();
-				outputStream.write(Arrays.toString(list).getBytes());
-				serverSocket.close();
-			}
-		}
+		InputStream inputStream = socket.getInputStream();
+
+		DataInputStream dataInputStream = new DataInputStream(inputStream);
+		seeDirectory(dataInputStream);
+
+		serverSocket.close();
+	}
+/**
+ * @param dataInputStream		dataInputStream.
+ * @throws IOException	 		IOException.
+ */
+	public void seeDirectory(DataInputStream dataInputStream) throws IOException {
+		String clientInput = dataInputStream.readUTF();
+		String[] list = new File(clientInput).list();
+		System.out.print(Arrays.toString(list));
 	}
 }

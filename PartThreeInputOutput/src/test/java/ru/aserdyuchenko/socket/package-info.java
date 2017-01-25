@@ -4,4 +4,4 @@
  * @version $Id$
  * @since 0.1
  */
-package ru.aserdyuchenko;
+package ru.aserdyuchenko.socket;
