@@ -10,14 +10,20 @@ import java.net.UnknownHostException;
  */
 public class Client {
 /**
- * @param NUMBERONE - NUMBERONE.
+ * @param directory				directory.
+ */
+private static String directory;
+/**
+ * @param NUMBERONE				NUMBERONE.
  */
 public static final int NUMBERONE = 5000;
 
 /**
+ * @param userInput				userInput.
  * @throws IOException	 		IOException.
  */
-	public void seeDirectory() throws IOException {
+	public void seeDirectory(String userInput) throws IOException {
+		setDirectory(userInput);
 		Server server = new Server();
 		server.startServer();
 	}
@@ -31,8 +37,7 @@ public static final int NUMBERONE = 5000;
 			OutputStream outputStream = socket.getOutputStream();
 			DataOutputStream dataOutputStream = new DataOutputStream(outputStream);
 
-			String clientInput = "src";
-			dataOutputStream.writeUTF(clientInput);
+			dataOutputStream.writeUTF(getDirectory());
 			dataOutputStream.flush();
 			socket.close();
 
@@ -41,6 +46,17 @@ public static final int NUMBERONE = 5000;
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
+	}
+/**
+ * @return this.directory		directory.
+ */
+	public String getDirectory() {
+		return this.directory;
+	}
+/**
+ * @param userInput				userInput.
+ */
+	public void setDirectory(String userInput) {
+		this.directory = userInput;
 	}
 }

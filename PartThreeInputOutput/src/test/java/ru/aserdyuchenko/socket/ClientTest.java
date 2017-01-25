@@ -19,7 +19,7 @@ public class ClientTest {
 		Client client = new Client();
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
 		System.setOut(new PrintStream(out));
-		client.seeDirectory();
+		client.seeDirectory("src");
 		assertThat(out.toString(), is("[main, test]"));
 	}
 
