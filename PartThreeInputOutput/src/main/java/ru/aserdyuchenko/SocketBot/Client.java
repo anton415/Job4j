@@ -1,4 +1,4 @@
-package main.java.ru.aserdyuchenko.socket;
+package main.java.ru.aserdyuchenko.SocketBot;
 
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -10,20 +10,20 @@ import java.net.UnknownHostException;
  */
 public class Client {
 /**
- * @param directory				directory.
+ * @param userInput				userInput.
  */
-private static String directory;
+	private static String userInput;
 /**
- * @param NUMBERONE				NUMBERONE.
+ * @param NUMBERONE - NUMBERONE.
  */
 public static final int NUMBERONE = 5000;
 
 /**
- * @param userInput				userInput.
  * @throws IOException	 		IOException.
+ * @param userInput				userInput.
  */
-	public void seeDirectory(String userInput) throws IOException {
-		setDirectory(userInput);
+	public void startTalk(String userInput) throws IOException {
+		setUserInput(userInput);
 		Server server = new Server();
 		server.startServer();
 	}
@@ -37,7 +37,7 @@ public static final int NUMBERONE = 5000;
 			OutputStream outputStream = socket.getOutputStream();
 			DataOutputStream dataOutputStream = new DataOutputStream(outputStream);
 
-			dataOutputStream.writeUTF(getDirectory());
+			dataOutputStream.writeUTF(userInput);
 			dataOutputStream.flush();
 			socket.close();
 
@@ -46,17 +46,18 @@ public static final int NUMBERONE = 5000;
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+
 	}
-/**
- * @return this.directory		directory.
- */
-	public String getDirectory() {
-		return this.directory;
-	}
-/**
- * @param userInput				userInput.
- */
-	public void setDirectory(String userInput) {
-		this.directory = userInput;
-	}
+	/**
+	 * @return this.directory		directory.
+	 */
+		public String getUserInput() {
+			return this.userInput;
+		}
+	/**
+	 * @param userInput				userInput.
+	 */
+		public void setUserInput(String userInput) {
+			this.userInput = userInput;
+		}
 }

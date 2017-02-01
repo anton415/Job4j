@@ -1,12 +1,10 @@
-package main.java.ru.aserdyuchenko.socket;
+package main.java.ru.aserdyuchenko.SocketBot;
 
 import java.io.DataInputStream;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.Arrays;
 
 /**
  * @author Anton Serdyuchenko (anton415@gmail.com)
@@ -31,7 +29,7 @@ public static final int NUMBERONE = 5000;
 		InputStream inputStream = socket.getInputStream();
 
 		DataInputStream dataInputStream = new DataInputStream(inputStream);
-		seeDirectory(dataInputStream);
+		startTalk(dataInputStream);
 
 		serverSocket.close();
 	}
@@ -39,9 +37,14 @@ public static final int NUMBERONE = 5000;
  * @param dataInputStream		dataInputStream.
  * @throws IOException	 		IOException.
  */
-	public void seeDirectory(DataInputStream dataInputStream) throws IOException {
+	public void startTalk(DataInputStream dataInputStream) throws IOException {
 		String clientInput = dataInputStream.readUTF();
-		String[] list = new File(clientInput).list();
-		System.out.print(Arrays.toString(list));
+		if (clientInput.equals("hello oracle")) {
+			System.out.print("Hello, dear friend, I'm a oracle.");
+		} else if (clientInput.equals("exit")) {
+			System.out.print("Goodbye.");
+		} else {
+			System.out.print("I am oracle.");
+		}
 	}
 }
