@@ -45,13 +45,13 @@ public class Server {
    			System.out.println("wait command ...");
     		ask = in.readLine();
     		System.out.println(ask);
-    		if ("Hello oracle".equals(ask)) {
+			if (ask.equals("Hello oracle")) {
        			out.println("Hello, dear friend, I'm a oracle.");
         		out.println();
-    		} else if (!("exit".equals(ask))) {
+    		} else if (!(ask.equals("exit"))) {
 				out.println("I don`t understand.");
 				out.println();
 			}
-		} while (!("exit".equals(ask)));
+		} while (!(ask.equals("exit")));
 	}
 }
