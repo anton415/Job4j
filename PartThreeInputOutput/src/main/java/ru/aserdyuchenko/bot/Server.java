@@ -52,6 +52,6 @@ public class Server {
 				out.println("I don`t understand.");
 				out.println();
 			}
-		} while (!(ask.equals("exit")));
+		} while (!("exit".equals(ask)));
 	}
 }

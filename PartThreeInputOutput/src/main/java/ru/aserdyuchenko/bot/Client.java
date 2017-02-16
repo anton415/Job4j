@@ -46,6 +46,6 @@ public class Client {
     		str = in.readLine();
     		System.out.println(str);
         	out.println(str);
-		} while (!(str.equals("exit")));
+		} while (!("exit".equals(str)));
 	}
 }
