@@ -6,6 +6,8 @@ package ru.aserdyuchenko.fileManager;
 interface Settings {
 /**
  * Метод для чтения app.properties.
+ * @param key - key.
+ * @return string.
  */
 	String getValue(String key);
 }

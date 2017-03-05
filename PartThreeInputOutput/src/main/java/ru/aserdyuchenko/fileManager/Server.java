@@ -6,10 +6,12 @@ package ru.aserdyuchenko.fileManager;
 interface Server {
 /**
  * Переменная нужна для перехода в нужный каталог.
+ * @param NOWPATH.
  */
-String nowPathIs;
+String NOWPATH = "./";
 /**
  * Запуск сервера и получение команд от клиента.
+ * @param homePath - homePath.
  */
 	void startServer(String homePath);
 /**
@@ -19,14 +21,16 @@ String nowPathIs;
 /**
  * Осуществляет переход в выбранные каталог.
  * Или возвращает содержимое данного каталога.
- * Это происходит с помощью переменной nowPathIs.
- * Метод всегда будет возвращать содержимое именно каталога (nowPathIs).
+ * Это происходит с помощью переменной NOWPATH.
+ * Метод всегда будет возвращать содержимое именно каталога (NOWPATH).
  * А переход в выбранный каталог будет происходить с помощью
- * сложения уже имеющейся строки nowPathIs и строки, которую передаст клиент.
+ * сложения уже имеющейся строки NOWPATH и строки, которую передаст клиент.
+ * @param thisPath - thisPath.
  */
 	void seeThisPath(String thisPath);
 /**
  * Скачать файл.
+ * @param nameFile - nameFile.
  */
 	void downloadFile(String nameFile);
 /**
