@@ -1,12 +1,14 @@
 package ru.aserdyuchenko.fileManager;
 
-import java.io.PrintWriter;
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.io.File;
+import java.nio.file.Files;
 import java.io.FileInputStream;
 import java.util.Arrays;
 /**
@@ -53,8 +55,11 @@ public class RealizationServer {
  */
 	public void startServer(String newHomePath) throws IOException {
 		homePath = newHomePath;
-		PrintWriter out = new PrintWriter(this.socket.getOutputStream(), true);
-		BufferedReader in = new BufferedReader(new InputStreamReader(this.socket.getInputStream()));
+
+		InputStream socketInStr = socket.getInputStream();
+		OutputStream socketOutStr = socket.getOutputStream();
+		DataInputStream in = new DataInputStream(socketInStr);
+		DataOutputStream out = new DataOutputStream(socketOutStr);
 		String ask = null;
 		do {
    		System.out.println("wait command ...");
@@ -63,14 +68,19 @@ public class RealizationServer {
 			if ("Go to".equals(ask)) {
 				do {
 					ask = in.readLine();
-					out.println(Arrays.toString(seeThisPath(ask)));
+					out.writeBytes(Arrays.toString(seeThisPath(ask)));
 					ask = in.readLine();
+					out.writeBytes("\n");
 				} while (!("Exit in menu".equals(ask)));
 			} else if ("Go home".equals(ask)) {
 				nowPath = homePath;
-				out.println(Arrays.toString(seeHomePath()));
+				out.writeBytes(Arrays.toString(seeHomePath()));
+				out.writeBytes("\n");
+			} else if ("Download".equals(ask)) {
+				ask = in.readLine();
+				out.write(downloadFile(ask));
 			} else if (!("Exit".equals(ask))) {
-				out.println("I don`t understand.");
+				out.writeBytes("I don`t understand.\n");
 			}
 		} while (!("Exit".equals(ask)));
 	}
@@ -108,16 +118,20 @@ public class RealizationServer {
 /**
  * Скачать файл.
  * @param nameFile - nameFile.
+ * @return content - content.
+ * @throws IOException - IOException.
  */
-	public void downloadFile(String nameFile) {
-		// Реализация скачивания файла.
+	public byte[] downloadFile(String nameFile) throws IOException {
+		File file = new File(nameFile);
+		byte[] content = Files.readAllBytes(file.toPath());
+		return content;
 	}
 /**
  * Загрузить файл.
- * Я ещё не знаю как будет происходить загрузка файла, поэтому не знаю
- * нужно ли передавать какой-нибудь параметр.
+ * @param nameFile - nameFile.
+ * @throws IOException - IOException.
  */
-	public void pushFile() {
-		// Реализация загрузки файла.
+	public void pushFile(String nameFile) throws IOException {
+		// реализация загрузки файла.
 	}
 }

@@ -36,18 +36,36 @@ public class RealizationServerTest {
 		this.testServer(
 			Joiner.on(LINESEPARATOR).join(
 				"Go to",
-				"resources",
+				"main",
 				"Exit in menu",
 				"Go home",
 				"Exit"
 			),
 			Joiner.on(LINESEPARATOR).join(
-				"[app.properties]",
-				"[main, test, resources]",
+				"[resources, java]",
+				"[main, test]",
 				""
 			)
 		);
 	}
+	/**
+	 * Test.
+	 * @throws IOException	 		IOException.
+	 */
+		@Test
+		public void whenDownloadFileAndExit() throws IOException {
+			this.testServer(
+				Joiner.on(LINESEPARATOR).join(
+					"Download",
+					"forTestFileManager.txt",
+					"Exit"
+				),
+				Joiner.on(LINESEPARATOR).join(
+					"test",
+					""
+				)
+			);
+		}
 /**
  * Test.
  * @throws IOException	 		IOException.

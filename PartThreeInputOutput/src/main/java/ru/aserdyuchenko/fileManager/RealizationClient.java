@@ -69,4 +69,14 @@ public class RealizationClient {
 		String value = settings.getValue(needValue);
 		return value;
 	}
+/**
+ *
+ */
+ /*
+ public void downloadFileFromServer() {
+	 try (FileInputStream inFile = new FileInputStream()) {
+
+	 }
+ }
+ */
 }
