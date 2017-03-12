@@ -5,8 +5,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.IOException;
 import java.net.Socket;
-import java.io.File;
-import java.io.FileInputStream;
+import java.io.InputStream;
 /**
  * @author Anton Serdyuchenko.
  */
@@ -62,21 +61,11 @@ public class RealizationClient {
  */
 	public static String readProperties(String needValue) throws IOException {
 		RealizationSettings settings = new RealizationSettings();
-		File file = new File("./src/resources/app.properties");
-		try (FileInputStream io = new FileInputStream(file)) {
+		ClassLoader loader = RealizationSettings.class.getClassLoader();
+		try (InputStream io = loader.getResourceAsStream("app.properties")) {
 			settings.load(io);
 		}
 		String value = settings.getValue(needValue);
 		return value;
 	}
-/**
- *
- */
- /*
- public void downloadFileFromServer() {
-	 try (FileInputStream inFile = new FileInputStream()) {
-
-	 }
- }
- */
 }

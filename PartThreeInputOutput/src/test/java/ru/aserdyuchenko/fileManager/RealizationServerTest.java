@@ -71,6 +71,27 @@ public class RealizationServerTest {
  * @throws IOException	 		IOException.
  */
 	@Test
+	public void whenPushFileAndExit() throws IOException {
+		this.testServer(
+			Joiner.on(LINESEPARATOR).join(
+				"Push",
+				"Create new file",
+				"newFile.txt",
+				"test string",
+				"Exit in menu",
+				"Exit"
+			),
+			Joiner.on(LINESEPARATOR).join(
+				"File create",
+				"Write in file done"
+			)
+		);
+	}
+/**
+ * Test.
+ * @throws IOException	 		IOException.
+ */
+	@Test
 	public void whenUnsupportedAskThenDontUnderstand() throws IOException {
 		this.testServer(
 			Joiner.on(LINESEPARATOR).join(

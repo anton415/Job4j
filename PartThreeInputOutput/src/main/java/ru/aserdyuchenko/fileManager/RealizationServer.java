@@ -9,12 +9,16 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.io.File;
 import java.nio.file.Files;
-import java.io.FileInputStream;
 import java.util.Arrays;
+import java.io.RandomAccessFile;
 /**
  * @author Anton Serdyuchenko.
  */
 public class RealizationServer {
+/**
+ * @param file - file.
+ */
+	private RandomAccessFile file;
 /**
  * @param socket - socket.
  */
@@ -79,6 +83,21 @@ public class RealizationServer {
 			} else if ("Download".equals(ask)) {
 				ask = in.readLine();
 				out.write(downloadFile(ask));
+			} else if ("Push".equals(ask)) {
+				do {
+					ask = in.readLine();
+					if ("Create new file".equals(ask)) {
+						ask = in.readLine();
+						createNewFileInServer(ask);
+						out.writeBytes("File create");
+						out.writeBytes("\n");
+					} else if ("Exit in menu".equals(ask)) {
+						out.writeBytes("Write in file done");
+						break;
+					} else {
+						pushFile(ask);
+					}
+				} while (!("Exit in menu".equals(ask)));
 			} else if (!("Exit".equals(ask))) {
 				out.writeBytes("I don`t understand.\n");
 			}
@@ -91,8 +110,8 @@ public class RealizationServer {
  */
 	public static String readProperties(String needValue) throws IOException {
 		RealizationSettings settings = new RealizationSettings();
-		File file = new File("./src/resources/app.properties");
-		try (FileInputStream io = new FileInputStream(file)) {
+		ClassLoader loader = RealizationSettings.class.getClassLoader();
+		try (InputStream io = loader.getResourceAsStream("app.properties")) {
 			settings.load(io);
 		}
 		String value = settings.getValue(needValue);
@@ -128,10 +147,18 @@ public class RealizationServer {
 	}
 /**
  * Загрузить файл.
- * @param nameFile - nameFile.
+ * @param bytesForNewFile - bytesForNewFile.
  * @throws IOException - IOException.
  */
-	public void pushFile(String nameFile) throws IOException {
-		// реализация загрузки файла.
+	public void pushFile(String bytesForNewFile) throws IOException {
+		file.writeBytes(bytesForNewFile);
 	}
+/**
+ * Создание нового файла.
+ * @param nameNewFile - nameNewFile.
+ * @throws IOException - IOException.
+ */
+ public void createNewFileInServer(String nameNewFile) throws IOException {
+	this.file = new RandomAccessFile(nameNewFile, "rw");
+ }
 }
