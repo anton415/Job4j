@@ -13,9 +13,27 @@ public class InvertStringTest {
    * Тестирование только на одном слове.
    */
   @Test
-  public void whenInvertHello() {
+  public void whenInvertHelloByFirstMethod() {
     InvertString invertString = new InvertString();
-    String newWord = invertString.invertOneWord("Hello");
+    String newWord = invertString.invertFirstMethod("Hello");
+    assertThat(newWord, is("olleH"));
+  }
+  /**
+   * Тестирование только на одном слове.
+   */
+  @Test
+  public void whenInvertHelloBySecondMethod() {
+    InvertString invertString = new InvertString();
+    String newWord = invertString.invertSecondMethod("Hello");
+    assertThat(newWord, is("olleH"));
+  }
+  /**
+   * Тестирование только на одном слове.
+   */
+  @Test
+  public void whenInvertHelloByThirdMethod() {
+    InvertString invertString = new InvertString();
+    String newWord = invertString.invertThirdMethod("Hello");
     assertThat(newWord, is("olleH"));
   }
   /**
