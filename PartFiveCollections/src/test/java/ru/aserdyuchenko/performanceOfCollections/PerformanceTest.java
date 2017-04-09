@@ -6,8 +6,17 @@ import java.util.*;
 import org.junit.Test;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
+import java.util.Random;
 
 public class PerformanceTest {
+  public String generateRandomeString() {
+    Random random = new Random();
+    StringBuilder builder = new StringBuilder();
+    for (int index = 0; index < random.nextInt(100); index++) {
+      builder.append((char) (0 + random.nextInt(100)));
+    }
+    return builder.toString();
+  }
 /**
  * Тестирование времени на добавление новых эллементов.
  * Метод возвращает true, если скорость на добавление такая:
@@ -19,10 +28,10 @@ public class PerformanceTest {
     Collection<String> linkedList = new LinkedList<String>();
     Collection<String> treeSet = new TreeSet<String>();
     Performance performance = new Performance();
-    long resultForArrayList = performance.add(arrayList, "May the Force be with you", 10000);
-    long resultForLinkedList = performance.add(linkedList, "May the Force be with you", 10000);
-    long resultForTreeSet = performance.add(treeSet, "May the Force be with you", 10000);
-    boolean result = (resultForArrayList < resultForLinkedList) && (resultForLinkedList < resultForTreeSet) ? true : false;
+    long resultForArrayList = performance.add(arrayList, generateRandomeString(), 100000);
+    long resultForLinkedList = performance.add(linkedList, generateRandomeString(), 100000);
+    long resultForTreeSet = performance.add(treeSet, generateRandomeString(), 100000);
+    boolean result = (resultForArrayList < resultForTreeSet) && (resultForTreeSet < resultForLinkedList) ? true : false;
     assertThat(result, is(true));
   }
 /**
@@ -37,12 +46,15 @@ public class PerformanceTest {
   public void whenFindPerformanceOfRemove() {
     Collection<String> arrayList = new ArrayList<String>();
     Collection<String> linkedList = new LinkedList<String>();
+    Collection<String> treeSet = new TreeSet<String>();
     Performance performance = new Performance();
-    performance.add(arrayList, "May the Force be with you", 10000);
+    performance.add(arrayList, generateRandomeString(), 10000);
     long resultForArrayList = performance.delete(arrayList, 1000);
-    performance.add(linkedList, "May the Force be with you", 10000);
+    performance.add(linkedList, generateRandomeString(), 10000);
     long resultForLinkedList = performance.delete(linkedList, 1000);
-    boolean result = resultForArrayList < resultForLinkedList ? true : false;
+    performance.add(treeSet, generateRandomeString(), 10000);
+    long resultForTreeSet = performance.delete(treeSet, 1000);
+    boolean result = (resultForTreeSet < resultForLinkedList) && (resultForLinkedList < resultForArrayList) ? true : false;
     assertThat(result, is(true));
   }
 }

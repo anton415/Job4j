@@ -32,8 +32,10 @@ public class Performance {
    */
   public long delete(Collection<String> collection, int amount) {
     long start = System.currentTimeMillis();
-    for (int index = 0; index <= amount; index++) {
-      collection.remove(index);
+    Iterator iterator = collection.iterator();
+    while(iterator.hasNext()) {
+      iterator.next();
+      iterator.remove();
     }
     long finish = System.currentTimeMillis();
     long result = finish - start;
