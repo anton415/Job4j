@@ -20,8 +20,8 @@ class ConvertList {
    */
   public int[][] toArray(List<Integer> list, int rows) {
     // Создание нового массива.
-    int columns, j = 0;
-    int i = 0;
+    int columns;
+
     if ((list.size() % rows) == 0) {
       columns = list.size() / rows;
     } else {
@@ -30,12 +30,11 @@ class ConvertList {
     int[][] array = new int[columns][rows];
     // Заполнение массива.
     Iterator iterator = list.iterator();
-    for (int number : list) {
-      array[i][j] = number;
-      j++;
-      if (!(j < rows)) {
-        j=0;
-        i++;
+    for (int i = 0; i < array.length; i++) {
+      for (int j = 0; j < array[i].length; j++) {
+        if (iterator.hasNext()) {
+          array[i][j] = (int) iterator.next();
+        }
       }
     }
     return array;
