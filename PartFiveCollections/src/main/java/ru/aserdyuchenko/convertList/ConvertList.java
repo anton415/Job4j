@@ -21,7 +21,6 @@ class ConvertList {
   public int[][] toArray(List<Integer> list, int rows) {
     // Создание нового массива.
     int columns;
-
     if ((list.size() % rows) == 0) {
       columns = list.size() / rows;
     } else {
@@ -29,11 +28,13 @@ class ConvertList {
     }
     int[][] array = new int[columns][rows];
     // Заполнение массива.
-    Iterator iterator = list.iterator();
+    Iterator<Integer> iterator = list.iterator();
     for (int i = 0; i < array.length; i++) {
       for (int j = 0; j < array[i].length; j++) {
         if (iterator.hasNext()) {
-          array[i][j] = (int) iterator.next();
+          array[i][j] = iterator.next();
+        } else {
+          break;
         }
       }
     }
