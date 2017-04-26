@@ -10,10 +10,8 @@ class UserConvert {
    */
   public HashMap<Integer, User> process(List<User> list) {
     HashMap<Integer, User> map = new HashMap<Integer, User>();
-    int i = 0;
     for (User user: list) {
-      map.put(i, user);
-      i++;
+      map.put(user.getId(), user);
     }
     return map;
   }
