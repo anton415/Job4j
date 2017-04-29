@@ -4,7 +4,7 @@
 
 <p><h2>Состав курса:</h2></p>
 <p><input type="checkbox" > <h3> Пакет "Старт"</h3></p>
-<p><input type="checkbox" checked> <h4> Инструменты</h4></p>
+<p><input type="checkbox" name="a" value="Инструменты" checked> <h4> Инструменты</h4></p>
 Maven, Gradle, jUnit, Git, IntelliJ Idea, Tomcat, JBoss EAP, PostgreSQL, ActiveMQ (JMS).
 <p><input type="checkbox" checked> <h4> Синтаксис языка</h4></p>
 JVM, Типы данных, Операторы условия, Циклы, Массивы.
