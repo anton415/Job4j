@@ -11,7 +11,6 @@ import java.util.*;
 
 public class Tracker {
 	private List<Item> items = new ArrayList<Item>();
-	private int position = 0;
 	private static final Random RN = new Random();
 /**
  * Добавление заявок
@@ -55,7 +54,7 @@ public class Tracker {
 		for (Item item : items)	{
 			if (item.getName().equals(name)) {
 				result = item.getId();
-			break;
+				break;
 			}
 		}
 		return result;
@@ -84,6 +83,7 @@ public class Tracker {
 			if (itemIndex.getId().equals(itemId)) {
 				this.items.set(position, item);
 				newItem = this.items.get(position);
+				break;
 			} else {
 				position++;
 			}
@@ -94,14 +94,14 @@ public class Tracker {
  * Удаление заявки
  */
 	public List<Item> delete(String itemId) {
-		int position = 0;
-		for (Item itemIndex : items)	{
-			if (itemIndex.getId().equals(itemId)) {
-				this.items.remove(position);
-			} else {
-				position++;
+		Iterator<Item> iter = items.iterator();
+		while (iter.hasNext()) {
+			Item item = iter.next();
+			if (item.getId().equals(itemId)) {
+				iter.remove();
 			}
 		}
+		
 		List<Item> cleanArray = new ArrayList<Item>();
 		cleanArray.addAll(this.items);
 		return cleanArray;

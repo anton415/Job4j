@@ -57,7 +57,6 @@ public class MenuTracker {
 	private Input input;
 	private Tracker tracker;
 	private List<UserAction> actions = new ArrayList<UserAction>();
-	private int position = 0;
 
 	public MenuTracker(Input input, Tracker tracker) {
 		this.input = input;
