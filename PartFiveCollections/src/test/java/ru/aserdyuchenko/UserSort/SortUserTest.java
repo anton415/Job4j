@@ -33,7 +33,7 @@ public class SortUserTest {
                 new User("Gollum", 333)
         );
         List<User> result = sortUser.sortHash(list);
-        assertThat(result.toString(), is("[Frodo Baggins, Gollum, Bilbo Baggins, Gandalf]"));
+        assertThat(result.toString(), is("[Bilbo Baggins, Gollum, Frodo Baggins, Gandalf]"));
     }
 
     @Test
