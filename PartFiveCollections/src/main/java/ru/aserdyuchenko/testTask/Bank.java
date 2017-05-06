@@ -47,10 +47,14 @@ public class Bank {
      * @param user - Пользователь у которого будет удален счёт.
      * @param account - Счёт, который будет удален у пользователя.
      */
-    public void deleteAccountFromUser(User user, Account account) {
-        List<Account> accounts = getUserAccounts(user);
-        accounts.remove(account);
-        collection.put(user, accounts);
+    public void deleteAccountFromUser(User user, Account account) throws UserNotFoundException {
+        if(collection.containsKey(user)) {
+            List<Account> accounts = getUserAccounts(user);
+            accounts.remove(account);
+            collection.put(user, accounts);
+        } else {
+            throw new UserNotFoundException();
+        }
     }
 
     /**
@@ -72,7 +76,7 @@ public class Bank {
      * @param amount - Сумма для перевода.
      * @return result - Если счёт не найден или не хватает денег на счёте srcAccount(с которого переводят) должен вернуть false.
      */
-    public boolean transferMoney(User srcUser, Account srcAccount, User dstUser, Account dstAccount, double amount) {
+    public boolean transferMoney(User srcUser, Account srcAccount, User dstUser, Account dstAccount, double amount) throws UserNotFoundException {
         boolean result = true;
         List<Account> accountsOfSrcUser = collection.get(srcUser);
         if (accountsOfSrcUser.contains(srcAccount) && srcAccount.getValue() >= amount) {
@@ -90,5 +94,8 @@ public class Bank {
             result = false;
         }
         return result;
+    }
+
+    public class UserNotFoundException extends Throwable {
     }
 }

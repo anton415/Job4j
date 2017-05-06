@@ -42,7 +42,7 @@ public class BankTest {
     }
 
     @Test
-    public void whenDeleteAccount() {
+    public void whenDeleteAccount() throws Bank.UserNotFoundException {
         gringotts.addUser(userPotter);
         gringotts.addAccountToUser(userPotter, firstAccount);
         gringotts.deleteAccountFromUser(userPotter, firstAccount);
@@ -50,8 +50,14 @@ public class BankTest {
         assertThat(result.toString(), is("[]"));
     }
 
+    @Test (expected = Bank.UserNotFoundException.class)
+    public void whenDeleteAccountAndUserDontExist() throws Bank.UserNotFoundException {
+        gringotts.deleteAccountFromUser(userPotter, firstAccount);
+        List<Account> result = gringotts.getUserAccounts(userPotter);
+    }
+
     @Test
-    public void whenPotterTransferMoneyToVoldemort() {
+    public void whenPotterTransferMoneyToVoldemort() throws Bank.UserNotFoundException {
         gringotts.addUser(userPotter);
         gringotts.addUser(userVoldemort);
         gringotts.addAccountToUser(userPotter, firstAccount);
@@ -64,7 +70,7 @@ public class BankTest {
     }
 
     @Test
-    public void whenPotterHasNotMoneyForVoldemart() {
+    public void whenPotterHasNotMoneyForVoldemart() throws Bank.UserNotFoundException {
         gringotts.addUser(userPotter);
         gringotts.addUser(userVoldemort);
         gringotts.addAccountToUser(userPotter, firstAccount);
