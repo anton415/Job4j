@@ -79,17 +79,16 @@ public class Bank {
     public boolean transferMoney(User srcUser, Account srcAccount, User dstUser, Account dstAccount, double amount) throws UserNotFoundException {
         boolean result = true;
         List<Account> accountsOfSrcUser = collection.get(srcUser);
+        List<Account> accountsOfDstUser = collection.get(dstUser);
         if (accountsOfSrcUser.contains(srcAccount) && srcAccount.getValue() >= amount) {
             // Add money to dstUser.
             double newAccountValue = dstAccount.getValue() + amount;
             int newAccountRequisites = dstAccount.getRequisites();
-            deleteAccountFromUser(dstUser, dstAccount);
-            addAccountToUser(dstUser, new Account(newAccountValue, newAccountRequisites));
+            accountsOfDstUser.set(accountsOfDstUser.indexOf(dstAccount), new Account(newAccountValue, newAccountRequisites));
             // Remove money from srcUser.
             newAccountValue = srcAccount.getValue() - amount;
             newAccountRequisites = srcAccount.getRequisites();
-            deleteAccountFromUser(srcUser, srcAccount);
-            addAccountToUser(srcUser, new Account(newAccountValue, newAccountRequisites));
+            accountsOfSrcUser.set(accountsOfSrcUser.indexOf(srcAccount), new Account(newAccountValue, newAccountRequisites));
         } else {
             result = false;
         }

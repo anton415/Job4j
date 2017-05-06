@@ -44,7 +44,7 @@ public class Account {
 
         Account account = (Account) o;
 
-        if (Double.compare(account.value, value) != 0) return false;
+      //  if (Double.compare(account.value, value) != 0) return false;
         return requisites == account.requisites;
     }
 
