@@ -70,6 +70,18 @@ public class BankTest {
     }
 
     @Test
+    public void whenPotterTransferMoneyToVoldemortWithNewAccount() throws Bank.UserNotFoundException {
+        gringotts.addUser(userPotter);
+        gringotts.addUser(userVoldemort);
+        gringotts.addAccountToUser(userPotter, firstAccount);
+        gringotts.transferMoney(userPotter, firstAccount, userVoldemort, new Account(0, 0), 500);
+        List<Account> voldemortAccount = gringotts.getUserAccounts(userVoldemort);
+        assertThat(voldemortAccount.toString(), is("[Account{value=500.0, requisites=0}]"));
+        List<Account> potterAccount = gringotts.getUserAccounts(userPotter);
+        assertThat(potterAccount.toString(), is("[Account{value=0.0, requisites=1}]"));
+    }
+
+    @Test
     public void whenPotterHasNotMoneyForVoldemart() throws Bank.UserNotFoundException {
         gringotts.addUser(userPotter);
         gringotts.addUser(userVoldemort);
