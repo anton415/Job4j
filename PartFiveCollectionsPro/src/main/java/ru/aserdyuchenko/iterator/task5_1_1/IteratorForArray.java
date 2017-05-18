@@ -3,7 +3,7 @@ package ru.aserdyuchenko.iterator.task5_1_1;
 import java.util.Iterator;
 
 /**
- * Created by anton on 16.05.17.
+ * @author anton.
  */
 public class IteratorForArray implements Iterator<Integer> {
     /**
@@ -27,32 +27,16 @@ public class IteratorForArray implements Iterator<Integer> {
      * Конструктор.
      * @param values - исходный двумерный массив.
      */
-    public IteratorForArray(int[][] values) {
+    IteratorForArray(int[][] values) {
         this.externalArray = values;
-        this.innerArray = nextArray();
-    }
-
-    /**
-     * Проверка на наличие следующего одномерного массива.
-     * @return true если существует следующий массив.
-     */
-    public boolean hasNextArray() {
-        return externalArray.length > externalIndex;
-    }
-
-    /**
-     * Возвращается следующий одномерный массив.
-     * @return следующий массив.
-     */
-    public int[] nextArray() {
-        return externalArray[externalIndex++];
+        this.innerArray = externalArray[externalIndex++];
     }
 
     @Override
     public boolean hasNext() {
         if (innerArray.length <= innerIndex) {
-            if (hasNextArray()) {
-                innerArray = nextArray();
+            if (externalArray.length > externalIndex) {
+                innerArray = externalArray[externalIndex++];
                 innerIndex = 0;
             }
         }
@@ -62,8 +46,8 @@ public class IteratorForArray implements Iterator<Integer> {
     @Override
     public Integer next() {
         if (!hasNext()) {
-            if (hasNextArray()) {
-                innerArray = nextArray();
+            if (externalArray.length > externalIndex) {
+                innerArray = externalArray[externalIndex++];
                 innerIndex = 0;
             }
         }

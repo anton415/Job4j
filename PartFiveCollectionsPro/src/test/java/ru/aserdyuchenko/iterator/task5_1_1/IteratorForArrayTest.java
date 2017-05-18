@@ -6,7 +6,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 
 /**
- * Created by anton on 16.05.17.
+ * @author anton.
  */
 public class IteratorForArrayTest {
     /**
