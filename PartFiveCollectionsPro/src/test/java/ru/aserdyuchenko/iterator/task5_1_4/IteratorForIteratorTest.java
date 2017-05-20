@@ -46,9 +46,9 @@ public class IteratorForIteratorTest {
      */
     @Test
     public void whenGetSecondIntInIteratorForIterator() {
-        iteratorForIterator.convert(it);
-        iteratorForIterator.next();
-        int result = iteratorForIterator.next();
+        Iterator<Integer> iterator = iteratorForIterator.convert(it);
+        iterator.next();
+        int result = iterator.next();
 
         assertThat(result, is(0));
     }
@@ -58,9 +58,9 @@ public class IteratorForIteratorTest {
      */
     @Test
     public void whenCheckSecondIntInIteratorForIterator() {
-        iteratorForIterator.convert(it);
-        iteratorForIterator.next();
-        boolean result = iteratorForIterator.hasNext();
+        Iterator<Integer> iterator = iteratorForIterator.convert(it);
+        iterator.next();
+        boolean result = iterator.hasNext();
 
         assertThat(result, is(true));
     }

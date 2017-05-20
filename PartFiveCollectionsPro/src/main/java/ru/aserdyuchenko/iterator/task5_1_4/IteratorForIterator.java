@@ -18,28 +18,27 @@ public class IteratorForIterator implements Iterator<Integer> {
     /**
      * Convert iterator with iterators to iterator with integers.
      * @param it - iterator with iterators.
+     * @return this - this iteraor.
      */
-    public void convert(Iterator<Iterator<Integer>> it) {
+    Iterator<Integer> convert(Iterator<Iterator<Integer>> it) {
         this.iteratorIterator = it;
         this.iterator = iteratorIterator.next();
+        return this;
     }
 
     @Override
     public boolean hasNext() {
-        if (!iterator.hasNext()) {
-            if (iteratorIterator.hasNext()) {
-                iterator = iteratorIterator.next();
-            }
+        boolean result = false;
+        if (iterator.hasNext() || iteratorIterator.hasNext()) {
+            result = true;
         }
-        return iterator.hasNext();
+        return result;
     }
 
     @Override
     public Integer next() {
-        if (!iterator.hasNext()) {
-            if (iteratorIterator.hasNext()) {
-                iterator = iteratorIterator.next();
-            }
+        if (!iterator.hasNext() && iteratorIterator.hasNext()) {
+            iterator = iteratorIterator.next();
         }
         return iterator.next();
     }
