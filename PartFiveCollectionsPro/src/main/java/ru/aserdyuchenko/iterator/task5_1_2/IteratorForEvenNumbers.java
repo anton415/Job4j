@@ -28,7 +28,7 @@ public class IteratorForEvenNumbers implements Iterator<Integer> {
         boolean isEvenNumber = false;
         if (array.length > index) {
             int chekIndex = index;
-            while (array.length > index) {
+            while (chekIndex < array.length) {
                 int number = array[chekIndex++];
                 if (number % 2 == 0) {
                     isEvenNumber = true;
