@@ -1,8 +1,6 @@
 package ru.aserdyuchenko.generic.task_5_2_1;
 
 import org.junit.Test;
-
-import static junit.framework.TestCase.assertNull;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 
@@ -53,9 +51,12 @@ public class SimpleArrayTest {
     public void whenDeleteNumber() {
         SimpleArray<Integer> simpleArray = new SimpleArray<Integer>(4);
 
+        simpleArray.add(1);
         simpleArray.add(2);
-        simpleArray.delete(0);
+        simpleArray.add(3);
+        simpleArray.delete(1);
+        int result = simpleArray.get(1);
 
-        assertNull(simpleArray.get(0));
+        assertThat(result, is(3));
     }
 }

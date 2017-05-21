@@ -50,7 +50,9 @@ public class SimpleArray<T> {
      * @param position - position value for remove.
      */
     public void delete(int position) {
-        this.objects[position] = null;
+        Object[] objectsNew = objects;
+        int positionNew = position + 1;
+        System.arraycopy(objectsNew, positionNew, objects, position, objects.length - (position + 1));
     }
 
     /**
