@@ -10,6 +10,13 @@ public abstract class Base {
     private String id;
 
     /**
+     * Constructor.
+     * @param id - base id.
+     */
+    public Base(String id) {
+        this.id = id;
+    }
+    /**
      * Method get id.
      * @return id.
      */

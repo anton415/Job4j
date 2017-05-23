@@ -25,7 +25,7 @@ public class RoleStoreTest {
     @Test
     public void whenAddRole() {
         store.add(role);
-        Role result = store.get(0);
+        Base result = store.get(0);
 
         assertThat(result.getId(), is("157"));
     }
@@ -39,7 +39,7 @@ public class RoleStoreTest {
 
         store.add(role);
         store.update(0, roleNew);
-        Role result = store.get(0);
+        Base result = store.get(0);
 
         assertThat(result.getId(), is("2017"));
     }

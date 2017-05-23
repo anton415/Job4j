@@ -25,7 +25,7 @@ public class UserStoreTest {
     @Test
     public void whenAddUser() {
         store.add(user);
-        User result = store.get(0);
+        Base result = store.get(0);
 
         assertThat(result.getId(), is("15"));
     }
@@ -36,11 +36,10 @@ public class UserStoreTest {
     @Test
     public void whenUpdateUser() {
         User userNew = new User("522");
-        //userNew.setId("522");
 
         store.add(user);
         store.update(0, userNew);
-        User result = store.get(0);
+        Base result = store.get(0);
 
         assertThat(result.getId(), is("522"));
     }
