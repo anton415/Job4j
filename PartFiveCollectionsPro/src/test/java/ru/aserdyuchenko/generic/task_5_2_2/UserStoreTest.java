@@ -13,7 +13,7 @@ public class UserStoreTest {
     /**
      * @param store - new store.
      */
-    private UserStore store = new UserStore();
+    private UserStore<User> store = new UserStore();
     /**
      * @param user - new user.
      */
@@ -25,7 +25,7 @@ public class UserStoreTest {
     @Test
     public void whenAddUser() {
         store.add(user);
-        Base result = store.get(0);
+        User result = store.get(0);
 
         assertThat(result.getId(), is("15"));
     }
@@ -39,7 +39,7 @@ public class UserStoreTest {
 
         store.add(user);
         store.update(0, userNew);
-        Base result = store.get(0);
+        User result = store.get(0);
 
         assertThat(result.getId(), is("522"));
     }

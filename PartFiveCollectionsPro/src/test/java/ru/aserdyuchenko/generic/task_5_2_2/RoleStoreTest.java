@@ -13,7 +13,7 @@ public class RoleStoreTest {
     /**
      * @param store - new store.
      */
-    private RoleStore store = new RoleStore();
+    private RoleStore<Role> store = new RoleStore();
     /**
      * @param role - new role.
      */
@@ -25,7 +25,7 @@ public class RoleStoreTest {
     @Test
     public void whenAddRole() {
         store.add(role);
-        Base result = store.get(0);
+        Role result = store.get(0);
 
         assertThat(result.getId(), is("157"));
     }
@@ -39,7 +39,7 @@ public class RoleStoreTest {
 
         store.add(role);
         store.update(0, roleNew);
-        Base result = store.get(0);
+        Role result = store.get(0);
 
         assertThat(result.getId(), is("2017"));
     }

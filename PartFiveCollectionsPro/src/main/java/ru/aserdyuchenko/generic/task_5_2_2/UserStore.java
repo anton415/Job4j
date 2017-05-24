@@ -2,6 +2,11 @@ package ru.aserdyuchenko.generic.task_5_2_2;
 /**
  * @author anton.
  */
-public class UserStore extends AbstractStore implements Store {
+
+/**
+ * User store.
+ * @param <User> - User.
+ */
+public class UserStore<User extends Base> extends AbstractStore<User> {
 
 }
