@@ -44,7 +44,20 @@ public class MyOwnList<E> implements SimpleContainer<E> {
 
     @Override
     public Iterator<E> iterator() {
-        return null;
+        Iterator<E> it = new Iterator<E>() {
+            private int currentIndex = 0;
+
+            @Override
+            public boolean hasNext() {
+                return currentIndex < index && container[currentIndex] != null;
+            }
+
+            @Override
+            public E next() {
+                return (E) container[currentIndex++];
+            }
+        };
+        return it;
     }
 
     /**
