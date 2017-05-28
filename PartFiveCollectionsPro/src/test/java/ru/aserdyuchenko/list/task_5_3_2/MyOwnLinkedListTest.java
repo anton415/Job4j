@@ -56,4 +56,16 @@ public class MyOwnLinkedListTest {
         boolean result = iterator.hasNext();
         assertThat(result, is(true));
     }
+
+    /**
+     * Test iterator. When hasNext is false.
+     */
+    @Test
+    public void whenHasNextIsFasle() {
+        list.add("OK");
+        Iterator iterator = list.iterator();
+        iterator.next();
+        boolean result = iterator.hasNext();
+        assertThat(result, is(false));
+    }
 }

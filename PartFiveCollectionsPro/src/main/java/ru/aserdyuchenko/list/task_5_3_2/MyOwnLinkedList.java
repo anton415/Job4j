@@ -67,6 +67,7 @@ public class MyOwnLinkedList<E> implements SimpleContainer<E> {
 
             @Override
             public E next() {
+                currentIndex++;
                 return (E) current.getData();
             }
         };
