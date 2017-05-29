@@ -55,6 +55,39 @@ public class MyOwnLinkedList<E> implements SimpleContainer<E> {
         return (E) current;
     }
 
+    /**
+     * Remove.
+     * @param index - index.
+     * @return true or false.
+     */
+    public boolean remove(int index) {
+        if (index < 1 || index > counter) {
+            return false;
+        }
+        Node current = head;
+        if (head != null) {
+            for (int i = 0; i < index; i++) {
+                if (current.getNext() == null) {
+                    return false;
+                }
+                current = current.getNext();
+            }
+            current.setNext(current.getNext().getNext());
+            counter--;
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Get counter.
+     * @return counter.
+     */
+    public int getCounter() {
+        return counter;
+    }
+
+
     @Override
     public Iterator<E> iterator() {
         Iterator<E> it = new Iterator<E>() {
