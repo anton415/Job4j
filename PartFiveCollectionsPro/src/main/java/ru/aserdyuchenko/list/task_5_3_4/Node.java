@@ -48,17 +48,14 @@ public class Node<T> {
      * @return true or false.
      */
     boolean hasCycle(Node first) {
-        List<Node> list = new LinkedList<>();
-        Node newNode = first;
+        Node newNode = first.getNext();
         while (newNode != null) {
-            if (list.contains(newNode)) {
+            if (first.equals(newNode)) {
                 return true;
             } else {
-                list.add(newNode);
                 newNode = newNode.getNext();
             }
         }
         return false;
     }
-
 }
