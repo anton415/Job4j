@@ -48,14 +48,29 @@ public class Node<T> {
      * @return true or false.
      */
     boolean hasCycle(Node first) {
+        int count = 0;
         Node newNode = first.getNext();
+        while (count < getCountOfElement(first)) {
+            if (newNode == null) {
+                return false;
+            }
+            newNode = newNode.getNext();
+            count++;
+        }
+        return true;
+    }
+
+    private int getCountOfElement(Node first) {
+        List<Node> list = new LinkedList<>();
+        Node newNode = first;
         while (newNode != null) {
-            if (first.equals(newNode)) {
-                return true;
+            if (list.contains(newNode)) {
+                return list.size();
             } else {
+                list.add(newNode);
                 newNode = newNode.getNext();
             }
         }
-        return false;
+        return list.size();
     }
 }
