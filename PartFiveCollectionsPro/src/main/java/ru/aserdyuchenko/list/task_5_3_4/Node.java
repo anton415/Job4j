@@ -1,8 +1,5 @@
 package ru.aserdyuchenko.list.task_5_3_4;
 
-import java.util.LinkedList;
-import java.util.List;
-
 /**
  * @author anton.
  * @param <T> - T.
@@ -55,20 +52,20 @@ public class Node<T> {
         Node slow, fast;
         slow = fast = first;
 
-        while(true) {
+        while (true) {
             slow = slow.next;
 
-            if(fast.next != null) {
+            if (fast.next != null) {
                 fast = fast.next.next;
             } else {
                 return false;
             }
 
-            if(slow == null || fast == null) {
+            if (slow == null || fast == null) {
                 return false;
             }
 
-            if(slow == fast) {
+            if (slow == fast) {
                 return true;
             }
         }
