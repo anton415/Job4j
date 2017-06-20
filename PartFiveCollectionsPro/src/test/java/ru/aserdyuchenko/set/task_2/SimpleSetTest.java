@@ -1,9 +1,7 @@
 package ru.aserdyuchenko.set.task_2;
 
 import org.junit.Test;
-
 import java.util.Iterator;
-
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 
@@ -31,6 +29,17 @@ public class SimpleSetTest {
 
         Object result = iterator.next();
         assertThat(result, is("B"));
+    }
+    /**
+     * Add two origin elements and get first element.
+     */
+    @Test
+    public void whenAddTwoOriginElementsAndGetFirstElement() {
+        set.add("A");
+        set.add("B");
+
+        Object result = set.get(0);
+        assertThat(result, is("A"));
     }
 
     /**

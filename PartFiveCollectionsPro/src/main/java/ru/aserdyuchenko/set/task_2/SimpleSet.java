@@ -14,10 +14,6 @@ public class SimpleSet<E> implements SimpleContainer<E> {
      */
     private int counter = 0;
     /**
-     * @param head - head.
-     */
-    private Node head;
-    /**
      * @param current - current.
      */
     private Node current;
@@ -25,18 +21,10 @@ public class SimpleSet<E> implements SimpleContainer<E> {
     @Override
     public void add(E e) {
         if (isOrigin(e)) {
-            if (head == null) {
-                head = new Node(e);
-            }
-
-            Node temp = new Node(e);
-            current = head;
-
-            if (current != null) {
-                while (current.getNext() != null) {
-                    current = current.getNext();
-                }
-                current.setNext(temp);
+            if (current == null) {
+                current = new Node(e);
+            } else {
+                current.setNext(new Node(e));
             }
             counter++;
         }
@@ -48,66 +36,25 @@ public class SimpleSet<E> implements SimpleContainer<E> {
      * @return true if element origin.
      */
     private boolean isOrigin(E value) {
-        boolean result = true;
         for (int i = 0; i < counter; i++) {
             if (value.equals(get(i))) {
                 return false;
             }
         }
-        return result;
+        return true;
     }
 
     @Override
     public E get(int index) {
-        if (head != null) {
-            current = head.getNext();
-            for (int i = 0; i < index; i++) {
-                if (current.getNext() == null) {
-                    return null;
-                }
-                current = current.getNext();
-            }
-            return (E) current.getData();
+        for (int i = 0; i < index; i++) {
+            current = current.getNext();
         }
-        return (E) current;
+        return (E) current.getData();
     }
-
-    /**
-     * Remove.
-     * @param index - index.
-     * @return true or false.
-     */
-    public boolean remove(int index) {
-        if (index < 1 || index > counter) {
-            return false;
-        }
-        Node current = head;
-        if (head != null) {
-            for (int i = 0; i < index; i++) {
-                if (current.getNext() == null) {
-                    return false;
-                }
-                current = current.getNext();
-            }
-            current.setNext(current.getNext().getNext());
-            counter--;
-            return true;
-        }
-        return false;
-    }
-
-    /**
-     * Get counter.
-     * @return counter.
-     */
-    public int getCounter() {
-        return counter;
-    }
-
 
     @Override
     public Iterator<E> iterator() {
-        Iterator<E> it = new Iterator<E>() {
+        return new Iterator<E>() {
             private int currentIndex = 0;
 
             @Override
@@ -120,9 +67,7 @@ public class SimpleSet<E> implements SimpleContainer<E> {
                 return get(currentIndex++);
             }
         };
-        return it;
     }
-
 }
 
 /**
