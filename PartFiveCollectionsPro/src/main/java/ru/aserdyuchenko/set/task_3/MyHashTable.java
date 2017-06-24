@@ -24,7 +24,7 @@ public class MyHashTable<E> implements Iterable<E> {
      * @param e - new element.
      */
     public void add(E e) {
-        int arrayIndex = e.hashCode();
+        int arrayIndex = e.hashCode() / 1000;
         if (needNewSize(arrayIndex)) createNewSize(arrayIndex);
         if (isOrigin(e)) objects[arrayIndex] = e;
     }
@@ -40,7 +40,7 @@ public class MyHashTable<E> implements Iterable<E> {
      * @return true if element origin.
      */
     private boolean isOrigin(E value) {
-        int valueIndex = value.hashCode();
+        int valueIndex = value.hashCode() / 1000;
         return (objects[valueIndex] != null && objects[valueIndex].equals(value)) ? false : true;
     }
 
@@ -49,10 +49,7 @@ public class MyHashTable<E> implements Iterable<E> {
      * @return result of ckeck.
      */
     private boolean needNewSize(int arrayIndex) {
-        if (arrayIndex > objects.length - 1) {
-            return true;
-        }
-        return false;
+        return arrayIndex > objects.length - 1;
     }
 
     /**
