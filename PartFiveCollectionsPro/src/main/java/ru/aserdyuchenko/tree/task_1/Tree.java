@@ -11,8 +11,6 @@ public class Tree<E extends Comparable<E>> implements SimpleTree<E> {
      */
     private int counter = 0;
     Node<E> node;
-    Node<E> head;
-    Node<E> current;
 
     public Tree(Comparator<E> comparator) {
     }
@@ -20,20 +18,8 @@ public class Tree<E extends Comparable<E>> implements SimpleTree<E> {
     @Override
     public boolean add(E parent, E child) {
         try {
-            if (head == null) {
-                head = new Node<E>(parent);
-            }
-
-            Node<E> node = new Node<E>(parent);
-            node.children.add(new Node<E>(child));
-            current = head;
-
-            if (current != null) {
-                while (current.getNext() != null) {
-                    current = current.getNext();
-                }
-                current.setNext(node);
-            }
+            node = new Node(parent);
+            node.children.add(new Node(child));
             counter++;
             return true;
         } catch (Exception e) {
@@ -41,35 +27,7 @@ public class Tree<E extends Comparable<E>> implements SimpleTree<E> {
         }
     }
 
-    @Override
-    public String toString() {
-        return "Tree{" +
-                "counter=" + counter +
-                ", node=" + node +
-                ", head=" + head +
-                ", current=" + current +
-                '}';
-    }
 
-    public boolean isBinary() {
-        boolean result = true;
-        Node<E> element = head;
-        element = element.getNext();
-        while (element != null) {
-            List list = element.getChildren();
-            Iterator iterator = list.iterator();
-            while (iterator.hasNext()) {
-                Node<E> newElement = (Node<E>) iterator.next();
-                if (!newElement.children.isEmpty()) {
-                    result = false;
-                    break;
-                }
-            }
-            element = element.getNext();
-        }
-
-        return result;
-    }
 
     @Override
     public Iterator<E> iterator() {
@@ -84,7 +42,7 @@ public class Tree<E extends Comparable<E>> implements SimpleTree<E> {
             @Override
             public E next() {
                 currentIndex++;
-                return current.getParent();
+                return node.getParent();
             }
         };
 
@@ -94,7 +52,6 @@ public class Tree<E extends Comparable<E>> implements SimpleTree<E> {
     class Node<E> {
         List<Node<E>> children;
         E parent;
-        Node<E> next;
 
         /**
          * Constructor.
@@ -103,7 +60,6 @@ public class Tree<E extends Comparable<E>> implements SimpleTree<E> {
         Node(E e) {
             this.children = new LinkedList<>();
             this.parent = e;
-            this.next = null;
         }
 
         /**
@@ -116,22 +72,10 @@ public class Tree<E extends Comparable<E>> implements SimpleTree<E> {
 
         /**
          * Get value.
-         * @return - parent.
+         * @return - value.
          */
         public E getParent() {
             return parent;
-        }
-
-        public Node<E> getNext()  {
-            return this.next;
-        }
-
-        /**
-         * Set next.
-         * @param nextValue - next value.
-         */
-        public void setNext(Node nextValue) {
-            next = nextValue;
         }
 
     }

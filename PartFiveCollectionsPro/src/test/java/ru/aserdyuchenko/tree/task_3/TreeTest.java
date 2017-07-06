@@ -1,4 +1,4 @@
-package ru.aserdyuchenko.tree.task_1;
+package ru.aserdyuchenko.tree.task_3;
 
 import org.junit.Test;
 
@@ -7,7 +7,7 @@ import java.util.Comparator;
 import static org.junit.Assert.*;
 
 /**
- * @author anton.
+ * @author Anton Serdyuchenko. anton415@gmail.com
  */
 public class TreeTest {
     private Tree<String> tree = new Tree<>(new Comparator<String>() {
@@ -19,7 +19,9 @@ public class TreeTest {
 
     @Test
     public void whenAddParentAndHisChild() {
-        boolean result = tree.add("Иван", "Иван младший");
+        tree.add("Anton");
+        boolean result = tree.add("Иван");
         assertTrue(result);
     }
+
 }
