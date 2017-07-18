@@ -11,19 +11,26 @@ public class Tree<E extends Comparable<E>> {
 
     public boolean breadthFirstSearch() {
         try {
-            breadthFirstSearch(root);
-            breadthFirstSearch(root.right);
+            Node<E> node = root;
+            while (node.left != null) {
+                Node<E> temp = node.left;
+                node.left = node.right;
+                node.right = temp;
+                node = node.left;
+            }
+
+            node = root.right;
+            while (node.right != null) {
+                Node<E> temp = node.left;
+                node.left = node.right;
+                node.right = temp;
+                node = node.right;
+            }
+
             return true;
         } catch (Exception e) {
             return false;
         }
-    }
-
-    private void breadthFirstSearch(Node<E> node) {
-        Node<E> temp = node.left;
-        node.left = node.right;
-        node.right = temp;
-        if (node.left != null) depthFirstSearch(node.left);
     }
 
     public boolean depthFirstSearch() {
