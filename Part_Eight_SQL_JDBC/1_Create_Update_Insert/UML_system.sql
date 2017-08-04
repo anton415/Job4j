@@ -1,9 +1,36 @@
-create database testDB;
+-- Create new database.
+CREATE DATABASE system_of_applications;
 
-create table users (name character varying (250) primary key, role character varying (250), roleRights character varying (250));
+-- Start use database "system_of_applications". Command for Postgres.
+\c system_of_applications;
 
-create table aplications (name character varying (250) primary key, comment character varying (250), status boolean, categories character varying (250), responsible character varying (250) references users(name));
+-- Create new table "users", with fields: name, role, roleRights.
+-- Primary key "name".
+CREATE TABLE users(
+	name character varying (50),
+	role character varying (50),
+	roleRights character varying (50),
+	PRIMARY KEY(name)
+);
 
-insert into users(name, role, roleRights) values ('anton', 'student', 'study');
+-- Create new table "aplications", with fields: name, comments, status,
+-- categories, responsible, role, permission. Primary key "name".
+CREATE TABLE aplications (
+	name character varying (50),
+	comments character varying (250),
+	status boolean,
+	categories character varying (50),
+	responsible character varying (50) references users(name),
+	role character varying (50),
+	permission boolean,
+	PRIMARY KEY(name)
+);
 
-insert into aplications(name, comment, status, categories, responsible) values ('task1', 'my first task', true, 'sql', 'anton');
+-- Add new data into table "users".
+INSERT INTO users(name, role, roleRights)
+VALUES ('anton', 'student', 'study');
+
+-- Add new data into table "aplications".
+INSERT INTO aplications(name, comments, status, categories, responsible, role,
+permission)
+VALUES ('task 1', 'my first task', TRUE, 'sql', 'anton', 'student', TRUE);
