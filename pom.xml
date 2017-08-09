@@ -18,6 +18,7 @@
 		<module>PartTwoFinalTest</module>
 		<module>PartTwoControlQuestions</module>
 		<module>PartThreeInputOutput</module>
+        <module>Part_Eight_SQL_JDBC</module>
     </modules>
 
     <dependencies>
