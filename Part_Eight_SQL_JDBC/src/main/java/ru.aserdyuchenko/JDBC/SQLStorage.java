@@ -1,20 +1,35 @@
 package ru.aserdyuchenko.JDBC;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
+import org.apache.log4j.Logger;
 import java.sql.*;
 
 class SQLStorage {
-    private static final Logger Log = LoggerFactory.getLogger(SQLStorage.class);
+    private static final Logger Log = Logger.getLogger(SQLStorage.class);
+    private String url;
+    private String username;
+    private String password;
+    private int n;
 
-    public static void main(String[] args) {
-        String url = "jdbc:postgresql://localhost:5432/sqlite";
-        String username = "postgres";
-        String password = "i am root";
+    public void setN(int n) {
+        this.n = n;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void connectToDB() {
         Connection conn = null;
         try {
-            conn = DriverManager.getConnection(url, username, password);
+            conn = DriverManager.getConnection(this.url, this.username, this.password);
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery("SELECT * FROM test");
             while (rs.next()) {
