@@ -1,6 +1,8 @@
 package ru.aserdyuchenko.JDBC;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Anton Serdyuchenko. anton415@gmail.com
@@ -41,6 +43,27 @@ public class JdbcStorage {
             statement.close();
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+
+        }
+    }
+
+    /**
+     * Get all data from table.
+     */
+    public List<Integer> get() {
+        List<Integer> list = new ArrayList<>();
+        try (final Statement statement = this.connection.createStatement();
+            final ResultSet rs = statement.executeQuery("select * from test")) {
+            while (rs.next()) {
+                list.add(rs.getInt("number"));
+            }
+            rs.close();
+            statement.close();
+            return list;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
         } finally {
 
         }
