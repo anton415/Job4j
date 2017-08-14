@@ -31,4 +31,6 @@ public class JdbcStorageTest {
     public void whenCheckIfTableExist() {
         assertTrue(storage.ifTableExist());
     }
+
+
 }

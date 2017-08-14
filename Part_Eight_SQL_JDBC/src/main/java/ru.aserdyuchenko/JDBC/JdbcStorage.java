@@ -25,8 +25,6 @@ public class JdbcStorage {
                     settings.value("jdbc.password"));
         } catch (SQLException e) {
             throw new IllegalStateException(e);
-        } finally {
-
         }
     }
 
