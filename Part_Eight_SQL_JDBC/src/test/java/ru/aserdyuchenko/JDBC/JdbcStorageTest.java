@@ -1,36 +1,20 @@
 package ru.aserdyuchenko.JDBC;
 
 import org.junit.Test;
-import static org.junit.Assert.assertTrue;
+import java.sql.SQLException;
+import java.util.Arrays;
+import static org.hamcrest.core.Is.is;
+import static org.junit.Assert.assertThat;
 
 /**
  * @author Anton Serdyuchenko. anton415@gmail.com
- * TODO add assert in all tests.
  */
 public class JdbcStorageTest {
     private JdbcStorage storage = new JdbcStorage();
 
     @Test
-    public void whenPrintAllTable() {
-        storage.print();
-    }
-
-    @Test
-    public void whenAddNumberInTableAndPrintTable() {
+    public void whenAddNumberInTableAndPrintTable() throws SQLException {
         storage.add(3);
-        storage.print();
+        assertThat(storage.get(), is(Arrays.asList(1, 2, 3)));
     }
-
-    @Test
-    public void whenDeleteAllFromeTableAndPriteTable() {
-        storage.delete();
-        storage.print();
-    }
-
-    @Test
-    public void whenCheckIfTableExist() {
-        assertTrue(storage.ifTableExist());
-    }
-
-
 }

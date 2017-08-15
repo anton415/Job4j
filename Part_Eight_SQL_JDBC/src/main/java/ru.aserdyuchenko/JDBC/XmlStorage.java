@@ -4,7 +4,6 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
-
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -21,16 +20,11 @@ import java.util.List;
 
 /**
  * @author Anton Serdyuchenko. anton415@gmail.com
- * TODO add absolut path to xml file.
- * TODO make class loke beautiful.
- * TODO convert 1.xml to 2.xml with XSLT
- * TODO get sum from 2.xml
  */
 public class XmlStorage {
-
     /**
      * Save to 1.xml
-     * @param list
+     * @param list - number for save.
      * @throws ParserConfigurationException
      * @throws TransformerConfigurationException
      */
@@ -38,27 +32,16 @@ public class XmlStorage {
         Iterator<Integer> iterator = list.iterator();
         Document dom;
         Element e = null;
-
-        // instance of a DocumentBuilderFactory
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
         try {
-            // use factory to get an instance of document builder
             DocumentBuilder db = dbf.newDocumentBuilder();
-            // create instance of DOM
             dom = db.newDocument();
-
-            // create the root element
             Element rootEle = dom.createElement("entries");
-
-            // create data elements and place them under root
             while (iterator.hasNext()) {
                 e = dom.createElement("entry");
                 Element child = dom.createElement("field");
                 child.setTextContent(iterator.next().toString());
                 e.appendChild(child);
-                //e.setAttribute("field", iterator.next().toString());
-
-                //e.appendChild(dom.createTextNode(iterator.next().toString()));
                 rootEle.appendChild(e);
             }
 
@@ -71,14 +54,11 @@ public class XmlStorage {
                 tr.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
                 tr.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "4");
 
-                // send DOM to file
                 tr.transform(new DOMSource(dom),
-                        new StreamResult(new FileOutputStream("src/main/java/ru.aserdyuchenko/JDBC/1.xml")));
+                        new StreamResult(new FileOutputStream("./src/main/java/ru.aserdyuchenko/JDBC/1.xml")));
 
-            } catch (TransformerException te) {
+            } catch (TransformerException | IOException te) {
                 System.out.println(te.getMessage());
-            } catch (IOException ioe) {
-                System.out.println(ioe.getMessage());
             }
         } catch (ParserConfigurationException pce) {
             System.out.println("UsersXML: Error trying to instantiate DocumentBuilder " + pce);
@@ -87,19 +67,15 @@ public class XmlStorage {
 
     /**
      * Read from 1.xml
-     * @return
+     * @return list with numbers.
      */
     public List<String> readXML() {
         List<String> list = new ArrayList<>();
         Document dom;
-        // Make an  instance of the DocumentBuilderFactory
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
         try {
-            // use the factory to take an instance of the document builder
             DocumentBuilder db = dbf.newDocumentBuilder();
-            // parse using the builder to get the DOM mapping of the
-            // XML file
-            dom = db.parse("src/main/java/ru.aserdyuchenko/JDBC/1.xml");
+            dom = db.parse("./src/main/java/ru.aserdyuchenko/JDBC/1.xml");
 
             NodeList doc = dom.getElementsByTagName("field");
             for (int i = 0; i < doc.getLength(); i++){
@@ -108,28 +84,24 @@ public class XmlStorage {
             }
 
             return list;
-
-        } catch (ParserConfigurationException pce) {
+        } catch (ParserConfigurationException | SAXException pce) {
             System.out.println(pce.getMessage());
-        } catch (SAXException se) {
-            System.out.println(se.getMessage());
         } catch (IOException ioe) {
             System.err.println(ioe.getMessage());
         }
-
         return null;
     }
 
     public void XsltTransformation() throws TransformerException {
-        String xmlFile = "src/main/java/ru.aserdyuchenko/JDBC/1.xml";
-        String xslFile = "src/main/java/ru.aserdyuchenko/JDBC/file.xml";
+        String xmlFile = "./src/main/java/ru.aserdyuchenko/JDBC/1.xml";
+        String xslFile = "./src/main/java/ru.aserdyuchenko/JDBC/file.xml";
 
         TransformerFactory factory = TransformerFactory.newInstance();
         Source xslt = new StreamSource(new File(xslFile));
         Transformer transformer = factory.newTransformer(xslt);
 
         Source text = new StreamSource(new File(xmlFile));
-        transformer.transform(text, new StreamResult(new File("src/main/java/ru.aserdyuchenko/JDBC/2.xml")));
+        transformer.transform(text, new StreamResult(new File("./src/main/java/ru.aserdyuchenko/JDBC/2.xml")));
     }
 
     public int getSum() {
@@ -138,7 +110,7 @@ public class XmlStorage {
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
         try {
             DocumentBuilder db = dbf.newDocumentBuilder();
-            dom = db.parse("src/main/java/ru.aserdyuchenko/JDBC/2.xml");
+            dom = db.parse("./src/main/java/ru.aserdyuchenko/JDBC/2.xml");
             NodeList doc = dom.getElementsByTagName("entry");
 
             for (int i = 0; i < doc.getLength(); i++){
@@ -147,14 +119,11 @@ public class XmlStorage {
             }
             return sum;
 
-        } catch (ParserConfigurationException pce) {
+        } catch (ParserConfigurationException | SAXException pce) {
             System.out.println(pce.getMessage());
-        } catch (SAXException se) {
-            System.out.println(se.getMessage());
         } catch (IOException ioe) {
             System.err.println(ioe.getMessage());
         }
-
         return -1;
     }
 }
