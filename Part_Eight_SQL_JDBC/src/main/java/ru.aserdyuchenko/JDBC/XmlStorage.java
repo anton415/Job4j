@@ -48,12 +48,17 @@ public class XmlStorage {
             dom = db.newDocument();
 
             // create the root element
-            Element rootEle = dom.createElement("entry");
+            Element rootEle = dom.createElement("entries");
 
             // create data elements and place them under root
             while (iterator.hasNext()) {
-                e = dom.createElement("field");
-                e.appendChild(dom.createTextNode(iterator.next().toString()));
+                e = dom.createElement("entry");
+                Element child = dom.createElement("field");
+                child.setTextContent(iterator.next().toString());
+                e.appendChild(child);
+                //e.setAttribute("field", iterator.next().toString());
+
+                //e.appendChild(dom.createTextNode(iterator.next().toString()));
                 rootEle.appendChild(e);
             }
 
