@@ -131,4 +131,30 @@ public class XmlStorage {
         Source text = new StreamSource(new File(xmlFile));
         transformer.transform(text, new StreamResult(new File("src/main/java/ru.aserdyuchenko/JDBC/2.xml")));
     }
+
+    public int getSum() {
+        int sum = 0;
+        Document dom;
+        DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+        try {
+            DocumentBuilder db = dbf.newDocumentBuilder();
+            dom = db.parse("src/main/java/ru.aserdyuchenko/JDBC/2.xml");
+            NodeList doc = dom.getElementsByTagName("entry");
+
+            for (int i = 0; i < doc.getLength(); i++){
+                String number = doc.item(i).getAttributes().getNamedItem("field").getNodeValue();
+                sum += Integer.parseInt(number);
+            }
+            return sum;
+
+        } catch (ParserConfigurationException pce) {
+            System.out.println(pce.getMessage());
+        } catch (SAXException se) {
+            System.out.println(se.getMessage());
+        } catch (IOException ioe) {
+            System.err.println(ioe.getMessage());
+        }
+
+        return -1;
+    }
 }

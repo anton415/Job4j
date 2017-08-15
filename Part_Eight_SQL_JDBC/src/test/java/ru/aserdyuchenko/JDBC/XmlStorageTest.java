@@ -32,4 +32,9 @@ public class XmlStorageTest {
     public void  whenTransformatXML() throws TransformerException {
         xmlStorage.XsltTransformation();
     }
+
+    @Test
+    public void whenGetSum() {
+        assertThat(xmlStorage.getSum(), is(6));
+    }
 }
