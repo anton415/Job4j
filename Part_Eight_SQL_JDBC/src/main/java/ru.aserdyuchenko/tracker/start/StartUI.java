@@ -1,7 +1,6 @@
 package ru.aserdyuchenko.tracker.start;
 
-import ru.aserdyuchenko.tracker.models.*;
-/**
+import java.sql.SQLException; /**
  * Программа tracker. Служит для учета заявок.
  * Приложение осуществляет следующие действия:
  * 1. Добавление новой заявки
@@ -37,7 +36,7 @@ public class StartUI {
 		this.input = input;
 	}
 
-	public void init(){
+	public void init() throws SQLException {
 		Tracker tracker = new Tracker();
 		MenuTracker menu = new MenuTracker(this.input, tracker);
 		menu.fillActions();
@@ -47,7 +46,7 @@ public class StartUI {
 		} while (!"4".equals(this.input.askMenuChoice("Exit? (4): ")));
 	}
 
-	public static void main(String[] args){
+	public static void main(String[] args) throws SQLException {
 		Input input = new ValidateInput();
 		new StartUI(input).init();
 	}
