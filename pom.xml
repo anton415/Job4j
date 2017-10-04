@@ -19,6 +19,7 @@
 		<module>PartTwoControlQuestions</module>
 		<module>PartThreeInputOutput</module>
         <module>Part_Eight_SQL_JDBC</module>
+        <module>Part_Nine_Servlet</module>
     </modules>
 
     <dependencies>
