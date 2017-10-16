@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.*;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -17,23 +18,29 @@ import java.util.Map;
  */
 public class UsersServlet extends HttpServlet {
     private static final Logger log = LoggerFactory.getLogger(UsersServlet.class);
-    private Map<String, User> users = new HashMap<>();
-//    private Storage storage = new Storage();
 
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.setContentType("text/html");
-        PrintWriter writer = new PrintWriter(resp.getOutputStream());
-        writer.append("Hello user!");
-        writer.flush();
-    }
-/*
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
-        String login = request.getParameter("login");
         PrintWriter writer = new PrintWriter(response.getOutputStream());
-        writer.append("Login: " + login);
+        try {
+            Class.forName("org.postgresql.Driver");
+            Settings settings = Settings.getInstance();
+            Connection connection = DriverManager.getConnection(
+                    "jdbc:postgresql://127.0.0.1:5432/sqlite",
+                    "anton",
+                    "password");
+            PreparedStatement ps = connection.prepareStatement("SELECT * FROM users");
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery("SELECT * FROM users");
+            Map<String, User> users = new HashMap<>();
+            while (rs.next()) {
+                users.put(rs.getString("login"), new User(rs.getString("name"), rs.getString("email"), rs.getString("createDate")));
+            }
+            writer.append(users.toString());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         writer.flush();
     }
 /*
@@ -62,4 +69,5 @@ public class UsersServlet extends HttpServlet {
         doGet(request, response);
     }
 */
+
 }
