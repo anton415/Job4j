@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.*;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -25,18 +24,8 @@ public class UsersServlet extends HttpServlet {
         PrintWriter writer = new PrintWriter(response.getOutputStream());
         try {
             Class.forName("org.postgresql.Driver");
-            Settings settings = Settings.getInstance();
-            Connection connection = DriverManager.getConnection(
-                    "jdbc:postgresql://127.0.0.1:5432/sqlite",
-                    "anton",
-                    "password");
-            PreparedStatement ps = connection.prepareStatement("SELECT * FROM users");
-            Statement statement = connection.createStatement();
-            ResultSet rs = statement.executeQuery("SELECT * FROM users");
-            Map<String, User> users = new HashMap<>();
-            while (rs.next()) {
-                users.put(rs.getString("login"), new User(rs.getString("name"), rs.getString("email"), rs.getString("createDate")));
-            }
+            Storage storage = new Storage();
+            Map<String, User> users = storage.get();
             writer.append(users.toString());
         } catch (Exception e) {
             e.printStackTrace();
