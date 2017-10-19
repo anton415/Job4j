@@ -12,6 +12,7 @@ public class Storage {
     private String SQL_SELECT = "SELECT * FROM users";
     private String SQL_CREATE_TABLE = "CREATE TABLE users (login character varying (50), name character varying (50), email character varying (50), createDate character varying (50))";
     private String SQL_INSERT = "INSERT INTO users VALUES(?, ?, ?, ?)";
+    private String SQL_DELETE = "DELETE FROM users WHERE login = ?";
 
     /**
      * Constructor.
@@ -69,8 +70,6 @@ public class Storage {
      */
     public void add(String login, String name, String email, String createDate) throws SQLException {
         try {
-//            DateFormat dateFormat = new SimpleDateFormat("dd/MM/yy HH:mm:ss");
-//            String stringDate = String.valueOf(dateFormat.format(createDate));
             final PreparedStatement statement = this.connection.prepareStatement(SQL_INSERT);
             statement.addBatch();
             statement.setString(1, login);
@@ -99,6 +98,23 @@ public class Storage {
             this.connection.rollback();
             e.printStackTrace();
             return false;
+        }
+    }
+
+    /**
+     * Delete all from table "test".
+     */
+    public void delete(String login) throws SQLException {
+        try {
+            final PreparedStatement statement = this.connection.prepareStatement(SQL_DELETE);
+            statement.addBatch();
+            statement.setString(1, login);
+            statement.executeUpdate();
+            this.connection.commit();
+            statement.close();
+        } catch (SQLException e) {
+            this.connection.rollback();
+            e.printStackTrace();
         }
     }
 }
