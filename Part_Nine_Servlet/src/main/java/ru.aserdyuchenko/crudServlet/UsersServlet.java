@@ -48,14 +48,22 @@ public class UsersServlet extends HttpServlet {
         }
         doGet(request, response);
     }
-/*
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
-        this.users.put(request.getParameter("login"), new User(request.getParameter("name"), request.getParameter("email"), request.getParameter("createDate")));
+        try {
+            Class.forName("org.postgresql.Driver");
+            Storage storage = new Storage();
+            storage.update(request.getParameter("name"), request.getParameter("email"), request.getParameter("createDate"), request.getParameter("login"));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         doGet(request, response);
     }
-*/
+
     @Override
     protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");

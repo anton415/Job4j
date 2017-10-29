@@ -13,17 +13,20 @@ public class Storage {
     private String SQL_CREATE_TABLE = "CREATE TABLE users (login character varying (50), name character varying (50), email character varying (50), createDate character varying (50))";
     private String SQL_INSERT = "INSERT INTO users VALUES(?, ?, ?, ?)";
     private String SQL_DELETE = "DELETE FROM users WHERE login = ?";
+    private String SQL_UPDATE = "UPDATE users SET name=?, email=?, createDate=? WHERE login=?";
 
     /**
      * Constructor.
      */
-    public Storage() {
+    public Storage() throws ClassNotFoundException {
+        Class.forName("org.postgresql.Driver");
         try {
+
             final Settings settings = Settings.getInstance();
             this.connection = DriverManager.getConnection(
-                    settings.value("jdbc.url"),
-                    settings.value("jdbc.user"),
-                    settings.value("jdbc.password"));
+                    "jdbc:postgresql://localhost:5432/postgres",
+                    "postgres",
+                    "root");
             connection.setAutoCommit(false);
             if (!ifTableExist()) createTable();
         } catch (SQLException e) {
@@ -49,6 +52,27 @@ public class Storage {
             this.connection.rollback();
             e.printStackTrace();
             return null;
+        }
+    }
+
+    /**
+     * Update user.
+     * @throws SQLException
+     */
+    public void update(String name, String email, String createDate, String login) throws SQLException {
+        try {
+            final PreparedStatement statement = this.connection.prepareStatement(SQL_UPDATE);
+            statement.addBatch();
+            statement.setString(1, name);
+            statement.setString(2, email);
+            statement.setString(3, createDate);
+            statement.setString(4, login);
+            statement.executeUpdate();
+            this.connection.commit();
+            statement.close();
+        } catch (SQLException e) {
+            this.connection.rollback();
+            e.printStackTrace();
         }
     }
 
@@ -88,7 +112,7 @@ public class Storage {
     /**
      * Check if table exist.
      */
-    private boolean ifTableExist() throws SQLException {
+    public boolean ifTableExist() throws SQLException {
         try {
             DatabaseMetaData md = this.connection.getMetaData();
             md.getTables(null, null, "users", null);
