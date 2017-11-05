@@ -16,4 +16,44 @@
         <servlet-name>UsersServlet</servlet-name>
         <url-pattern>/echoUser</url-pattern>
     </servlet-mapping>
+
+    <!--    Servlet for add new user.    -->
+    <servlet>
+        <servlet-name>ServletAddUser</servlet-name>
+        <servlet-class>ru.aserdyuchenko.servlet.ServletAddUser</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletAddUser</servlet-name>
+        <url-pattern>/addUser</url-pattern>
+    </servlet-mapping>
+
+    <!--    Servlet for edit user.    -->
+    <servlet>
+        <servlet-name>ServletEditUser</servlet-name>
+        <servlet-class>ru.aserdyuchenko.servlet.ServletEditUser</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletEditUser</servlet-name>
+        <url-pattern>/editUser</url-pattern>
+    </servlet-mapping>
+
+    <!--    Servlet for delete user.    -->
+    <servlet>
+        <servlet-name>ServletDeleteUser</servlet-name>
+        <servlet-class>ru.aserdyuchenko.servlet.ServletDeleteUser</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletDeleteUser</servlet-name>
+        <url-pattern>/deleteUser</url-pattern>
+    </servlet-mapping>
+
+    <!--    Servlet for get user.    -->
+    <servlet>
+        <servlet-name>ServletGetUser</servlet-name>
+        <servlet-class>ru.aserdyuchenko.servlet.ServletGetUser</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletGetUser</servlet-name>
+        <url-pattern>/getUser</url-pattern>
+    </servlet-mapping>
 </web-app>
