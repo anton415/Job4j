@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -25,7 +26,7 @@ public class UsersServlet extends HttpServlet {
         try {
             Class.forName("org.postgresql.Driver");
             Storage storage = new Storage();
-            Map<String, User> users = storage.get();
+            List<User> users = storage.getList();
             writer.append(users.toString());
         } catch (Exception e) {
             e.printStackTrace();

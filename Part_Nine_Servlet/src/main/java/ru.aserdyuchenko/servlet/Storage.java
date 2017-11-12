@@ -2,6 +2,8 @@ package ru.aserdyuchenko.servlet;
 
 import java.sql.*;
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -37,12 +39,33 @@ public class Storage {
     /**
      * Get all data from table.
      */
-    public Map<String, User> get() throws SQLException {
+    public Map<String, User> getMap() throws SQLException {
         Map<String, User> users = new HashMap<>();
         try (final Statement statement = this.connection.createStatement()) {
             final ResultSet rs = statement.executeQuery(SQL_SELECT);
             while (rs.next()) {
                 users.put(rs.getString("login"), new User(rs.getString("name"), rs.getString("email"), rs.getString("createDate")));
+            }
+            this.connection.commit();
+            rs.close();
+            statement.close();
+            return users;
+        } catch (SQLException e) {
+            this.connection.rollback();
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    /**
+     * Get all data from table.
+     */
+    public List<User> getList() throws SQLException {
+        List<User> users = new LinkedList<>();
+        try (final Statement statement = this.connection.createStatement()) {
+            final ResultSet rs = statement.executeQuery(SQL_SELECT);
+            while (rs.next()) {
+                users.add(new User(rs.getString("login"), rs.getString("name"), rs.getString("email"), rs.getString("createDate")));
             }
             this.connection.commit();
             rs.close();

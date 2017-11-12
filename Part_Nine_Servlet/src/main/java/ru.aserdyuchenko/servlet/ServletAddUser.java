@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -17,6 +18,45 @@ import java.util.Map;
  */
 public class ServletAddUser extends HttpServlet {
     private static final Logger log = LoggerFactory.getLogger(ServletAddUser.class);
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setContentType("text/html");
+        PrintWriter writer = new PrintWriter(response.getOutputStream());
+        try {
+            Class.forName("org.postgresql.Driver");
+            Storage storage = new Storage();
+            List<User> users = storage.getList();
+            writer.append(
+                    "<!DOCTYPE html>" +
+                            "<html lang=\"en\">" +
+                            "<head>" +
+                            "   <meta charset=\"UTF-8\">" +
+                            "   <title></title>" +
+                            "</head>" +
+                            "<body>" +
+                            "<form action='"+request.getContextPath()+"/addUser' method='post'>" +
+                            "Name : <input type='text' name='login'/>" +
+                            "<input type='submit'>" +
+                            "</form>");
+
+            for (User user : users) {
+                writer.append("<br/><tr><td>")
+                        .append(user.getLogin())
+                        .append("</td></tr>");
+            }
+
+            writer.append(
+                    "</body>" +
+                    "</html>");
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            writer.flush();
+        }
+    }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

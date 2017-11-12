@@ -4,17 +4,8 @@ package ru.aserdyuchenko.servlet;
  * @author Anton Serdyuchenko. anton415@gmail.com
  */
 public class User {
+    private String login;
     private String name;
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "name='" + name + '\'' +
-                ", email='" + email + '\'' +
-                ", createDate=" + createDate +
-                '}';
-    }
-
     private String email;
     private String createDate;
 
@@ -22,6 +13,30 @@ public class User {
         this.name = name;
         this.email = email;
         this.createDate = createDate;
+    }
+
+    public User(String login, String name, String email, String createDate) {
+        this.login = login;
+        this.name = name;
+        this.email = email;
+        this.createDate = createDate;
+    }
+
+    @Override
+
+    public String toString() {
+        return "User{" +
+                "name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", createDate=" + createDate +
+                '}';
+    }
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
     }
 
     public String getName() {

@@ -29,10 +29,7 @@ public class ServletGetUser extends HttpServlet {
         try {
             Class.forName("org.postgresql.Driver");
             Storage storage = new Storage();
-            Map<String, User> users = storage.get();
-            Set<Map.Entry<String, User>> list = users.entrySet();
-
-//            writer.append(users.toString());
+            List<User> users = storage.getList();
             writer.append(
                     "<!DOCTYPE html>" +
                     "<html lang=\"en\">" +
@@ -43,18 +40,21 @@ public class ServletGetUser extends HttpServlet {
                     "<body>" +
                     "<table style=\"width:100%\">" +
                     "<tr>" +
+                    "<th>Login</th> " +
                     "<th>Name</th> " +
                     "<th>Email</th>" +
                     "<th>Create date</th>" +
                     "</tr>");
 
-            for (Map.Entry<String, User> user : list) {
+            for (User user : users) {
                 writer.append("<tr><td>")
-                        .append(user.getValue().getName())
+                        .append(user.getLogin())
                         .append("</td><td>")
-                        .append(user.getValue().getEmail())
+                        .append(user.getName())
                         .append("</td><td>")
-                        .append(user.getValue().getCreateDate())
+                        .append(user.getEmail())
+                        .append("</td><td>")
+                        .append(user.getCreateDate())
                         .append("</td></tr>");
             }
 
