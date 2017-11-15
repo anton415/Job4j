@@ -36,21 +36,14 @@ public class ServletAddUser extends HttpServlet {
                             "</head>" +
                             "<body>" +
                             "<form action='"+request.getContextPath()+"/addUser' method='post'>" +
-                            "Name : <input type='text' name='login'/>" +
+                            "Login : <input type='text' name='login'/><br/>" +
+                            "Name : <input type='text' name='name'/><br/>" +
+                            "Email : <input type='text' name='email'/><br/>" +
+                            "Date : <input type='text' name='createDate'/><br/>" +
                             "<input type='submit'>" +
-                            "</form>");
-
-            for (User user : users) {
-                writer.append("<br/><tr><td>")
-                        .append(user.getLogin())
-                        .append("</td></tr>");
-            }
-
-            writer.append(
-                    "</body>" +
-                    "</html>");
-
-
+                            "</form>" +
+                            "</body>" +
+                            "</html>");
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
