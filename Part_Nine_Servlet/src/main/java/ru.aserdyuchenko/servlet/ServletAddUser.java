@@ -35,6 +35,7 @@ public class ServletAddUser extends HttpServlet {
                             "   <title></title>" +
                             "</head>" +
                             "<body>" +
+                            "<a href='"+request.getContextPath()+"'>Home page.</a>" +
                             "<form action='"+request.getContextPath()+"/addUser' method='post'>" +
                             "Login : <input type='text' name='login'/><br/>" +
                             "Name : <input type='text' name='name'/><br/>" +

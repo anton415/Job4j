@@ -17,6 +17,16 @@
         <url-pattern>/echoUser</url-pattern>
     </servlet-mapping>
 
+    <!--    Home page for user's servlet.    -->
+    <servlet>
+        <servlet-name>ServletHome</servlet-name>
+        <servlet-class>ru.aserdyuchenko.servlet.ServletHome</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletHome</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+
     <!--    Servlet for add new user.    -->
     <servlet>
         <servlet-name>ServletAddUser</servlet-name>

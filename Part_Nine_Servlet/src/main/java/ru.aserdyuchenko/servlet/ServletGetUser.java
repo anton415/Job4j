@@ -38,6 +38,7 @@ public class ServletGetUser extends HttpServlet {
                     "   <title></title>" +
                     "</head>" +
                     "<body>" +
+                    "<a href='"+request.getContextPath()+"'>Home page.</a>" +
                     "<table style=\"width:100%\">" +
                     "<tr>" +
                     "<th>Login</th> " +
