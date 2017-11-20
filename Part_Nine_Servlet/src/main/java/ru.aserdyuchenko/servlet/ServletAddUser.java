@@ -59,6 +59,7 @@ public class ServletAddUser extends HttpServlet {
             Class.forName("org.postgresql.Driver");
             Storage storage = new Storage();
             storage.add(request.getParameter("login"), request.getParameter("name"), request.getParameter("email"), request.getParameter("createDate"));
+            response.sendRedirect(String.format("%s/index.jsp", request.getContextPath()));
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (Exception e) {
