@@ -21,6 +21,7 @@ import java.util.Set;
  */
 public class ServletGetUser extends HttpServlet {
     private static final Logger log = LoggerFactory.getLogger(ServletGetUser.class);
+    public static List<User> users;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -29,7 +30,7 @@ public class ServletGetUser extends HttpServlet {
         try {
             Class.forName("org.postgresql.Driver");
             Storage storage = new Storage();
-            List<User> users = storage.getList();
+            this.users = storage.getList();
             writer.append(
                     "<!DOCTYPE html>" +
                     "<html lang=\"en\">" +

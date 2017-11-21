@@ -1,3 +1,4 @@
+<%@ page import="ru.aserdyuchenko.servlet.Storage" %>
 <%--
   Created by IntelliJ IDEA.
   User: Anton
@@ -11,6 +12,28 @@
     <title>Get user</title>
 </head>
 <body>
+<input id="inp" type="button" value="Home" onclick="location.href='index.jsp';"/></br>
+<%--<table style="width:100%">--%>
+    <%--<tr>--%>
+        <%--<th>Login</th>--%>
+        <%--<th>Name</th>--%>
+        <%--<th>Email</th>--%>
+        <%--<th>Create date</th>--%>
+        <%--</tr>--%>
+    <%
+        try {
+            Class.forName("org.postgresql.Driver");
+            Storage storage = new Storage();
+            storage.getList().toString();
 
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+//        for (User user : storage.getList()) {
+    %>
+    <%--<%}%>--%>
+
+    <%--</table>--%>
 </body>
 </html>

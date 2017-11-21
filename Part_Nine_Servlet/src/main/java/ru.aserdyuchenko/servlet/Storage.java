@@ -16,7 +16,7 @@ public class Storage {
     private String SQL_INSERT = "INSERT INTO users VALUES(?, ?, ?, ?)";
     private String SQL_DELETE = "DELETE FROM users WHERE login = ?";
     private String SQL_UPDATE = "UPDATE users SET name=?, email=?, createDate=? WHERE login=?";
-
+    public List<User> users;
     /**
      * Constructor.
      */
@@ -33,27 +33,6 @@ public class Storage {
             if (!ifTableExist()) createTable();
         } catch (SQLException e) {
             throw new IllegalStateException(e);
-        }
-    }
-
-    /**
-     * Get all data from table.
-     */
-    public Map<String, User> getMap() throws SQLException {
-        Map<String, User> users = new HashMap<>();
-        try (final Statement statement = this.connection.createStatement()) {
-            final ResultSet rs = statement.executeQuery(SQL_SELECT);
-            while (rs.next()) {
-                users.put(rs.getString("login"), new User(rs.getString("name"), rs.getString("email"), rs.getString("createDate")));
-            }
-            this.connection.commit();
-            rs.close();
-            statement.close();
-            return users;
-        } catch (SQLException e) {
-            this.connection.rollback();
-            e.printStackTrace();
-            return null;
         }
     }
 
