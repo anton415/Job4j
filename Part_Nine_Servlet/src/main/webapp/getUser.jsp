@@ -20,20 +20,30 @@
         <%--<th>Email</th>--%>
         <%--<th>Create date</th>--%>
         <%--</tr>--%>
+<tr>
+    qewrty
     <%
         try {
-            Class.forName("org.postgresql.Driver");
-            Storage storage = new Storage();
-            storage.getList().toString();
-
+//            System.out.println(Storage.getInstance().users.size());
+            System.out.println(Storage.getInstance().getList().size());
+    %>
+            <%--<%=System.out.println(Storage.getInstance().getList().toString())%>--%>
+    <%
+//        try {
+//            Class.forName("org.postgresql.Driver");
+//            Storage storage = new Storage();
+//            storage.getList().toString();
+//
         } catch (Exception e) {
             e.printStackTrace();
         }
 
 //        for (User user : storage.getList()) {
     %>
-    <%--<%}%>--%>
 
+    <%=Storage.getInstance().getList().toString()%>
+    <%--<%}%>--%>
+</tr>
     <%--</table>--%>
 </body>
 </html>

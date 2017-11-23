@@ -1,10 +1,8 @@
 package ru.aserdyuchenko.servlet;
 
 import java.sql.*;
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 
 /**
  * @author Anton Serdyuchenko. anton415@gmail.com
@@ -17,13 +15,22 @@ public class Storage {
     private String SQL_DELETE = "DELETE FROM users WHERE login = ?";
     private String SQL_UPDATE = "UPDATE users SET name=?, email=?, createDate=? WHERE login=?";
     public List<User> users;
+
+    private static class LazyHolder {
+        static final Storage INSTANCE = new Storage();
+    }
+
     /**
      * Constructor.
      */
-    public Storage() throws ClassNotFoundException {
-        Class.forName("org.postgresql.Driver");
-        try {
+    public Storage() {
 
+        try {
+            try {
+                Class.forName("org.postgresql.Driver");
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
             final Settings settings = Settings.getInstance();
             this.connection = DriverManager.getConnection(
                     "jdbc:postgresql://localhost:5432/postgres",
@@ -34,6 +41,10 @@ public class Storage {
         } catch (SQLException e) {
             throw new IllegalStateException(e);
         }
+    }
+
+    public static Storage getInstance() {
+        return LazyHolder.INSTANCE;
     }
 
     /**
