@@ -17,15 +17,15 @@ public class XmlStorageTest {
     private XmlStorage xmlStorage = new XmlStorage();
     private JdbcStorage jdbcStorage = new JdbcStorage();
 
-    @Test
-    public void whenSaveAndReadNumbersFromXml() throws ParserConfigurationException, TransformerConfigurationException, SQLException {
-        xmlStorage.saveToXML(jdbcStorage.get());
-        assertThat(xmlStorage.readXML(), is(Arrays.asList("1", "2", "3")));
-    }
+//    @Test
+//    public void whenSaveAndReadNumbersFromXml() throws ParserConfigurationException, TransformerConfigurationException, SQLException {
+//        xmlStorage.saveToXML(jdbcStorage.get());
+//        assertThat(xmlStorage.readXML(), is(Arrays.asList("1", "2", "3")));
+//    }
 
-    @Test
-    public void  whenTransformatXMLAndGetSum() throws TransformerException {
-        xmlStorage.XsltTransformation();
-        assertThat(xmlStorage.getSum(), is(6));
-    }
+//    @Test
+//    public void  whenTransformatXMLAndGetSum() throws TransformerException {
+//        xmlStorage.XsltTransformation();
+//        assertThat(xmlStorage.getSum(), is(6));
+//    }
 }

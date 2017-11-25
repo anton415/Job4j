@@ -12,9 +12,9 @@ import static org.junit.Assert.assertThat;
 public class JdbcStorageTest {
     private JdbcStorage storage = new JdbcStorage();
 
-    @Test
-    public void whenAddNumberInTableAndPrintTable() throws SQLException {
-        storage.add(3);
-        assertThat(storage.get(), is(Arrays.asList(1, 2, 3)));
-    }
+//    @Test
+//    public void whenAddNumberInTableAndPrintTable() throws SQLException {
+//        storage.add(3);
+//        assertThat(storage.get(), is(Arrays.asList(1, 2, 3)));
+//    }
 }

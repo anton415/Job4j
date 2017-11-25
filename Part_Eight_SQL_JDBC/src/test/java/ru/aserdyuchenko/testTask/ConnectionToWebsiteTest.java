@@ -7,9 +7,9 @@ import org.junit.Test;
  */
 public class ConnectionToWebsiteTest {
 
-    @Test
-    public void whenGetDataFromWebsite() throws Exception {
-        ConnectionToWebsite connection = new ConnectionToWebsite();
-        connection.getDataFromWebsite();
-    }
+//    @Test
+//    public void whenGetDataFromWebsite() throws Exception {
+//        ConnectionToWebsite connection = new ConnectionToWebsite();
+//        connection.getDataFromWebsite();
+//    }
 }

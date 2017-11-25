@@ -11,10 +11,10 @@ public class JDBCTest {
     JDBC jdbc = new JDBC();
     ConnectionToWebsite connectionToWebsite = new ConnectionToWebsite();
 
-    @Test
-    public void whenAddOffers() throws Exception {
-        connectionToWebsite.getDataFromWebsite();
-        Set<String> set = connectionToWebsite.getOffers();
-        jdbc.add(set);
-    }
+//    @Test
+//    public void whenAddOffers() throws Exception {
+//        connectionToWebsite.getDataFromWebsite();
+//        Set<String> set = connectionToWebsite.getOffers();
+//        jdbc.add(set);
+//    }
 }
