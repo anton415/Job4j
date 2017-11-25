@@ -12,9 +12,9 @@
     <%--<a href='<%=request.getContextPath()%>/editUser'>Edit users.</a><br/>--%>
     <%--<a href='<%=request.getContextPath()%>/deleteUser'>Delete users.</a><br/>--%>
     <input id="inp" type="button" value="Get users" onclick="location.href='getUser.jsp';"/></br>
-    <input id="inp" type="button" value="Add users" onclick="location.href='getUser.jsp';"/></br>
-    <input id="inp" type="button" value="Edit users" onclick="location.href='getUser.jsp';"/></br>
-    <input id="inp" type="button" value="Delete users" onclick="location.href='getUser.jsp';"/></br>
+    <input id="inp" type="button" value="Add users" onclick="location.href='addUser.jsp';"/></br>
+    <input id="inp" type="button" value="Edit users" onclick="location.href='editUser.jsp';"/></br>
+    <input id="inp" type="button" value="Delete users" onclick="location.href='deleteUser.jsp';"/></br>
 
 </body>
 </html>

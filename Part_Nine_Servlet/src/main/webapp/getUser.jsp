@@ -1,10 +1,9 @@
-<%@ page import="ru.aserdyuchenko.servlet.Storage" %>
+<%@ page import="ru.aserdyuchenko.servlet.DataSource" %>
+<%@ page import="ru.aserdyuchenko.servlet.User" %>
 <%--
-  Created by IntelliJ IDEA.
   User: Anton
   Date: 20.11.2017
   Time: 21:29
-  To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
@@ -12,38 +11,22 @@
     <title>Get user</title>
 </head>
 <body>
-<input id="inp" type="button" value="Home" onclick="location.href='index.jsp';"/></br>
-<%--<table style="width:100%">--%>
-    <%--<tr>--%>
-        <%--<th>Login</th>--%>
-        <%--<th>Name</th>--%>
-        <%--<th>Email</th>--%>
-        <%--<th>Create date</th>--%>
-        <%--</tr>--%>
-<tr>
-    qewrty
-    <%
-        try {
-//            System.out.println(Storage.getInstance().users.size());
-            System.out.println(Storage.getInstance().getList().size());
-    %>
-            <%--<%=System.out.println(Storage.getInstance().getList().toString())%>--%>
-    <%
-//        try {
-//            Class.forName("org.postgresql.Driver");
-//            Storage storage = new Storage();
-//            storage.getList().toString();
-//
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-//        for (User user : storage.getList()) {
-    %>
-
-    <%=Storage.getInstance().getList().toString()%>
-    <%--<%}%>--%>
-</tr>
-    <%--</table>--%>
+    <input id="inp" type="button" value="Home" onclick="location.href='index.jsp';"/></br>
+    <table style="width:100%">
+        <tr>
+            <th>Login</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Create date</th>
+        </tr>
+        <%for (User user : DataSource.getInstance().getList()) {%>
+        <tr>
+            <td><%=user.getLogin()%></td>
+            <td><%=user.getName()%></td>
+            <td><%=user.getEmail()%></td>
+            <td><%=user.getCreateDate()%></td>
+        </tr>
+        <%}%>
+    </table>
 </body>
 </html>
