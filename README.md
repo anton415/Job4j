@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/anton415/Job4j.svg?branch=master)](https://travis-ci.org/anton415/Job4j)
+[![codecov](https://codecov.io/gh/anton415/Job4j/branch/master/graph/badge.svg)](https://codecov.io/gh/anton415/Job4j)
 <a href="http://job4j.ru"> <img src="http://job4j.ru/img/logomini.png"></a>
 <h1>С нуля до трудоустройства, Java SE + EE.</h1>
 Основная задача курса - это научиться теоретическим знаниям и практическим навыкам разработки на языке Java, необходимых для трудоустройства Java программистом.
@@ -37,3 +39,5 @@
     Observer, Decorator, Factory, Singleton, Proxy, Adapter, Facade, Momento.
 <h4>- Алгоритмы обработки данных </h4>
     Оценка сложности алгоритма, Сортировка и поиск, Виды структур данных, Обходы графов, Комбинаторный поиск и эвристические методы, Динамическое программирование.
+
+
