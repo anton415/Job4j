@@ -7,6 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.beans.PropertyVetoException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -22,58 +23,11 @@ public class ServletEditUser extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.setContentType("text/html");
-        PrintWriter writer = new PrintWriter(response.getOutputStream());
         try {
-            Class.forName("org.postgresql.Driver");
-            Storage storage = new Storage();
-            List<User> users = storage.getList();
-            writer.append(
-                    "<!DOCTYPE html>" +
-                            "<html lang=\"en\">" +
-                            "<head>" +
-                            "   <meta charset=\"UTF-8\">" +
-                            "   <title></title>" +
-                            "</head>" +
-                            "<body>" +
-                            "<a href='"+request.getContextPath()+"'>Home page.</a>" +
-                            "<table style=\"width:100%\">" +
-                            "<tr>" +
-                            "<th>Login</th> " +
-                            "<th>Name</th> " +
-                            "<th>Email</th>" +
-                            "<th>Create date</th>" +
-                            "</tr>");
-
-            for (User user : users) {
-                writer.append("<tr><td>")
-                        .append(user.getLogin())
-                        .append("</td><td>")
-                        .append(user.getName())
-                        .append("</td><td>")
-                        .append(user.getEmail())
-                        .append("</td><td>")
-                        .append(user.getCreateDate())
-                        .append("</td></tr>");
-            }
-
-            writer.append("</table>" +
-                    "</form>" +
-                    "<br/>" +
-                    "<br/>" +
-                    "<form action='"+request.getContextPath()+"/editUser' method='post'>" +
-                    "Name : <input type='text' name='name'/><br/>" +
-                    "Email : <input type='text' name='email'/><br/>" +
-                    "Date : <input type='text' name='createDate'/><br/>" +
-                    "Login : <input type='text' name='login'/><br/>" +
-                    "<input type='submit'>" +
-                    "</form>" +
-                    "</body>" +
-                    "</html>");
-        } catch (Exception e) {
+            request.setAttribute("users", DataSource.getInstance().getList());
+            request.getRequestDispatcher("/WEB-INF/views/editUser.jsp").forward(request, response);
+        } catch (SQLException | PropertyVetoException e) {
             e.printStackTrace();
-        } finally {
-            writer.flush();
         }
     }
 
@@ -82,8 +36,9 @@ public class ServletEditUser extends HttpServlet {
         response.setContentType("text/html");
         try {
             Class.forName("org.postgresql.Driver");
-            Storage storage = new Storage();
+            DataSource storage = DataSource.getInstance();
             storage.update(request.getParameter("name"), request.getParameter("email"), request.getParameter("createDate"), request.getParameter("login"));
+            response.sendRedirect(String.format("%s/editUser", request.getContextPath()));
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (Exception e) {
