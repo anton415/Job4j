@@ -66,4 +66,14 @@
         <servlet-name>ServletGetUser</servlet-name>
         <url-pattern>/getUser</url-pattern>
     </servlet-mapping>
+
+    <!--    User's authentication.    -->
+    <servlet>
+        <servlet-name>Signin</servlet-name>
+        <servlet-class>ru.aserdyuchenko.servlet.SigninController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Signin</servlet-name>
+        <url-pattern>/signin</url-pattern>
+    </servlet-mapping>
 </web-app>

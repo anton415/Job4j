@@ -8,6 +8,15 @@ public class User {
     private String name;
     private String email;
     private String createDate;
+    private String password;
+
+    public User(String login, String name, String email, String createDate, String password) {
+        this.login = login;
+        this.name = name;
+        this.email = email;
+        this.createDate = createDate;
+        this.password = password;
+    }
 
     public User(String name, String email, String createDate) {
         this.name = name;
@@ -31,6 +40,11 @@ public class User {
                 ", createDate=" + createDate +
                 '}';
     }
+
+    public String getPassword() {
+        return password;
+    }
+
     public String getLogin() {
         return login;
     }
