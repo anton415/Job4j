@@ -14,9 +14,9 @@ public class DataSource {
     private BasicDataSource ds;
     private String SQL_SELECT = "SELECT * FROM users";
     private String SQL_CREATE_TABLE = "CREATE TABLE users (login character varying (50), name character varying (50), email character varying (50), createDate character varying (50))";
-    private String SQL_INSERT = "INSERT INTO users VALUES(?, ?, ?, ?)";
+    private String SQL_INSERT = "INSERT INTO users VALUES(?, ?, ?, ?, ?)";
     private String SQL_DELETE = "DELETE FROM users WHERE login = ?";
-    private String SQL_UPDATE = "UPDATE users SET name=?, email=?, createDate=? WHERE login=?";
+    private String SQL_UPDATE = "UPDATE users SET name=?, email=?, createDate=?, password=? WHERE login=?";
 
     private DataSource() throws IOException, SQLException, PropertyVetoException {
         ds = new BasicDataSource();
@@ -57,7 +57,7 @@ public class DataSource {
         try (final Statement statement = getConnection().createStatement()) {
             final ResultSet rs = statement.executeQuery(SQL_SELECT);
             while (rs.next()) {
-                users.add(new User(rs.getString("login"), rs.getString("name"), rs.getString("email"), rs.getString("createDate")));
+                users.add(new User(rs.getString("login"), rs.getString("name"), rs.getString("email"), rs.getString("createDate"), rs.getString("password")));
             }
             getConnection().commit();
             rs.close();
@@ -74,7 +74,7 @@ public class DataSource {
      * Update user.
      * @throws SQLException
      */
-    public void update(String name, String email, String createDate, String login) throws SQLException {
+    public void update(String name, String email, String createDate, String login, String password) throws SQLException {
         try {
             final PreparedStatement statement = getConnection().prepareStatement(SQL_UPDATE);
             statement.addBatch();
@@ -82,6 +82,7 @@ public class DataSource {
             statement.setString(2, email);
             statement.setString(3, createDate);
             statement.setString(4, login);
+            statement.setString(5, password);
             statement.executeUpdate();
             getConnection().commit();
             statement.close();
@@ -107,7 +108,7 @@ public class DataSource {
     /**
      * Add user.
      */
-    public void add(String login, String name, String email, String createDate) throws SQLException {
+    public void add(String login, String name, String email, String createDate, String password) throws SQLException {
         try {
             final PreparedStatement statement = getConnection().prepareStatement(SQL_INSERT);
             statement.addBatch();
@@ -115,6 +116,7 @@ public class DataSource {
             statement.setString(2, name);
             statement.setString(3, email);
             statement.setString(4, createDate);
+            statement.setString(5, password);
             statement.executeUpdate();
             getConnection().commit();
             statement.close();
