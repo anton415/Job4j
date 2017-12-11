@@ -158,4 +158,19 @@ public class DataSource {
             e.printStackTrace();
         }
     }
+
+    /**
+     * Check if user and password correct.
+     * @return true if user and password correct.
+     */
+    public boolean isCredentional(String login, String password) throws SQLException {
+        boolean exists = false;
+        for (User user : getList()) {
+            if (user.getLogin().equals(login) && user.getPassword().equals(password)) {
+                exists = true;
+                break;
+            }
+        }
+        return exists;
+    }
 }
