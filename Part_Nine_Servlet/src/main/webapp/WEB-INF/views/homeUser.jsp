@@ -12,6 +12,9 @@
     <input id="inp2" type="button" value="Add users" onclick="location.href='addUser';"/><br>
     <input id="inp3" type="button" value="Edit users" onclick="location.href='editUser';"/><br>
     <input id="inp4" type="button" value="Delete users" onclick="location.href='deleteUser';"/><br>
-    <input id="inp5" type="button" value="Exit" onclick=""/><br>
+    <form action='${pageContext.servletContext.contextPath}/signin' method='post'>
+        <button id="inp5" type="submit" value="button1">Exit</button>
+    </form>
+    <br>
 </body>
 </html>

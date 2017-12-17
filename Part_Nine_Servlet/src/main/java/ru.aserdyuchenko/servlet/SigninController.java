@@ -24,12 +24,17 @@ public class SigninController extends HttpServlet {
                 HttpSession session = req.getSession();
                 synchronized (session) {
                     session.setAttribute("login", login);
+                    if(req.getParameter("button1") != null) {
+                        session.invalidate();
+                    }
                 }
                 resp.sendRedirect(String.format("%s/", req.getContextPath()));
             } else {
                 req.setAttribute("error", "Credentional invalid");
                 doGet(req, resp);
             }
+
+
         } catch (SQLException | PropertyVetoException e) {
             e.printStackTrace();
         }
