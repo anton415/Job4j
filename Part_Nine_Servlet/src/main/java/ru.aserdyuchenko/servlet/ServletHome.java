@@ -16,14 +16,6 @@ public class ServletHome extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        synchronized (session) {
-            if (session == null || session.getAttribute("login") == null) {
-                response.sendRedirect(String.format("%s/signin", request.getContextPath()));
-            } else {
-                request.getRequestDispatcher("/WEB-INF/views/homeUser.jsp").forward(request, response);
-
-            }
-        }
+        request.getRequestDispatcher("/WEB-INF/views/homeUser.jsp").forward(request, response);
     }
 }
