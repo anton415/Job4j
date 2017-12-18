@@ -9,36 +9,27 @@ public class User {
     private String email;
     private String createDate;
     private String password;
+    private String role;
 
-    public User(String login, String name, String email, String createDate, String password) {
+    public User(String login, String name, String email, String createDate, String password, String role) {
         this.login = login;
         this.name = name;
         this.email = email;
         this.createDate = createDate;
         this.password = password;
+        this.role = role;
     }
 
-    public User(String name, String email, String createDate) {
-        this.name = name;
-        this.email = email;
-        this.createDate = createDate;
+    public String getRole() {
+        return role;
     }
 
-    public User(String login, String name, String email, String createDate) {
-        this.login = login;
-        this.name = name;
-        this.email = email;
-        this.createDate = createDate;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    @Override
-
-    public String toString() {
-        return "User{" +
-                "name='" + name + '\'' +
-                ", email='" + email + '\'' +
-                ", createDate=" + createDate +
-                '}';
+    public void setRole(String role) {
+        this.role = role;
     }
 
     public String getPassword() {
