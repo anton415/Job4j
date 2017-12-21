@@ -37,7 +37,7 @@ public class ServletEditUser extends HttpServlet {
         try {
             Class.forName("org.postgresql.Driver");
             DataSource storage = DataSource.getInstance();
-            storage.update(request.getParameter("name"), request.getParameter("email"), request.getParameter("createDate"), request.getParameter("login"), request.getParameter("password"));
+            storage.update(request.getParameter("name"), request.getParameter("email"), request.getParameter("createDate"), request.getParameter("login"), request.getParameter("password"), request.getParameter("role"));
             response.sendRedirect(String.format("%s/editUser", request.getContextPath()));
         } catch (Exception e) {
             e.printStackTrace();
