@@ -3,8 +3,10 @@ package ru.aserdyuchenko.servlet;
 import java.beans.PropertyVetoException;
 import java.io.IOException;
 import java.sql.*;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.dbcp.BasicDataSource;
 
@@ -50,7 +52,7 @@ public class DataSource {
     }
 
     /**
-     * Get all data from table.
+     * Get list with all data from table.
      */
     public List<User> getList() throws SQLException {
         List<User> users = new LinkedList<>();
@@ -58,6 +60,27 @@ public class DataSource {
             final ResultSet rs = statement.executeQuery(SQL_SELECT);
             while (rs.next()) {
                 users.add(new User(rs.getString("login"), rs.getString("name"), rs.getString("email"), rs.getString("createDate"), rs.getString("password"), rs.getString("role")));
+            }
+            getConnection().commit();
+            rs.close();
+            statement.close();
+            return users;
+        } catch (SQLException e) {
+            getConnection().rollback();
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    /**
+     * Get map with all data from table.
+     */
+    public Map<String, User> getMap() throws SQLException {
+        Map<String, User> users = new HashMap<>();
+        try (final Statement statement = getConnection().createStatement()) {
+            final ResultSet rs = statement.executeQuery(SQL_SELECT);
+            while (rs.next()) {
+                users.put(rs.getString("login"), new User(rs.getString("login"), rs.getString("name"), rs.getString("email"), rs.getString("createDate"), rs.getString("password"), rs.getString("role")));
             }
             getConnection().commit();
             rs.close();
@@ -96,7 +119,7 @@ public class DataSource {
     /**
      * Create table.
      */
-    public void createTable() throws SQLException {
+    private void createTable() throws SQLException {
         try (Statement statement = getConnection().createStatement()) {
             statement.addBatch(SQL_CREATE_TABLE);
             getConnection().commit();
