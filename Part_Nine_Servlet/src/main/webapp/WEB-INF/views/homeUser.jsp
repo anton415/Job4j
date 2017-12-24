@@ -10,10 +10,10 @@
 </head>
 <body>
     <input id="inp1" type="button" value="Get users" onclick="location.href='getUser';"/><br>
-    <input id="inp2" type="button" value="Add users" onclick="location.href='addUser';"/><br>
     <input id="inp3" type="button" value="Edit users" onclick="location.href='editUser';"/><br>
 
     <c:if test="${role == 'admin'}">
+        <input id="inp2" type="button" value="Add users" onclick="location.href='addUser';"/><br>
         <input id="inp4" type="button" value="Delete users" onclick="location.href='deleteUser';"/><br>
     </c:if>
 

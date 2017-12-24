@@ -15,6 +15,9 @@
             <th>Email</th>
             <th>Create date</th>
             <th>Role</th>
+            <c:if test="${role == 'admin'}">
+                <th>Password</th>
+            </c:if>
         </tr>
         <c:forEach items="${users}" var="user">
         <tr>
@@ -23,6 +26,9 @@
             <td><c:out value="${user.email}"></c:out></td>
             <td><c:out value="${user.createDate}"></c:out></td>
             <td><c:out value="${user.role}"></c:out></td>
+            <c:if test="${role == 'admin'}">
+                <td><c:out value="${user.password}"></c:out></td>
+            </c:if>
         </tr>
         </c:forEach>
     </table>

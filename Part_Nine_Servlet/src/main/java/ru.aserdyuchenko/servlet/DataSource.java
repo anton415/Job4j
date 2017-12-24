@@ -19,8 +19,9 @@ public class DataSource {
     private String SQL_INSERT = "INSERT INTO users VALUES(?, ?, ?, ?, ?, ?)";
     private String SQL_DELETE = "DELETE FROM users WHERE login = ?";
     private String SQL_UPDATE = "UPDATE users SET name=?, email=?, createDate=?, password=?, role=? WHERE login=?";
+    private String SQL_UPDATE_USER = "UPDATE users SET name=?, email=?, createDate=? WHERE login=?";
 
-    private DataSource() throws IOException, SQLException, PropertyVetoException {
+    private DataSource() throws SQLException{
         ds = new BasicDataSource();
         final Settings settings = Settings.getInstance();
         ds.setDriverClassName(settings.value("jdbc.driver_class"));
@@ -38,7 +39,7 @@ public class DataSource {
         if (!ifTableExist()) createTable();
     }
 
-    public static DataSource getInstance() throws IOException, SQLException, PropertyVetoException {
+    public static DataSource getInstance() throws SQLException {
         if (datasource == null) {
             datasource = new DataSource();
             return datasource;
@@ -47,7 +48,7 @@ public class DataSource {
         }
     }
 
-    public Connection getConnection() throws SQLException {
+    private Connection getConnection() {
         return this.connection;
     }
 
@@ -94,7 +95,7 @@ public class DataSource {
     }
 
     /**
-     * Update user.
+     * Update by admin.
      * @throws SQLException
      */
     public void update(String name, String email, String createDate, String login, String password, String role) throws SQLException {
@@ -107,6 +108,27 @@ public class DataSource {
             statement.setString(4, login);
             statement.setString(5, password);
             statement.setString(6, role);
+            statement.executeUpdate();
+            getConnection().commit();
+            statement.close();
+        } catch (SQLException e) {
+            getConnection().rollback();
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Update by user.
+     * @throws SQLException
+     */
+    public void updateByUser(String name, String email, String createDate, String login) throws SQLException {
+        try {
+            final PreparedStatement statement = getConnection().prepareStatement(SQL_UPDATE_USER);
+            statement.addBatch();
+            statement.setString(1, name);
+            statement.setString(2, email);
+            statement.setString(3, createDate);
+            statement.setString(4, login);
             statement.executeUpdate();
             getConnection().commit();
             statement.close();

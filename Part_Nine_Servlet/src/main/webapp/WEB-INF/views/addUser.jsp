@@ -16,8 +16,16 @@
     Name : <input type='text' name='name'/><br/>
     Email : <input type='text' name='email'/><br/>
     Date : <input type='text' name='createDate'/><br/>
-    <input type='submit'>
+    Password : <input type='password' name='password'/><br/>
+    Role :
+        <select name="role">
+            <option value="user"  name='role'>user</option>
+            <option value="admin" name='role'>admin</option>
+        </select>
+    <br>
+    <input type='submit' value="Добавить пользователя">
 </form>
+
 
 <table style="border: #000000"; cellpadding="1"; border="1">
     <tr>
@@ -25,6 +33,8 @@
         <th>Name</th>
         <th>Email</th>
         <th>Create date</th>
+        <th>Password</th>
+        <th>Role</th>
     </tr>
     <c:forEach items="${users}" var="user">
         <tr>
@@ -32,6 +42,8 @@
             <td><c:out value="${user.name}"></c:out></td>
             <td><c:out value="${user.email}"></c:out></td>
             <td><c:out value="${user.createDate}"></c:out></td>
+            <td><c:out value="${user.password}"></c:out></td>
+            <td><c:out value="${user.role}"></c:out></td>
         </tr>
     </c:forEach>
 </table>

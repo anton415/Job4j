@@ -25,7 +25,7 @@ public class ServletAddUser extends HttpServlet {
         try {
             request.setAttribute("users", DataSource.getInstance().getList());
             request.getRequestDispatcher("/WEB-INF/views/addUser.jsp").forward(request, response);
-        } catch (SQLException | PropertyVetoException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }

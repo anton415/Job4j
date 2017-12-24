@@ -33,7 +33,7 @@ public class SigninController extends HttpServlet {
                 req.setAttribute("error", "Credentional invalid");
                 doGet(req, resp);
             }
-        } catch (SQLException | PropertyVetoException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }

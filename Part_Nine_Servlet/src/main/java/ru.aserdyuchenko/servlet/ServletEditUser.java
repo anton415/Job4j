@@ -7,6 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.beans.PropertyVetoException;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -24,21 +25,34 @@ public class ServletEditUser extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            request.setAttribute("users", DataSource.getInstance().getList());
+            HttpSession session = request.getSession();
+            synchronized (session) {
+                request.setAttribute("role", DataSource.getInstance().getMap().get(session.getAttribute("login")).getRole());
+                request.setAttribute("login", session.getAttribute("login"));
+                request.setAttribute("users", DataSource.getInstance().getList());
+            }
             request.getRequestDispatcher("/WEB-INF/views/editUser.jsp").forward(request, response);
-        } catch (SQLException | PropertyVetoException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) {
+
         response.setContentType("text/html");
         try {
-            Class.forName("org.postgresql.Driver");
-            DataSource storage = DataSource.getInstance();
-            storage.update(request.getParameter("name"), request.getParameter("email"), request.getParameter("createDate"), request.getParameter("login"), request.getParameter("password"), request.getParameter("role"));
-            response.sendRedirect(String.format("%s/editUser", request.getContextPath()));
+            HttpSession session = request.getSession();
+            synchronized (session) {
+                Class.forName("org.postgresql.Driver");
+                DataSource storage = DataSource.getInstance();
+                if (session.getAttribute("login").toString().equals("admin")) {
+                    storage.update(request.getParameter("name"), request.getParameter("email"), request.getParameter("createDate"), request.getParameter("login"), request.getParameter("password"), request.getParameter("role"));
+                } else if(session.getAttribute("login").toString().equals("user")) {
+                    storage.updateByUser(request.getParameter("name"), request.getParameter("email"), request.getParameter("createDate"), session.getAttribute("login").toString());
+                }
+                response.sendRedirect(String.format("%s/editUser", request.getContextPath()));
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
