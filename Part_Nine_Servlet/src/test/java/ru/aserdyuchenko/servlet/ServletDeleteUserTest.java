@@ -13,7 +13,7 @@ import static org.mockito.Mockito.when;
 
 public class ServletDeleteUserTest {
     @Test
-    public void addUser() throws ServletException, IOException, SQLException {
+    public void deleteUser() throws ServletException, IOException, SQLException {
         ServletDeleteUser servlet = new ServletDeleteUser();
         HttpServletRequest request = mock(HttpServletRequest.class);
         HttpServletResponse response = mock(HttpServletResponse.class);
