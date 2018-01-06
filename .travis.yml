@@ -8,6 +8,9 @@ sudo: false
 after_success:
   - bash <(curl -s https://codecov.io/bash)
 
+os:
+  osx
+
 # Отправлять уведомление на почту.
 notifications:
   email:
