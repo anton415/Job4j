@@ -39,7 +39,6 @@ public class ServletEditUser extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) {
-
         response.setContentType("text/html");
         try {
             HttpSession session = request.getSession();
@@ -49,7 +48,7 @@ public class ServletEditUser extends HttpServlet {
                 if (session.getAttribute("role").toString().equals("admin")) {
                     storage.update(request.getParameter("name"), request.getParameter("email"), request.getParameter("createDate"), request.getParameter("login"), request.getParameter("password"), request.getParameter("role"));
                 } else if(session.getAttribute("role").toString().equals("user")) {
-                    storage.updateByUser(request.getParameter("name"), request.getParameter("email"), request.getParameter("createDate"), session.getAttribute("login").toString());
+                    storage.update(request.getParameter("name"), request.getParameter("email"), request.getParameter("createDate"), session.getAttribute("login").toString(), request.getParameter("password"), request.getParameter("role"));
                 }
                 response.sendRedirect(String.format("%s/editUser", request.getContextPath()));
             }
