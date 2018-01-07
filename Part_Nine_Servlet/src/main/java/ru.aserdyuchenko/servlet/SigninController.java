@@ -12,7 +12,9 @@ import java.sql.SQLException;
 public class SigninController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("/WEB-INF/views/LoginView.jsp").forward(req, resp);
+//        req.getRequestDispatcher("/WEB-INF/views/LoginView.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/Items.html").forward(req, resp);
+
     }
 
     @Override
