@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <title>Authorization</title>
     <style>
         .container {
@@ -12,12 +13,31 @@
             text-align: center;
         }
     </style>
+    <script>
+        $.ajax('./json', {
+            method: 'get',
+            complete: function (data) {
+                console.log(JSON.parse(data.responseText));
+            }
+        });
+        function validate() {
+            var result = true;
+            var login = document.getElementsById("login")[0].value;
+            var password = document.getElementsById("password")[0].value;
+            if (login == '' && password == '') {
+                result = false;
+            }
+            if (!result) {
+                alert("Please input login and password.");
+            }
+        }
+    </script>
 </head>
 <body>
     <div class="container">
         <section id="content" >
             <h1>Authorization</h1>
-            <form action='http://localhost:8082/users/' method="post">
+            <form action='http://localhost:8082/users/signin' method="post" onclick="validate()">
                 <div>
                     <input placeholder="Login" required="" id="login" type="text">
                 </div>
@@ -25,7 +45,7 @@
                     <input placeholder="Password" required="" id="password" type="password">
                 </div>
                 <div>
-                    <input value="Log in" type="submit">
+                    <input type="submit">
                 </div>
             </form>
         </section>

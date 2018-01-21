@@ -1,13 +1,10 @@
 package ru.aserdyuchenko.servlet;
 
-import java.beans.PropertyVetoException;
-import java.io.IOException;
 import java.sql.*;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-
 import org.apache.commons.dbcp.BasicDataSource;
 
 public class DataSource {
@@ -21,7 +18,7 @@ public class DataSource {
     private String SQL_UPDATE = "UPDATE users SET name=?, email=?, createDate=?, password=?, role=? WHERE login=?";
     private String SQL_UPDATE_USER = "UPDATE users SET name=?, email=?, createDate=? WHERE login=?";
 
-    private DataSource() throws SQLException{
+    protected DataSource() throws SQLException{
         ds = new BasicDataSource();
         final Settings settings = Settings.getInstance();
         ds.setDriverClassName(settings.value("jdbc.driver_class"));

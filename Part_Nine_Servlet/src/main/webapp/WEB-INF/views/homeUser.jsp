@@ -1,6 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
-  Author: Anton
+  Author: Anton Serdyuchenko.
   Date: 20.11.2017
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
