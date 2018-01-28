@@ -12,11 +12,6 @@ import java.sql.SQLException;
 public class SigninController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        /*
-            Как только я комментиру вывод LoginView.jsp и добавляю Items.html
-            При старте сервера у меня вылетает NullPointException в ServletHome.java:22
-            Я не могу понять почему и не знаю как это исправить.
-         */
 //        req.getRequestDispatcher("/WEB-INF/views/LoginView.jsp").forward(req, resp);
         req.getRequestDispatcher("/Items.html").forward(req, resp);
     }
@@ -35,6 +30,7 @@ public class SigninController extends HttpServlet {
                     }
                 }
                 resp.sendRedirect(String.format("%s/", req.getContextPath()));
+//                resp.sendRedirect(String.format("/getHome"));
             } else {
                 req.setAttribute("error", "Credentional invalid");
                 doGet(req, resp);

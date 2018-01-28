@@ -37,9 +37,9 @@
     <div class="container">
         <section id="content" >
             <h1>Authorization</h1>
-            <form action='http://localhost:8082/users/signin' method="post" onclick="validate()">
+            <form action='/signin' method="get" onclick="validate()">
                 <div>
-                    <input placeholder="Login" required="" id="login" type="text">
+                    <input placeholder="Login" required="" id="login" type="text" name="login">
                 </div>
                 <div>
                     <input placeholder="Password" required="" id="password" type="password">
