@@ -24,7 +24,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>ServletHome</servlet-name>
-        <url-pattern>/</url-pattern>
+        <url-pattern>/home</url-pattern>
     </servlet-mapping>
 
     <!--    Servlet for add new user.    -->

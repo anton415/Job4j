@@ -37,12 +37,12 @@
     <div class="container">
         <section id="content" >
             <h1>Authorization</h1>
-            <form action='/signin' method="get" onclick="validate()">
+            <form action='/signin' method="post" onclick="validate()">
                 <div>
                     <input placeholder="Login" required="" id="login" type="text" name="login">
                 </div>
                 <div>
-                    <input placeholder="Password" required="" id="password" type="password">
+                    <input placeholder="Password" required="" id="password" name="password" type="password">
                 </div>
                 <div>
                     <input type="submit">

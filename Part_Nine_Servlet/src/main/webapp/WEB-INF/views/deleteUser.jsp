@@ -10,7 +10,7 @@
     <title>Delete user</title>
 </head>
 <body>
-<input id="inp" type="button" value="Home" onclick="location.href='homeUser';"/><br>
+<input id="inp" type="button" value="Home" onclick="location.href='home';"/><br>
 
 <form action='${pageContext.servletContext.contextPath}/deleteUser' method='post'>
     Login : <input type='text' name='login'/><br/>

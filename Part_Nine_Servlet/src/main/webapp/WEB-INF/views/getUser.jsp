@@ -6,7 +6,7 @@
     <title>Get user</title>
 </head>
 <body>
-    <input id="inp" type="button" value="Home" onclick="location.href='homeUser';"/>
+    <input id="inp" type="button" value="Home" onclick="location.href='home';"/>
     <br>
     <table style="border: #000000" cellpadding="1" border="1">
         <tr>
