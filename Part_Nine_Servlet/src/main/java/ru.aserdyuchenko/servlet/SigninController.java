@@ -17,14 +17,15 @@ public class SigninController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("/WEB-INF/views/LoginView.jsp").forward(req, resp);
-//        req.getRequestDispatcher("/Items.html").forward(req, resp);
+//        req.getRequestDispatcher("/WEB-INF/views/LoginView.jsp").forward(req, resp);
+        req.getRequestDispatcher("/Items.html").forward(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         log.setLevel(Level.INFO);
         log.info("In doPost in SigninController.");
+        System.out.println("SigninController");
         String login = req.getParameter("login");
         String password = req.getParameter("password");
         try {
