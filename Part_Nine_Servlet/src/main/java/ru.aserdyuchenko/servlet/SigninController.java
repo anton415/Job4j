@@ -17,15 +17,13 @@ public class SigninController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//        req.getRequestDispatcher("/WEB-INF/views/LoginView.jsp").forward(req, resp);
-        req.getRequestDispatcher("/Items.html").forward(req, resp);
+        req.getRequestDispatcher("/authorization.html").forward(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         log.setLevel(Level.INFO);
         log.info("In doPost in SigninController.");
-        System.out.println("SigninController");
         String login = req.getParameter("login");
         String password = req.getParameter("password");
         try {
@@ -34,12 +32,11 @@ public class SigninController extends HttpServlet {
                 synchronized (session) {
                     log.info(session.getAttribute("login"));
                     session.setAttribute("login", login);
-                    if(req.getParameter("button1") != null) {
+                    if(req.getParameter("exit") != null) {
                         session.invalidate();
                     }
                 }
-//                resp.sendRedirect(String.format("%s/", req.getContextPath()));
-                resp.sendRedirect(String.format("/items/home"));
+                resp.sendRedirect(String.format("%s/home", req.getContextPath()));
             } else {
                 req.setAttribute("error", "Credentional invalid");
                 doGet(req, resp);

@@ -13,25 +13,6 @@
             text-align: center;
         }
     </style>
-    <script>
-        $.ajax('./json', {
-            method: 'get',
-            complete: function (data) {
-                console.log(JSON.parse(data.responseText));
-            }
-        });
-        function validate() {
-            var result = true;
-            var login = document.getElementsById("login")[0].value;
-            var password = document.getElementsById("password")[0].value;
-            if (login == '' && password == '') {
-                result = false;
-            }
-            if (!result) {
-                alert("Please input login and password.");
-            }
-        }
-    </script>
 </head>
 <body>
     <div class="container">

@@ -20,13 +20,15 @@ public class ServletGetUser extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        System.out.println("doGet in GetUser");
         try {
             HttpSession session = request.getSession();
             synchronized (session) {
                 request.setAttribute("role", DataSource.getInstance().getMap().get(session.getAttribute("login")).getRole());
                 request.setAttribute("users", DataSource.getInstance().getList());
             }
-            request.getRequestDispatcher("/WEB-INF/views/getUser.jsp").forward(request, response);
+            System.out.println("before getRequestDispatcher");
+            request.getRequestDispatcher("/get.html").forward(request, response);
         } catch (SQLException e) {
             e.printStackTrace();
         }

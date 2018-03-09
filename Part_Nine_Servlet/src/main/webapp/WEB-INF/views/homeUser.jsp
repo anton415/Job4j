@@ -18,7 +18,7 @@
     </c:if>
 
     <form action='${pageContext.servletContext.contextPath}/signin' method='post'>
-        <button id="inp5" type="submit" value="button1">Exit</button>
+        <button id="inp5" type="submit" value="exit">Exit</button>
     </form>
     <br>
 </body>
