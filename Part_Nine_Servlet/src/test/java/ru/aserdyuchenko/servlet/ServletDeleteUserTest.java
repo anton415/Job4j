@@ -1,6 +1,9 @@
 package ru.aserdyuchenko.servlet;
 
 import org.junit.Test;
+import ru.aserdyuchenko.storage.DataSource;
+import ru.aserdyuchenko.storage.User;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

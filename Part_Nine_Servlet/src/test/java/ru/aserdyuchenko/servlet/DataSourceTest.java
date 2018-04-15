@@ -1,6 +1,7 @@
 package ru.aserdyuchenko.servlet;
 
 import org.junit.Test;
+import ru.aserdyuchenko.storage.DataSource;
 
 import java.sql.SQLException;
 // TODO: Добавить тесты для проверки работы БД.

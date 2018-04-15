@@ -2,18 +2,15 @@ package ru.aserdyuchenko.servlet;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import ru.aserdyuchenko.storage.DataSource;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.beans.PropertyVetoException;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
-import java.util.List;
-import java.util.Map;
 
 /**
  * @author Anton Serdyuchenko. anton415@gmail.com
@@ -31,7 +28,8 @@ public class ServletEditUser extends HttpServlet {
                 request.setAttribute("login", session.getAttribute("login"));
                 request.setAttribute("users", DataSource.getInstance().getList());
             }
-            request.getRequestDispatcher("/WEB-INF/views/editUser.jsp").forward(request, response);
+
+            request.getRequestDispatcher("/edit.html").forward(request, response);
         } catch (SQLException e) {
             e.printStackTrace();
         }

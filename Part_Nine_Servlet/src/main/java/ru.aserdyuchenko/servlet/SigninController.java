@@ -2,18 +2,18 @@ package ru.aserdyuchenko.servlet;
 
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
+import ru.aserdyuchenko.storage.DataSource;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.beans.PropertyVetoException;
 import java.io.IOException;
 import java.sql.SQLException;
 
 public class SigninController extends HttpServlet {
-    private static final Logger log = Logger.getLogger(ServletHome.class);
+    private static final Logger log = Logger.getLogger(ServletHome.class.getName());
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -22,8 +22,7 @@ public class SigninController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        log.setLevel(Level.INFO);
-        log.info("In doPost in SigninController.");
+
         String login = req.getParameter("login");
         String password = req.getParameter("password");
         try {
@@ -41,7 +40,7 @@ public class SigninController extends HttpServlet {
                 req.setAttribute("error", "Credentional invalid");
                 doGet(req, resp);
             }
-        } catch (SQLException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

@@ -1,4 +1,4 @@
-package ru.aserdyuchenko.servlet;
+package ru.aserdyuchenko.storage;
 
 /**
  * @author Anton Serdyuchenko. anton415@gmail.com
@@ -10,14 +10,36 @@ public class User {
     private String createDate;
     private String password;
     private String role;
+    private String country;
+    private String city;
 
-    public User(String login, String name, String email, String createDate, String password, String role) {
+    public User(String login, String name, String email, String createDate, String password, String role, String country, String city) {
+
         this.login = login;
         this.name = name;
         this.email = email;
         this.createDate = createDate;
         this.password = password;
         this.role = role;
+        this.country = country;
+        this.city = city;
+    }
+
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
     }
 
     public String getRole() {

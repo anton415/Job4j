@@ -1,4 +1,4 @@
-package ru.aserdyuchenko.servlet;
+package ru.aserdyuchenko.storage;
 
 import java.sql.*;
 import java.util.HashMap;
@@ -12,13 +12,15 @@ public class DataSource {
     private static DataSource datasource;
     private BasicDataSource ds;
     private String SQL_SELECT = "SELECT * FROM users";
-    private String SQL_CREATE_TABLE = "CREATE TABLE users (login character varying (50), name character varying (50), email character varying (50), createDate character varying (50), password CHARACTER VARYING (50), role CHARACTER VARYING (50))";
+    private String SQL_CREATE_TABLE = "CREATE TABLE users (" +
+            "login character varying (50), name character varying (50), email character varying (50), " +
+            "createDate character varying (50), password CHARACTER VARYING (50), role CHARACTER VARYING (50))";
     private String SQL_INSERT = "INSERT INTO users VALUES(?, ?, ?, ?, ?, ?)";
     private String SQL_DELETE = "DELETE FROM users WHERE login = ?";
     private String SQL_UPDATE = "UPDATE users SET name=?, email=?, createDate=?, password=?, role=? WHERE login=?";
     private String SQL_UPDATE_USER = "UPDATE users SET name=?, email=?, createDate=? WHERE login=?";
 
-    protected DataSource() throws SQLException{
+    public DataSource() throws SQLException{
         ds = new BasicDataSource();
         final Settings settings = Settings.getInstance();
         ds.setDriverClassName(settings.value("jdbc.driver_class"));
@@ -57,7 +59,16 @@ public class DataSource {
         try (final Statement statement = getConnection().createStatement()) {
             final ResultSet rs = statement.executeQuery(SQL_SELECT);
             while (rs.next()) {
-                users.add(new User(rs.getString("login"), rs.getString("name"), rs.getString("email"), rs.getString("createDate"), rs.getString("password"), rs.getString("role")));
+                users.add(new User(
+                        rs.getString("login"),
+                        rs.getString("name"),
+                        rs.getString("email"),
+                        rs.getString("createDate"),
+                        rs.getString("password"),
+                        rs.getString("role"),
+                        rs.getString("country"),
+                        rs.getString("city")
+                ));
             }
             getConnection().commit();
             rs.close();
@@ -78,7 +89,18 @@ public class DataSource {
         try (final Statement statement = getConnection().createStatement()) {
             final ResultSet rs = statement.executeQuery(SQL_SELECT);
             while (rs.next()) {
-                users.put(rs.getString("login"), new User(rs.getString("login"), rs.getString("name"), rs.getString("email"), rs.getString("createDate"), rs.getString("password"), rs.getString("role")));
+                users.put(rs.getString("login"),
+                        new User(
+                                rs.getString("login"),
+                                rs.getString("name"),
+                                rs.getString("email"),
+                                rs.getString("createDate"),
+                                rs.getString("password"),
+                                rs.getString("role"),
+                                rs.getString("country"),
+                                rs.getString("city")
+                        )
+                );
             }
             getConnection().commit();
             rs.close();

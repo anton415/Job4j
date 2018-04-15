@@ -1,14 +1,12 @@
 package ru.aserdyuchenko.servlet;
 
 import org.junit.Test;
+import ru.aserdyuchenko.storage.DataSource;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.io.IOException;
 import java.sql.SQLException;
-import java.util.List;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;

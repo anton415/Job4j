@@ -3,6 +3,7 @@ package ru.aserdyuchenko.servlet;
 import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
+import ru.aserdyuchenko.storage.DataSource;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -19,7 +20,13 @@ public class ServletHome extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("/menu.html").forward(request, response);
+        System.out.println("Before menu.html");
+        try{
+            request.getRequestDispatcher("/menu.html").forward(request, response);
+        } catch (Exception e) {
+            System.out.println("Exception: " + e);
+        }
+
     }
 
     @Override
