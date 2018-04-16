@@ -43,9 +43,16 @@ public class ServletEditUser extends HttpServlet {
             synchronized (session) {
                 Class.forName("org.postgresql.Driver");
                 DataSource storage = DataSource.getInstance();
-                if (session.getAttribute("role").toString().equals("admin")) {
+                // TODO Add null check.
+                System.out.println("get parameter: " + request.getParameter("role"));
+//                if (session.getAttribute("role").toString().equals("admin")) {
+//                    storage.update(request.getParameter("name"), request.getParameter("email"), request.getParameter("createDate"), request.getParameter("login"), request.getParameter("password"), request.getParameter("role"));
+//                } else if(session.getAttribute("role").toString().equals("user")) {
+//                    storage.update(request.getParameter("name"), request.getParameter("email"), request.getParameter("createDate"), session.getAttribute("login").toString(), request.getParameter("password"), request.getParameter("role"));
+//                }
+                if (request.getParameter("role").toString().equals("admin")) {
                     storage.update(request.getParameter("name"), request.getParameter("email"), request.getParameter("createDate"), request.getParameter("login"), request.getParameter("password"), request.getParameter("role"));
-                } else if(session.getAttribute("role").toString().equals("user")) {
+                } else if(request.getParameter("role").toString().equals("user")) {
                     storage.update(request.getParameter("name"), request.getParameter("email"), request.getParameter("createDate"), session.getAttribute("login").toString(), request.getParameter("password"), request.getParameter("role"));
                 }
                 response.sendRedirect(String.format("%s/editUser", request.getContextPath()));
