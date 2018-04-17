@@ -115,12 +115,26 @@
 
             <div class="form-group">
                 <label for="country">Country:</label>
-                <input type="text" class="form-control" id="country" name='country'>
+                <input list="countries" class="form-control" id="country" name='country'>
+                <datalist id="countries">
+                    <option value="USA">
+                    <option value="Switzerland">
+                    <option value="Canada">
+                    <option value="Germany">
+                    <option value="United Kingdom">
+                </datalist>
             </div>
 
             <div class="form-group">
                 <label for="city">City:</label>
-                <input type="text" class="form-control" id="city" name='city'>
+                <input list="cities" class="form-control" id="city" name='city'>
+                <datalist id="cities">
+                    <option value="New York">
+                    <option value="Los Angeles">
+                    <option value="California">
+                    <option value="Geneva">
+                    <option value="London">
+                </datalist>
             </div>
 
             <input type="submit" value="Редактировать">
