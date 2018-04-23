@@ -1,7 +1,6 @@
 package ru.aserdyuchenko.servlet;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.log4j.Logger;
+import org.apache.log4j.Level;
 import ru.aserdyuchenko.storage.DataSource;
 
 import javax.servlet.ServletException;
@@ -17,11 +16,17 @@ import java.sql.SQLException;
  * @since 05.11.2017 18:30
  */
 public class ServletEditUser extends HttpServlet {
-    private static final Logger log = LoggerFactory.getLogger(ServletEditUser.class);
+    Logger logger = Logger.getLogger(ServletEditUser.class);
+
+    public void init() {
+        org.apache.log4j.BasicConfigurator.configure();
+        Logger.getRootLogger().setLevel(Level.INFO);
+    }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
+            logger.info("Hello this is an info message, from doGet method in ServletEditUser.java");
             HttpSession session = request.getSession();
             synchronized (session) {
                 request.setAttribute("role", DataSource.getInstance().getMap().get(session.getAttribute("login")).getRole());
@@ -43,7 +48,6 @@ public class ServletEditUser extends HttpServlet {
             synchronized (session) {
                 Class.forName("org.postgresql.Driver");
                 DataSource storage = DataSource.getInstance();
-                // TODO Add null check.
                 System.out.println("get parameter: " + request.getParameter("role"));
 //                if (session.getAttribute("role").toString().equals("admin")) {
 //                    storage.update(request.getParameter("name"), request.getParameter("email"), request.getParameter("createDate"), request.getParameter("login"), request.getParameter("password"), request.getParameter("role"));
