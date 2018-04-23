@@ -41,16 +41,17 @@
             $.ajax('./json', {
                 method: 'get',
                 complete: function (data) {
-                    var result = "<tr>\n" +
-                        "<td>Login</td>\n" +
-                        "<td>Name</td>\n" +
-                        "<td>Email</td>\n" +
-                        "<td>Create date</td>\n" +
-                        "<td>Password</td>\n" +
-                        "<td>Role</td>\n" +
-                        "<td>Country</td>\n" +
-                        "<td>City</td>\n" +
-                        "</tr>";
+                    // var result = "<tr>\n" +
+                    //     "<td>Login</td>\n" +
+                    //     "<td>Name</td>\n" +
+                    //     "<td>Email</td>\n" +
+                    //     "<td>Create date</td>\n" +
+                    //     "<td>Password</td>\n" +
+                    //     "<td>Role</td>\n" +
+                    //     "<td>Country</td>\n" +
+                    //     "<td>City</td>\n" +
+                    //     "</tr>";
+                    var result;
                     var users = JSON.parse(data.responseText);
                     for(var i = 0; i !== users.length; i++) {
                         result += "<tr>\n" +
@@ -65,7 +66,7 @@
                             "</tr>";
                     }
                     var table = document.getElementById("table-with-users");
-                    table.innerHTML = result;
+                    table.innerHTML += result;
                 }
             });
 
@@ -141,13 +142,24 @@
                 <select class="form-control" id="city" name='city'></select>
             </div>
 
-
             <input type="submit" value="Редактировать">
         </form>
     </div>
 
+    <br>
+
     <!-- Table with users -->
     <table id="table-with-users">
+        <tr>
+            <th>Login</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Create date</th>
+            <th>Password</th>
+            <th>Role</th>
+            <th>Country</th>
+            <th>City</th>
+        </tr>
     </table>
     <div id="showData"></div>
 </body>
