@@ -1,4 +1,4 @@
-package aserdyuchenko;
+package com.aserdyuchenko;
 
 /**
  * 5.2. Создание программы поворота квадратного массива.

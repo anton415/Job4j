@@ -1,4 +1,4 @@
-package aserdyuchenko;
+package com.aserdyuchenko;
 
 /**
  * 5.1. Создать программу для сортировки массива методов перестановки.

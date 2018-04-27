@@ -1,4 +1,4 @@
-package aserdyuchenko;
+package com.aserdyuchenko;
 
 /**
  * 3.2. Класс определяет максимальную длинну стороны треугольника.

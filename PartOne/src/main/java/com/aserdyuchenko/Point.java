@@ -1,4 +1,4 @@
-package aserdyuchenko;
+package com.aserdyuchenko;
 
 /**
  * Класс Point вычисляет расстояние между двумя точками в системе координат.

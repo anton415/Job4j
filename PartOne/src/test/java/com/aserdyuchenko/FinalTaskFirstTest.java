@@ -1,5 +1,6 @@
-package aserdyuchenko;
+package com.aserdyuchenko;
 
+import com.aserdyuchenko.FinalTaskFirst;
 import org.junit.Test;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;

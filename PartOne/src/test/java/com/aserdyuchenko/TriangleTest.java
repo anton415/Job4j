@@ -1,5 +1,7 @@
-package aserdyuchenko;
+package com.aserdyuchenko;
 
+import com.aserdyuchenko.Point;
+import com.aserdyuchenko.Triangle;
 import org.junit.Test;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;

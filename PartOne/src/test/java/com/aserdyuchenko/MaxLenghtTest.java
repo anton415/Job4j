@@ -1,5 +1,7 @@
-package aserdyuchenko;
+package com.aserdyuchenko;
 
+import com.aserdyuchenko.MaxLenght;
+import com.aserdyuchenko.Point;
 import org.junit.Test;
 
 import static org.hamcrest.core.Is.is;

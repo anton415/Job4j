@@ -1,4 +1,4 @@
-package aserdyuchenko;
+package com.aserdyuchenko;
 
 /**
  * Класс Triangle рассчитывает площадь треугольника.

@@ -1,5 +1,6 @@
-package aserdyuchenko;
+package com.aserdyuchenko.Simple_calculator;
 /**
+ * Description of the task in package_info.java
  * @author Anton Serdyuchenko (anton415@gmail.com)
  * @version $Id$
  * @since 12.09.2016

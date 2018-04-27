@@ -1,4 +1,4 @@
-package aserdyuchenko;
+package com.aserdyuchenko;
 /**
  * 3.1. Создать программу вычисления площади треугольника.
  * Создать класс Point c двумя полями x, y.

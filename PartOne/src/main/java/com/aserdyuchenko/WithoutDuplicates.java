@@ -1,4 +1,4 @@
-package aserdyuchenko;
+package com.aserdyuchenko;
 
 /**
  * 5.3. Создание программу удаления дубликатов в массиве.
