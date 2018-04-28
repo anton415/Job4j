@@ -1,3 +1,8 @@
+/**
+ * Item test.
+ * @author Anton Serdyuchenko.
+ * @since 28.04.2018
+ */
 package ru.aserdyuchenko.todo_list.object;
 
 import org.junit.Test;
@@ -6,6 +11,9 @@ import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
 
+/**
+ * Item test class.
+ */
 public class ItemTest {
 
     /**
