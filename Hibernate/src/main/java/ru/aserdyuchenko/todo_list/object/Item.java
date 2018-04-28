@@ -34,37 +34,6 @@ public class Item {
         this.done = false;
     }
 
-    @Override
-    public String toString() {
-        return "Item{"
-                +
-                "id=" + id
-                +
-                ", description='" + description + '\''
-                +
-                ", created=" + created
-                +
-                ", done=" + done
-                +
-                '}';
-    }
-
-    /**
-     * Get item`s id.
-     * @return item`s id.
-     */
-    public int getId() {
-        return id;
-    }
-
-    /**
-     * Set item`s id.
-     * @param id - item`s id.
-     */
-    public void setId(int id) {
-        this.id = id;
-    }
-
     /**
      * Get item`s description.
      * @return item`s description.
@@ -90,14 +59,6 @@ public class Item {
     }
 
     /**
-     * Set create date.
-     * @param created - created date.
-     */
-    public void setCreated(Date created) {
-        this.created = created;
-    }
-
-    /**
      * Check if item done.
      * @return true if done.
      */
@@ -107,9 +68,8 @@ public class Item {
 
     /**
      * Set done value.
-     * @param done - true if item done.
      */
-    public void setDone(boolean done) {
-        this.done = done;
+    public void setDone() {
+        this.done = true;
     }
 }
