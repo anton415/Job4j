@@ -53,4 +53,19 @@ public class ItemTest {
         boolean resultDone = item.isDone();
         assertTrue(resultDone);
     }
+
+    /**
+     * When change description.
+     */
+    @Test
+    public void whenChangeDescription() {
+        String oldDescription = "Old description.";
+        String newDescription = "New description.";
+        Item item = new Item(oldDescription);
+
+        item.setDescription(newDescription);
+        String resultDescription = item.getDescription();
+
+        assertThat(resultDescription, is(newDescription));
+    }
 }

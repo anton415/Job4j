@@ -15,9 +15,9 @@
     <modules>
         <module>PartOne</module>
         <module>PartTwoTracker</module>
-		<module>PartTwoFinalTest</module>
-		<module>PartTwoControlQuestions</module>
-		<module>PartThreeInputOutput</module>
+        <module>PartTwoFinalTest</module>
+        <module>PartTwoControlQuestions</module>
+        <module>PartThreeInputOutput</module>
         <module>Part_Eight_SQL_JDBC</module>
         <module>Part_Nine_Servlet</module>
         <module>Hibernate</module>
@@ -46,17 +46,17 @@
             <version>4.12</version>
             <scope>test</scope>
         </dependency>
-  		<dependency>
-  		    <groupId>org.mockito</groupId>
-   		  	<artifactId>mockito-all</artifactId>
-      		<version>1.9.5</version>
-      		<scope>test</scope>
-    	</dependency>
-  		<dependency>
-  		    <groupId>com.google.guava</groupId>
-   		  	<artifactId>guava</artifactId>
-      		<version>19.0</version>
-    	</dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-all</artifactId>
+            <version>1.9.5</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>19.0</version>
+        </dependency>
     </dependencies>
 
     <build>
