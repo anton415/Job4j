@@ -1,7 +1,6 @@
 package ru.aserdyuchenko.start;
 
-import ru.aserdyuchenko.models.*;
-import ru.aserdyuchenko.start.Chess;
+import ru.aserdyuchenko.todo_list.models.*;
 
 public class MenuFigure {
 	private Chess chess;

@@ -1,4 +1,4 @@
-package ru.aserdyuchenko.todo_list.object;
+package ru.aserdyuchenko.todo_list.models;
 
 import java.util.Date;
 
@@ -24,6 +24,12 @@ public class Item {
      */
     private boolean done;
 
+    public Item() {
+        this.description = "";
+        this.created = new Date();
+        this.done = false;
+    }
+
     /**
      * Constructor.
      * @param description - task`s description.
@@ -34,42 +40,35 @@ public class Item {
         this.done = false;
     }
 
-    /**
-     * Get item`s description.
-     * @return item`s description.
-     */
-    public String getDescription() {
-        return description;
+    public int getId() {
+        return id;
     }
 
-    /**
-     * Set description for item.
-     * @param description - item`s description.
-     */
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getDescription() {
+        return this.description;
+    }
+
     public void setDescription(String description) {
         this.description = description;
     }
 
-    /**
-     * Get date, when item was created.
-     * @return date when item was created.
-     */
     public Date getCreated() {
         return created;
     }
 
-    /**
-     * Check if item done.
-     * @return true if done.
-     */
+    public void setCreated(Date created) {
+        this.created = created;
+    }
+
     public boolean isDone() {
         return done;
     }
 
-    /**
-     * Set done value.
-     */
-    public void setDone() {
-        this.done = true;
+    public void setDone(boolean done) {
+        this.done = done;
     }
 }

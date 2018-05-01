@@ -1,8 +1,6 @@
 package ru.aserdyuchenko.start;
 
-import ru.aserdyuchenko.models.*;
-import ru.aserdyuchenko.start.Input;
-import ru.aserdyuchenko.start.Tracker;
+import ru.aserdyuchenko.todo_list.models.*;
 
 class StubEditItem implements UserAction {
 

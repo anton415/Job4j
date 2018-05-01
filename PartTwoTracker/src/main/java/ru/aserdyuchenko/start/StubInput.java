@@ -1,8 +1,7 @@
 package ru.aserdyuchenko.start;
 
-import java.util.*;
-import ru.aserdyuchenko.models.Task;
-import ru.aserdyuchenko.models.Item;
+import ru.aserdyuchenko.todo_list.models.Task;
+import ru.aserdyuchenko.todo_list.models.Item;
 
 /**
  *This class fo testing, without console imput.

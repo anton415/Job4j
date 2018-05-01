@@ -6,6 +6,7 @@
 package ru.aserdyuchenko.todo_list.object;
 
 import org.junit.Test;
+import ru.aserdyuchenko.todo_list.models.Item;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertFalse;
@@ -41,17 +42,6 @@ public class ItemTest {
 
         assertThat(resultDescription, is(testDescription));
         assertFalse(resultDone);
-    }
-
-    /**
-     * When make item done, then isDone() return true.
-     */
-    @Test
-    public void whenSetItemDoneTHenIsDoneReturnTrue() {
-        Item item = new Item("");
-        item.setDone();
-        boolean resultDone = item.isDone();
-        assertTrue(resultDone);
     }
 
     /**

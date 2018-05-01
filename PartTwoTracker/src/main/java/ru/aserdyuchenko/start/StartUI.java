@@ -1,6 +1,5 @@
 package ru.aserdyuchenko.start;
 
-import ru.aserdyuchenko.models.*;
 /**
  * Программа tracker. Служит для учета заявок.
  * Приложение осуществляет следующие действия:

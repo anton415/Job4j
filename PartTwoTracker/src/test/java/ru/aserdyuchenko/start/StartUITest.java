@@ -3,10 +3,7 @@ package ru.aserdyuchenko.start;
 import org.junit.Test;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
-import ru.aserdyuchenko.models.Task;
-import ru.aserdyuchenko.models.Item;
-import ru.aserdyuchenko.start.Input;
-import ru.aserdyuchenko.start.StubInput;
+
 import org.hamcrest.core.IsNull;
 
 public class StartUITest {

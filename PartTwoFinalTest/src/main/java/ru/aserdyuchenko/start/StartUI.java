@@ -1,7 +1,5 @@
 package ru.aserdyuchenko.start;
 
-import ru.aserdyuchenko.models.*;
-
 /**
  * @author Anton Serdyuchenko
  * @since 04.11.2016

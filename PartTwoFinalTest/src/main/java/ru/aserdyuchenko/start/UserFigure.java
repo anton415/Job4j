@@ -1,7 +1,6 @@
 package ru.aserdyuchenko.start;
 
-import ru.aserdyuchenko.start.Chess;
-import ru.aserdyuchenko.models.Figure;
+import ru.aserdyuchenko.todo_list.models.Figure;
 
 public interface UserFigure {
 	abstract int key();

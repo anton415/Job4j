@@ -3,7 +3,7 @@ package ru.aserdyuchenko.start;
 import org.junit.Test;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
-import ru.aserdyuchenko.models.*;
+import ru.aserdyuchenko.todo_list.models.*;
 import org.apache.commons.io.output.ByteArrayOutputStream;
 import java.io.PrintStream;
 

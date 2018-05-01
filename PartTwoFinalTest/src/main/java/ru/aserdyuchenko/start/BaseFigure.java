@@ -1,6 +1,6 @@
 package ru.aserdyuchenko.start;
 
-import ru.aserdyuchenko.models.Figure;
+import ru.aserdyuchenko.todo_list.models.Figure;
 
 /**
  * This class for creat base figure. This for class menuFigure, where we creat all figures.

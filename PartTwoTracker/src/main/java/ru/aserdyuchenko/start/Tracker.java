@@ -1,6 +1,6 @@
 package ru.aserdyuchenko.start;
 
-import ru.aserdyuchenko.models.*;
+import ru.aserdyuchenko.todo_list.models.*;
 import java.util.*;
 
 /**

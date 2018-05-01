@@ -1,7 +1,6 @@
 package ru.aserdyuchenko.start;
 
-import ru.aserdyuchenko.models.*;
-import java.util.*;
+import ru.aserdyuchenko.todo_list.models.*;
 
 public class Chess {
 	Figure figure = new Figure();
