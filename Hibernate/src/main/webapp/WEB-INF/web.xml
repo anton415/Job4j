@@ -1,0 +1,11 @@
+<web-app>
+    <!--    Index page.    -->
+    <servlet>
+        <servlet-name>ItemServlet</servlet-name>
+        <servlet-class>ru.aserdyuchenko.servlet.ItemServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ItemServlet</servlet-name>
+        <url-pattern>/item</url-pattern>
+    </servlet-mapping>
+</web-app>

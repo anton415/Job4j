@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Hibernate" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/PartOne" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/PartThreeInputOutput" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/PartTwoControlQuestions" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/PartTwoFinalTest" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/PartTwoTracker" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Part_Eight_SQL_JDBC" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Part_Nine_Servlet" charset="UTF-8" />
+  </component>
+</project>

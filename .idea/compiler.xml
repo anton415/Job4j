@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="Hibernate" />
+        <module name="Part_Eight_SQL_JDBC" />
+        <module name="Part_Nine_Servlet" />
+        <module name="PartOne" />
+        <module name="PartThreeInputOutput" />
+        <module name="PartTwoControlQuestions" />
+        <module name="PartTwoFinalTest" />
+        <module name="PartTwoTracker" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="Hibernate" target="1.8" />
+      <module name="Job4j" target="1.8" />
+      <module name="Part_Eight_SQL_JDBC" target="1.8" />
+      <module name="Part_Nine_Servlet" target="1.8" />
+      <module name="PartOne" target="1.8" />
+      <module name="PartThreeInputOutput" target="1.8" />
+      <module name="PartTwoControlQuestions" target="1.8" />
+      <module name="PartTwoFinalTest" target="1.8" />
+      <module name="PartTwoTracker" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
