@@ -38,7 +38,15 @@
     </script>
 </head>
 <body>
-    <div id="title">Todo list.</div>
+    <div class="w3-red w3-container w3-center" id="title">Todo list</div>
+
+    <form class="w3-container w3-card w3-yellow w3-center" action="/item">
+        <h2>Add new item</h2>
+        <textarea class="w3-input" placeholder="Description"></textarea><br>
+        <button class="w3-button w3-black">Add</button>
+    </form>
+
+    <br>
 
     <!-- Table with items -->
     <table class="w3-table" id="table-with-items">
