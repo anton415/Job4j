@@ -1,5 +1,6 @@
 package ru.aserdyuchenko.todo_list.storage;
 
+import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -10,33 +11,42 @@ import java.util.List;
 
 
 public class DataSource {
-
-    private SessionFactory factory;
-    private Session session;
+    private static final Logger logger = Logger.getLogger(DataSource.class);
+//    private SessionFactory factory;
+//    private Session session;
 
     public DataSource() {
-        this.factory = new Configuration()
-                .configure()
-                .buildSessionFactory();
-        session = factory.openSession();
-        session.beginTransaction();
+//        this.factory = new Configuration()
+//                .configure()
+//                .buildSessionFactory();
+//        session = factory.openSession();
+//        session.beginTransaction();
     }
+
+//    public static
 
     /**
      * Save item.
      * @return true, if save successfully.
      */
     public boolean save(Item item) {
+        SessionFactory factory = new Configuration()
+                .configure()
+                .buildSessionFactory();
+        Session session = factory.openSession();
+        session.beginTransaction();
         try{
+
             session.saveOrUpdate(item);
             session.getTransaction().commit();
+            logger.info("Saving successfully.");
         } catch (Exception e) {
             e.printStackTrace();
             return false;
         }
         finally {
-//            session.close();
-//            factory.close();
+            session.close();
+            factory.close();
         }
         return true;
     }
@@ -47,7 +57,13 @@ public class DataSource {
      * @return true if item delete.
      */
     public boolean delete(Item item) {
+        SessionFactory factory = new Configuration()
+                .configure()
+                .buildSessionFactory();
+        Session session = factory.openSession();
+        session.beginTransaction();
         try{
+
             session.delete(item);
             session.getTransaction().commit();
         } catch (Exception e) {
@@ -55,8 +71,8 @@ public class DataSource {
             return false;
         }
         finally {
-//            session.close();
-//            factory.close();
+            session.close();
+            factory.close();
         }
         return true;
     }
@@ -66,6 +82,11 @@ public class DataSource {
      * @return list with all items.
      */
     public List<Item> getAllItems() {
+        SessionFactory factory = new Configuration()
+                .configure()
+                .buildSessionFactory();
+        Session session = factory.openSession();
+        session.beginTransaction();
         List<Item> list = new ArrayList<Item>();
         try{
             list = session.createQuery("from Item").list();
@@ -74,8 +95,8 @@ public class DataSource {
             e.printStackTrace();
         }
         finally {
-//            session.close();
-//            factory.close();
+            session.close();
+            factory.close();
         }
         return list;
     }

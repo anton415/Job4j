@@ -2,10 +2,20 @@
     <!--    Index page.    -->
     <servlet>
         <servlet-name>ItemServlet</servlet-name>
-        <servlet-class>ru.aserdyuchenko.servlet.ItemServlet</servlet-class>
+        <servlet-class>ru.aserdyuchenko.todo_list.servlet.ItemServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ItemServlet</servlet-name>
         <url-pattern>/item</url-pattern>
+    </servlet-mapping>
+
+    <!--    JSON.    -->
+    <servlet>
+        <servlet-name>JsonController</servlet-name>
+        <servlet-class>ru.aserdyuchenko.todo_list.servlet.JsonController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>JsonController</servlet-name>
+        <url-pattern>/json</url-pattern>
     </servlet-mapping>
 </web-app>

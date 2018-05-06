@@ -12,15 +12,15 @@ public class DataSourceTest {
     @Test
     public void whenSaveItem() {
         DataSource source = new DataSource();
-        Item item = new Item("test item");
+        Item item = new Item("test item 2");
         assertTrue(source.save(item));
     }
 
     @Test
     public void whenAddTestItemAndCheckThatListWithItemsNotEmpty() {
         DataSource source = new DataSource();
-//        Item item = new Item("test item");
-//        source.save(item);
+        Item item = new Item("test item");
+        source.save(item);
         List<Item> list = source.getAllItems();
         assertFalse(list.isEmpty());
     }
