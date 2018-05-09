@@ -40,10 +40,11 @@
 <body>
     <div class="w3-red w3-container w3-center" id="title">Todo list</div>
 
-    <form class="w3-container w3-card w3-yellow w3-center" action="/item">
+    <form class="w3-container w3-card w3-yellow w3-center"  action='item' method="post">
         <h2>Add new item</h2>
-        <textarea class="w3-input" placeholder="Description"></textarea><br>
-        <button class="w3-button w3-black">Add</button>
+        <input placeholder="Description" required="" id="description" name="description" type="text" class="w3-input">
+        <br>
+        <input class="w3-button w3-black" type="submit">
     </form>
 
     <br>

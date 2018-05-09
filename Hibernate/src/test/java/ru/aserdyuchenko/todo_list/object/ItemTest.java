@@ -9,9 +9,7 @@ import org.junit.Test;
 import ru.aserdyuchenko.todo_list.models.Item;
 
 import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 /**
  * Item test class.

@@ -100,4 +100,30 @@ public class DataSource {
         }
         return list;
     }
+
+    public Item getItemById(int id) {
+        Item item = new Item();
+        SessionFactory factory = new Configuration()
+                .configure()
+                .buildSessionFactory();
+        Session session = factory.openSession();
+        session.beginTransaction();
+        List<Item> list;
+        try{
+            list = session.createQuery("from Item i where i.id =" + id).list();
+            if (!list.isEmpty()) {
+
+                item = list.get(0);
+                logger.info("item: " + item.toString());
+            }
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        finally {
+            session.close();
+            factory.close();
+        }
+        return item;
+    }
 }
