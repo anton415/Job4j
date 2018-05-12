@@ -34,6 +34,12 @@ public class DataSourceTest {
         assertFalse(list.isEmpty());
     }
 
+    @Test
+    public void when() {
+
+        System.out.println(source.getOnlyNotDoneItems());
+    }
+
 //    @Test
 //    public void whenCreateItemWithDefaultDoneFalseThenSetItemDoneTrue() {
 //        Item newItem = new Item("Test");

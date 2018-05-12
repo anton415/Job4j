@@ -22,6 +22,9 @@ public class JsonController extends HttpServlet{
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         logger.info("Log from JSON controller.");
         resp.setContentType("text/json");
+        String[] checkbox = req.getParameterValues("checkAllItem");
+        logger.info("Checkbox: " + checkbox);
+
         PrintWriter writer = new PrintWriter(resp.getOutputStream());
 
         try {

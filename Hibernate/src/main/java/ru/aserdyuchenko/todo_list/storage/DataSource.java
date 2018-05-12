@@ -101,6 +101,26 @@ public class DataSource {
         return list;
     }
 
+    public List<Item> getOnlyNotDoneItems() {
+        SessionFactory factory = new Configuration()
+                .configure()
+                .buildSessionFactory();
+        Session session = factory.openSession();
+        session.beginTransaction();
+        List<Item> list = new ArrayList<Item>();
+        try{
+            list = session.createQuery("from Item i where i.done = false").list();
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        finally {
+            session.close();
+            factory.close();
+        }
+        return list;
+    }
+
     public Item getItemById(int id) {
         Item item = new Item();
         SessionFactory factory = new Configuration()

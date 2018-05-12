@@ -8,20 +8,19 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.sql.SQLException;
 
-public class ItemServlet extends HttpServlet {
+public class CompleteItemServlet extends HttpServlet {
     private static final Logger logger = Logger.getLogger(ItemServlet.class);
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        logger.info("Start doPost method in item servlet.");
-        String description = req.getParameter("description").toString();
-        Item item = new Item(description);
-        DataSource source = new DataSource();
-        source.save(item);
+        logger.info("Start doPost method in complete item servlet.");
+        String[] checkbox = req.getParameterValues("checkbox");
+        logger.info("Checkbox: " + checkbox);
+//        Item item = new Item(checkbox);
+//        DataSource source = new DataSource();
+//        source.save(item);
         req.getRequestDispatcher("/index.html").forward(req, resp);
     }
 }
