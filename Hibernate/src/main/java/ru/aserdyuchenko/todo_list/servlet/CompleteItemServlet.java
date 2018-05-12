@@ -18,9 +18,11 @@ public class CompleteItemServlet extends HttpServlet {
         logger.info("Start doPost method in complete item servlet.");
         String[] checkbox = req.getParameterValues("checkbox");
         logger.info("Checkbox: " + checkbox);
+
 //        Item item = new Item(checkbox);
 //        DataSource source = new DataSource();
 //        source.save(item);
+
         req.getRequestDispatcher("/index.html").forward(req, resp);
     }
 }
