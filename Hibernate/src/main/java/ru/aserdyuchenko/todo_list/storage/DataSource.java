@@ -3,27 +3,31 @@ package ru.aserdyuchenko.todo_list.storage;
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 import ru.aserdyuchenko.todo_list.models.Item;
-
+import java.util.function.Function;
 import java.util.ArrayList;
 import java.util.List;
 
 
 public class DataSource {
     private static final Logger logger = Logger.getLogger(DataSource.class);
-//    private SessionFactory factory;
-//    private Session session;
+    private SessionFactory factory;
 
-    public DataSource() {
-//        this.factory = new Configuration()
-//                .configure()
-//                .buildSessionFactory();
-//        session = factory.openSession();
-//        session.beginTransaction();
+    private <T> T tx(final Function<Session, T> command) {
+        final Session session = factory.openSession();
+        final Transaction tx = session.beginTransaction();
+        try {
+            return command.apply(session);
+        } catch (final Exception e) {
+            session.getTransaction().rollback();
+            throw e;
+        } finally {
+            tx.commit();
+            session.close();
+        }
     }
-
-//    public static
 
     /**
      * Save item.
@@ -82,67 +86,33 @@ public class DataSource {
      * @return list with all items.
      */
     public List<Item> getAllItems() {
-        SessionFactory factory = new Configuration()
-                .configure()
-                .buildSessionFactory();
-        Session session = factory.openSession();
-        session.beginTransaction();
-        List<Item> list = new ArrayList<Item>();
-        try{
-            list = session.createQuery("from Item").list();
-            session.getTransaction().commit();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        finally {
-            session.close();
-            factory.close();
-        }
-        return list;
+        return this.tx(
+                session -> session.createQuery("from Item").list()
+        );
     }
 
+    /**
+     * @return list with only not done items.
+     */
     public List<Item> getOnlyNotDoneItems() {
-        SessionFactory factory = new Configuration()
-                .configure()
-                .buildSessionFactory();
-        Session session = factory.openSession();
-        session.beginTransaction();
-        List<Item> list = new ArrayList<Item>();
-        try{
-            list = session.createQuery("from Item i where i.done = false").list();
-            session.getTransaction().commit();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        finally {
-            session.close();
-            factory.close();
-        }
-        return list;
+        return this.tx(
+                session -> session.createQuery("from Item i where i.done = false").list()
+        );
     }
 
+    /**
+     * @param id - item's id.
+     * @return item.
+     */
     public Item getItemById(int id) {
         Item item = new Item();
-        SessionFactory factory = new Configuration()
-                .configure()
-                .buildSessionFactory();
-        Session session = factory.openSession();
-        session.beginTransaction();
         List<Item> list;
-        try{
-            list = session.createQuery("from Item i where i.id =" + id).list();
-            if (!list.isEmpty()) {
-
-                item = list.get(0);
-                logger.info("item: " + item.toString());
-            }
-            session.getTransaction().commit();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        finally {
-            session.close();
-            factory.close();
+        list = this.tx(
+                session -> session.createQuery("from Item i where i.done = false").list()
+        );
+        if (!list.isEmpty()) {
+            item = list.get(0);
+            logger.info("item: " + item.toString());
         }
         return item;
     }
