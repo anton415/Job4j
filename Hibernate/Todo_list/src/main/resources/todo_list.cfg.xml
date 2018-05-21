@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<hibernate-configuration>
+    <session-factory>
+        <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
+        <property name="hibernate.connection.username">postgres</property>
+        <property name="hibernate.connection.password">password</property>
+        <property name="hibernate.connection.url">jdbc:postgresql://localhost:5433/postgres</property>
+        <property name="dialect">org.hibernate.dialect.PostgreSQLDialect</property> <!-- DB Dialect -->
+
+        <mapping resource="ru/aserdyuchenko/models/Item.hbm.xml"/>
+
+    </session-factory>
+</hibernate-configuration>

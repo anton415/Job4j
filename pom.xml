@@ -20,7 +20,8 @@
         <module>PartThreeInputOutput</module>
         <module>Part_Eight_SQL_JDBC</module>
         <module>Part_Nine_Servlet</module>
-        <module>Hibernate</module>
+        <module>Hibernate/car_sale</module>
+        <module>Hibernate/todo_list</module>
     </modules>
 
     <dependencies>
