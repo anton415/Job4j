@@ -35,9 +35,13 @@ public class DataSource {
      * @return true, if save successfully.
      */
     public boolean save(Item item) {
+//        SessionFactory factory = new Configuration()
+//                .configure()
+//                .buildSessionFactory();
+
         SessionFactory factory = new Configuration()
-                .configure()
-                .buildSessionFactory();
+                .configure("./todo_list.cfg.xml").buildSessionFactory();
+
         Session session = factory.openSession();
         session.beginTransaction();
         try{

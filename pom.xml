@@ -13,15 +13,15 @@
     </properties>
 
     <modules>
-        <module>PartOne</module>
-        <module>PartTwoTracker</module>
-        <module>PartTwoFinalTest</module>
-        <module>PartTwoControlQuestions</module>
-        <module>PartThreeInputOutput</module>
-        <module>Part_Eight_SQL_JDBC</module>
-        <module>Part_Nine_Servlet</module>
-        <module>Hibernate/car_sale</module>
-        <module>Hibernate/todo_list</module>
+        <module>Intern/PartOne</module>
+        <module>Intern/PartTwoTracker</module>
+        <module>Intern/PartTwoFinalTest</module>
+        <module>Intern/PartTwoControlQuestions</module>
+        <module>Pre-middle/PartThreeInputOutput</module>
+        <module>Junior/Part_Eight_SQL_JDBC</module>
+        <module>Junior/Part_Nine_Servlet</module>
+        <module>Pre-middle/Hibernate/car_sale</module>
+        <module>todo_list</module>
     </modules>
 
     <dependencies>
