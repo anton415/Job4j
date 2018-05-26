@@ -3,7 +3,7 @@
     <groupId>ru.aserdyuchenko</groupId>
     <artifactId>Job4j</artifactId>
     <packaging>pom</packaging>
-    <version>2.0</version>
+    <version>1.0</version>
     <name>Job4j</name>
 
     <developers>
@@ -24,10 +24,7 @@
     </properties>
 
     <modules>
-        <module>Intern/PartOne</module>
-        <module>Intern/PartTwoTracker</module>
-        <module>Intern/PartTwoFinalTest</module>
-        <module>Intern/PartTwoControlQuestions</module>
+        <module>Intern</module>
         <module>Pre-middle/PartThreeInputOutput</module>
         <module>Junior/Part_Eight_SQL_JDBC</module>
         <module>Junior/Part_Nine_Servlet</module>

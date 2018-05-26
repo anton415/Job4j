@@ -12,3 +12,8 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+/Intern/PartOne/PartOne.iml
+/Job4j.iml
+/Intern/Part_1_Syntax/Part_1_Syntax.iml
+/Intern/PartTwoTracker/tracker.iml
+/Intern/PartTwoTracker/PartTwoTracker.iml
