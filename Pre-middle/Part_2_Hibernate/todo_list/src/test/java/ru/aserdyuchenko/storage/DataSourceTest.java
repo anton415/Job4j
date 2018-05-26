@@ -1,5 +1,6 @@
 package ru.aserdyuchenko.storage;
 
+import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.Test;
 import ru.aserdyuchenko.models.Item;
@@ -14,11 +15,16 @@ public class DataSourceTest {
     /**
      * Data source.
      */
-    private DataSource source;
+    private static DataSource source;
 
     @Before
-    public void init() {
-        source = new DataSource();
+    public void before() {
+        source = DataSource.getInstance();
+    }
+
+    @AfterClass
+    public static void after() {
+        source.closeFactory();
     }
 
     @Test

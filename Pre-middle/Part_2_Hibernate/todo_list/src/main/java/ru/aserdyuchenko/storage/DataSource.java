@@ -13,10 +13,31 @@ import java.util.function.Function;
 
 public class DataSource {
     private static final Logger logger = Logger.getLogger(DataSource.class);
-    private static SessionFactory factory;
+    private SessionFactory factory;
+    private static DataSource instance;
+
+    private DataSource() {
+        factory = new Configuration()
+                .configure("./todo_list.cfg.xml")
+                .buildSessionFactory();
+        logger.info("Data source was created");
+    }
+
+    public static DataSource getInstance() {
+        if(instance == null) {
+            instance = new DataSource();
+        }
+        return instance;
+    }
+
+    public void closeFactory() {
+        if(factory != null) {
+            factory.close();
+            logger.info("Factory close.");
+        }
+    }
 
     private <T> T tx(final Function<Session, T> command) {
-//        factory = new Configuration().buildSessionFactory();
         final Session session = factory.openSession();
         final Transaction tx = session.beginTransaction();
         try {
@@ -35,29 +56,15 @@ public class DataSource {
      * @return true, if save successfully.
      */
     public boolean save(Item item) {
-//        SessionFactory factory = new Configuration()
-//                .configure()
-//                .buildSessionFactory();
-
-        SessionFactory factory = new Configuration()
-                .configure("./todo_list.cfg.xml").buildSessionFactory();
-
-        Session session = factory.openSession();
-        session.beginTransaction();
-        try{
-
-            session.saveOrUpdate(item);
-            session.getTransaction().commit();
-            logger.info("Saving successfully.");
+        try {
+            this.tx(
+                    session -> session.save(item)
+            );
+            return true;
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error(e);
             return false;
         }
-        finally {
-            session.close();
-            factory.close();
-        }
-        return true;
     }
 
     /**
@@ -66,24 +73,18 @@ public class DataSource {
      * @return true if item delete.
      */
     public boolean delete(Item item) {
-        SessionFactory factory = new Configuration()
-                .configure()
-                .buildSessionFactory();
-        Session session = factory.openSession();
-        session.beginTransaction();
-        try{
-
-            session.delete(item);
-            session.getTransaction().commit();
+        try {
+            this.tx(
+                session -> {
+                    session.delete(item);
+                    return true;
+                }
+            );
+            return true;
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error(e);
             return false;
         }
-        finally {
-            session.close();
-            factory.close();
-        }
-        return true;
     }
 
     /**

@@ -18,7 +18,7 @@ public class ItemServlet extends HttpServlet {
         logger.info("Start doPost method in item servlet.");
         String description = req.getParameter("description").toString();
         Item item = new Item(description);
-        DataSource source = new DataSource();
+        DataSource source = DataSource.getInstance();
         source.save(item);
         req.getRequestDispatcher("/index.html").forward(req, resp);
     }

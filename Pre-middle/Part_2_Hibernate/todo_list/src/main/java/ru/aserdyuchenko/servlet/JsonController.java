@@ -32,7 +32,7 @@ public class JsonController extends HttpServlet{
 
         try {
             JSONObject jsonItem = new JSONObject();
-            DataSource source = new DataSource();
+            DataSource source = DataSource.getInstance();
             List<String> list = new ArrayList<>();
 
             for (Item item : source.getAllItems()) {
