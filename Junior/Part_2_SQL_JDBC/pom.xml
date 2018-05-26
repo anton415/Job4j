@@ -1,34 +1,14 @@
 <project>
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>Part_Eight_SQL_JDBC</artifactId>
+    <artifactId>Part_2_SQL_JDBC</artifactId>
     <version>1.0</version>
     <packaging>jar</packaging>
 
-	<build>
-		<plugins>
-			<plugin>
-				<artifactId>maven-checkstyle-plugin</artifactId>
-				<configuration>
-					<skip>true</skip>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>cobertura-maven-plugin</artifactId>
-				<configuration>
-					<check>
-						<branchRate>0</branchRate>
-						<lineRate>0</lineRate>
-						<haltOnFailure>true</haltOnFailure>
-						<totalBranchRate>0</totalBranchRate>
-						<totalLineRate>0</totalLineRate>
-						<packageLineRate>0</packageLineRate>
-						<packageBranchRate>0</packageBranchRate>
-					</check>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
+	<parent>
+		<groupId>ru.aserdyuchenko</groupId>
+		<artifactId>Junior</artifactId>
+		<version>1.0</version>
+	</parent>
 
 	<dependencies>
 		<!-- https://mvnrepository.com/artifact/postgresql/postgresql -->
@@ -61,9 +41,4 @@
     		<version>1.3.2</version>
 		</dependency>
 	</dependencies>
-    <parent>
-        <groupId>ru.aserdyuchenko</groupId>
-        <artifactId>Job4j</artifactId>
-        <version>2.0</version>
-    </parent>
 </project>

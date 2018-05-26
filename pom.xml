@@ -25,11 +25,8 @@
 
     <modules>
         <module>Intern</module>
-        <module>Pre-middle/PartThreeInputOutput</module>
-        <module>Junior/Part_Eight_SQL_JDBC</module>
-        <module>Junior/Part_Nine_Servlet</module>
-        <module>Pre-middle/Hibernate/car_sale</module>
-        <module>todo_list</module>
+        <module>Junior</module>
+        <module>Pre-middle</module>
     </modules>
 
     <dependencies>
