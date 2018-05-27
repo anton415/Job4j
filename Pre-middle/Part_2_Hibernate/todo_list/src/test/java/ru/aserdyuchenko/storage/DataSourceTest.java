@@ -11,9 +11,6 @@ import java.util.NoSuchElementException;
 
 import static org.junit.Assert.*;
 
-/**
- * TODO: Test when get all not done items.
- */
 public class DataSourceTest {
     private static final Logger logger = Logger.getLogger(DataSourceTest.class);
     private static DataSource source;

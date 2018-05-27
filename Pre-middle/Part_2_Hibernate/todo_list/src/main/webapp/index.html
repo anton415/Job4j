@@ -8,6 +8,9 @@
     <title>Todo list</title>
     <script>
         $(document).ready(function(){
+
+            const table = document.getElementById("table-with-items");
+
             // if check show all item, else show all not done item.
             $('#checkAllItem').click(function() {
                 var checkedValue = document.getElementById('checkAllItem').checked;
@@ -20,23 +23,32 @@
                             var result = "";
                             var items = JSON.parse(data.responseText);
                             for (var i = 0; i !== items.length; i++) {
-                                var checkBox = "";
-                                console.log(items[i].done.toString());
-                                if (items[i].done.toString() === "false") {
-                                    checkBox += "disabled";
-                                } else {
-                                    checkBox += "checked";
-                                }
-                                result +=
-                                    "<tr>\n" +
-                                    "<td>" + items[i].id + "</td>\n" +
-                                    "<td>" + items[i].description + "</td>\n" +
-                                    "<td>" + items[i].created + "</td>\n" +
-                                    '<td><input class=\"w3-check\" name="checkbox" type=\"checkbox\" ' + checkBox + '></td>\n' +
-                                    "</tr>";
+                                // var checkBox = "";
+                                // console.log(items[i].done.toString());
+                                // if (items[i].done.toString() === "false") {
+                                //     checkBox += "disabled";
+                                // } else {
+                                //     checkBox += "checked";
+                                // }
+                                // result +=
+                                //     "<tr>\n" +
+                                //     "<td>" + items[i].id + "</td>\n" +
+                                //     "<td>" + items[i].description + "</td>\n" +
+                                //     "<td>" + items[i].created + "</td>\n" +
+                                //     '<td><input class=\"w3-check\" name="checkbox" type=\"checkbox\" ' + checkBox + '></td>\n' +
+                                //     "</tr>";
+                                const row = table.insertRow();
+                                const cellId = row.insertCell();
+                                const cellDescription = row.insertCell();
+                                const cellCreated = row.insertCell();
+                                const cellDone = row.insertCell();
+                                cellId.innerHTML = items[i].id;
+                                cellDescription.innerHTML = items[i].description;
+                                cellCreated.innerHTML = items[i].created;
+                                cellDone.innerHTML = false;                     // EDIT THIS!!!
                             }
-                            var table = document.getElementById("table-with-items");
-                            table.innerHTML += result;
+                            // var table = document.getElementById("table-with-items");
+                            // table.innerHTML += result;
                         }
                     });
                 } else {
