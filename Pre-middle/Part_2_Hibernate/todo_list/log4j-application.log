@@ -154,3 +154,30 @@
 2018-05-26 22:51:17 WARN  pooling:73 - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
 2018-05-26 22:51:19 INFO  DataSource:23 - Data source was created
 2018-05-26 22:51:21 INFO  DataSource:36 - Factory close.
+2018-05-27 08:42:47 DEBUG logging:28 - Logging Provider: org.jboss.logging.Log4jLoggerProvider
+2018-05-27 08:42:54 WARN  pooling:73 - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+2018-05-27 08:43:00 INFO  DataSource:23 - Data source was created
+2018-05-27 08:43:01 INFO  DataSourceTest:45 - 30
+2018-05-27 08:43:01 INFO  DataSource:36 - Factory close.
+2018-05-27 08:46:10 DEBUG logging:28 - Logging Provider: org.jboss.logging.Log4jLoggerProvider
+2018-05-27 08:46:13 WARN  pooling:73 - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+2018-05-27 08:46:19 INFO  DataSource:23 - Data source was created
+2018-05-27 08:46:20 INFO  DataSource:36 - Factory close.
+2018-05-27 08:51:33 DEBUG logging:28 - Logging Provider: org.jboss.logging.Log4jLoggerProvider
+2018-05-27 08:51:37 WARN  pooling:73 - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+2018-05-27 08:51:39 INFO  DataSource:23 - Data source was created
+2018-05-27 08:51:40 INFO  DataSource:121 - item: 11, 'Test item', 2018-05-09 17:15:55.081, false
+2018-05-27 08:51:40 INFO  DataSource:36 - Factory close.
+2018-05-27 08:53:18 DEBUG logging:28 - Logging Provider: org.jboss.logging.Log4jLoggerProvider
+2018-05-27 08:53:21 WARN  pooling:73 - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+2018-05-27 08:53:23 INFO  DataSource:23 - Data source was created
+2018-05-27 08:53:24 INFO  DataSource:121 - item: 33, 'For get item by id', 2018-05-27 08:53:23.753, false
+2018-05-27 08:53:24 INFO  DataSource:36 - Factory close.
+2018-05-27 09:05:30 DEBUG logging:28 - Logging Provider: org.jboss.logging.Log4jLoggerProvider
+2018-05-27 09:05:33 WARN  pooling:73 - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+2018-05-27 09:05:35 INFO  DataSource:24 - Data source was created
+2018-05-27 09:05:35 INFO  DataSource:37 - Factory close.
+2018-05-27 09:41:02 DEBUG logging:28 - Logging Provider: org.jboss.logging.Log4jLoggerProvider
+2018-05-27 09:41:05 WARN  pooling:73 - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+2018-05-27 09:41:07 INFO  DataSource:24 - Data source was created
+2018-05-27 09:41:08 INFO  DataSource:37 - Factory close.

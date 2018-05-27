@@ -8,6 +8,7 @@ import org.hibernate.cfg.Configuration;
 import ru.aserdyuchenko.models.Item;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.function.Function;
 
 
@@ -55,35 +56,15 @@ public class DataSource {
      * Save item.
      * @return true, if save successfully.
      */
-    public boolean save(Item item) {
+    public int save(Item item) {
         try {
             this.tx(
                     session -> session.save(item)
             );
-            return true;
+            return item.getId();
         } catch (Exception e) {
             logger.error(e);
-            return false;
-        }
-    }
-
-    /**
-     * Delete item.
-     * @param item what will be delete.
-     * @return true if item delete.
-     */
-    public boolean delete(Item item) {
-        try {
-            this.tx(
-                session -> {
-                    session.delete(item);
-                    return true;
-                }
-            );
-            return true;
-        } catch (Exception e) {
-            logger.error(e);
-            return false;
+            return -1;
         }
     }
 
@@ -111,15 +92,12 @@ public class DataSource {
      * @return item.
      */
     public Item getItemById(int id) {
-        Item item = new Item();
-        List<Item> list;
-        list = this.tx(
-                session -> session.createQuery("from Item i where i.done = false").list()
+        if(id == -1) throw new NoSuchElementException();
+        List<Item> list = this.tx(
+                session -> session.createQuery("from Item i where i.id = " + id).list()
         );
         if (!list.isEmpty()) {
-            item = list.get(0);
-            logger.info("item: " + item.toString());
-        }
-        return item;
+            return list.get(0);
+        } else throw new NoSuchElementException();
     }
 }
