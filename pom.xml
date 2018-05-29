@@ -6,6 +6,11 @@
     <version>1.0</version>
     <name>Job4j</name>
 
+    <description>
+        The main goal of the course is to learn the theoretical knowledge and practical skills of developing in the
+        Java language necessary for the employment of a Java programmer.
+    </description>
+
     <developers>
         <developer>
             <id>anton415</id>
