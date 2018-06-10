@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Simple page</title>
+    <script>
+        function addElement() {
+            var newElement = document.createElement("p");
+            var textNode = document.createTextNode("This is text.");
+            newElement.appendChild(textNode);
+
+            var container = document.getElementById("container");
+            container.appendChild(newElement);
+        }
+    </script>
+</head>
+<body>
+    <h1>A simple page.</h1>
+    <div>
+        There is one button on the page. It creates an element on the page.
+        If you click again, she adds one more. and so on to infinite.
+    </div>
+    <button type="button" onclick="addElement()">Click Me!</button>
+    <div id="container"></div>
+</body>
+</html>
