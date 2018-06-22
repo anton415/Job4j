@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <title>Todo list</title>
+    <script>
+        $(document).ready(function(){
+            var table = document.getElementById("table-with-items");
+
+            function deleteAllRows() {
+                var countOfRows = table.rows.length - 1;
+                for(i = 0; i < countOfRows; i++) {
+                    table.deleteRow(i);
+                }
+            }
+
+            // if check show all item, else show all not done item.
+            $('#checkAllItem').click(function() {
+                var checkedValue = document.getElementById('checkAllItem').checked;
+                console.log("checkedValue " + checkedValue);
+                if (document.getElementById('checkAllItem').checked) {
+                    // get json data from servlet.
+                    $.ajax('./json', {
+                        method: 'get',
+                        complete: function (data) {
+                            var result = "";
+                            var items = JSON.parse(data.responseText);
+                            for (var i = 0; i !== items.length; i++) {
+                                const row = table.insertRow();
+                                const cellId = row.insertCell();
+                                const cellDescription = row.insertCell();
+                                const cellCreated = row.insertCell();
+                                const cellDone = row.insertCell();
+                                cellId.innerHTML = items[i].id;
+                                cellDescription.innerHTML = items[i].description;
+                                cellCreated.innerHTML = items[i].created;
+                                cellDone.innerHTML = false;                     // EDIT THIS!!!
+                            }
+                        }
+                    });
+                } else {
+                    deleteAllRows();
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="w3-red w3-container w3-center" id="title">Todo list</div>
+
+    <form class="w3-container w3-card w3-yellow w3-center"  action='item' method="post">
+        <h2>Add new item</h2>
+        <input placeholder="Description" required="" id="description" name="description" type="text" class="w3-input">
+        <br>
+        <input class="w3-button w3-black" type="submit">
+    </form>
+
+    <br>
+
+    <div style="text-align: center">
+        Show all items <input class="w3-check" type="checkbox" name="checkAllItem" id="checkAllItem" checked>
+    </div>
+
+    <br>
+
+    <!-- Table with items -->
+    <table class="w3-table" id="table-with-items">
+        <tr>
+             <th>Id</th>
+             <th>Description</th>
+             <th>Created</th>
+             <th>Done</th>
+         </tr>
+    </table>
+</body>
+</html>
